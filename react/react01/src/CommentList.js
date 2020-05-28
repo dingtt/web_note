@@ -4,10 +4,12 @@ export default class CommentList extends Component{
     constructor(props){
         super(props)
         this.state = {
-            comments:[]
+            comments:[
+                {body:'初始',author:'admin'}
+            ]
         }
     }
-    componentDidMount(){
+    componentDidMount(){ //为什么不生效
         setTimeout(() => {
             this.setState = {
                 comments : [
@@ -20,14 +22,15 @@ export default class CommentList extends Component{
     render(){
         return (
             <div>
-                {this.state.comments.map((item,index) => {
-                    <Comment key={index} data={item} />
-                })}
+                {this.state.comments.map((item,index) => (
+                        <Comment key={index} data={item} />
+                    ))}
             </div>
         )
     }
     
 }
+//展示组件
 function Comment({data}){
     return (
         <div>
