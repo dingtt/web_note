@@ -1,0 +1,7 @@
+{
+    "dependencies": {
+        "download-git-repo": "^3.0.2",
+        "ora": "^4.0.4",
+        "unil": "^1.0.0"
+    }
+}

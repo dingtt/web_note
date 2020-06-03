@@ -2,8 +2,14 @@ import React , { Component } from 'react'
 import Button from 'antd/lib/button'
 // import  'antd/dist/antd.css'
 import CommentList from './CommentList'
-import ClockFunc from './ClockFunc'
+// import ClockFunc from './ClockFunc'
 import Lifecycle from './Lifecycle'
+import ContextTest from './Context'
+import HocTest from './HocTest'
+import HocTest2 from './HocTest.tsx'
+import Composition from './Composition'
+import RadioGroup from './radio'
+
 export default class App  extends Component {
   constructor(props){
     super(props)
@@ -40,8 +46,14 @@ export default class App  extends Component {
         inputVal : e.target.value
       })
   }
-
   
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        lifeContent :'内容发生变化'
+      })
+    }, 2000)
+  }
   
   render(){
     return  <div>
@@ -57,12 +69,17 @@ export default class App  extends Component {
      </ul>
       <span>{this.state.inputVal}</span> <br/>
      <input value={this.state.inputVal} onChange={(e)=>{this.changeVal(e)}}></input>
-    <button> 你好啊 </button>
+    {/* <button> 你好啊 </button> */}
     <Welcome tips='欢迎你啊'></Welcome>
     <Button type="primary">默认按钮</Button>
     <CommentList></CommentList>
     <Lifecycle content={this.state.lifeContent}></Lifecycle>
     {/* <ClockFunc></ClockFunc> */}
+       <ContextTest></ContextTest>
+       <HocTest></HocTest>
+       <HocTest2></HocTest2>
+       <Composition></Composition>
+       <RadioGroup></RadioGroup>
     </div>
   }
 
