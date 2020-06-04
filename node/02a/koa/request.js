@@ -1,9 +1,9 @@
 module.exports = {
     get url() {
-        return this.req.url
+    return this.req.url;
     },
-
     get method(){
-        return this.req.mothod.toLowerCase()
+    return this.req.method.toLowerCase()
     }
-}
+};
+    
