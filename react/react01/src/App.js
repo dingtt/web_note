@@ -1,7 +1,9 @@
 import React , { Component } from 'react'
 import Button from 'antd/lib/button'
-import  'antd/dist/antd.css'
+// import  'antd/dist/antd.css'
 import CommentList from './CommentList'
+import ClockFunc from './ClockFunc'
+import Lifecycle from './Lifecycle'
 export default class App  extends Component {
   constructor(props){
     super(props)
@@ -24,7 +26,8 @@ export default class App  extends Component {
           id:3
         }
       ],
-      inputVal:''
+      inputVal:'',
+      lifeContent:''
 
     }
 
@@ -58,6 +61,8 @@ export default class App  extends Component {
     <Welcome tips='欢迎你啊'></Welcome>
     <Button type="primary">默认按钮</Button>
     <CommentList></CommentList>
+    <Lifecycle content={this.state.lifeContent}></Lifecycle>
+    {/* <ClockFunc></ClockFunc> */}
     </div>
   }
 
