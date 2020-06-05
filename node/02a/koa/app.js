@@ -63,6 +63,6 @@ app2.use(async (ctx, next) => {
     ctx.body += "3";
 });
 
-app2.listen(3004, () => {
+app2.listen(3004 , () => {
     console.log('监听 3001');
 })
