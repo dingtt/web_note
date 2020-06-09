@@ -35,7 +35,7 @@ const sharedPropertyDefinition = {
   set: noop
 }
 
-//将 data props 挂载到实例 ， vm实例 ， 数据源的key， 数据的key
+//将 data props 挂载到实例 ， vm实例 ， 数据源的key， 数据的key   sourceKey  _props _data
 export function proxy (target: Object, sourceKey: string, key: string) {
   sharedPropertyDefinition.get = function proxyGetter () {
     return this[sourceKey][key]

@@ -81,8 +81,8 @@ export class Observer {
 // helpers
 
 /**
- * Augment a target Object or Array by intercepting
- * the prototype chain using __proto__
+ * Augment a target Object or Array by intercepting 拦截原型链，修改__protp__
+ * the prototype chain using __proto__  
  */
 function protoAugment (target, src: Object) {
   /* eslint-disable no-proto */
@@ -91,7 +91,7 @@ function protoAugment (target, src: Object) {
 }
 
 /**
- * Augment a target Object or Array by defining
+ * Augment a target Object or Array by defining  没有原型链的，循环创建属性方法
  * hidden properties.
  */
 /* istanbul ignore next */
@@ -160,7 +160,7 @@ export function defineReactive (
     configurable: true,
     get: function reactiveGetter () {
       const value = getter ? getter.call(obj) : val
-      if (Dep.target) {
+      if (Dep.target) {//Dep的一个静态属性，全局就一个
         dep.depend()  //依赖收集
         if (childOb) {
           childOb.dep.depend()
