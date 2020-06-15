@@ -1,7 +1,0 @@
-#!dtt/user/bin/env node
- console.log('...dtt')npm
- const program = require('commander')
- program.version(require('../package.json').version, 'v', '--version')
-     .command('init <name>', 'init project')
-     .command('refresh', 'refresh routers...')
-program.parse(process.argv)
