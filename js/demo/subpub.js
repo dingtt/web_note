@@ -173,31 +173,3 @@ var calculateBonus = function(level, salary) {
 }
 console.log(calculateBonus('S', 10000))
 
-// 表单验证
-var strategies = {
-  isEmpty: function(val, msg){
-    if(val ===''){
-      return msg
-    }
-  },
-  minLength: function(val, length, msg){
-    if(val.length < length){
-      return msg
-    }
-  },
-  isMobile: function(val, msg) {
-    if(!/^1[3|5|6|7|8|9][0-9]{9}$/.test(val)){
-      return msg
-    }
-  }
-}
-
-// var Validate = function() {
-//   this.cache = [] // 保存校验规则
-// }
-// Validate.prototype.add = function() {
-//   var ary = rule.split( ':' )
-//   this.cache.push(function() {
-//     var strategy = ary.shift()
-//   })
-// }

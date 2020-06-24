@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>策略模式 表单验证</title>
+</head>
+
+<body>
+  <form id="form">
+    用户名<input type="text" name="username">
+    密码<input type="password" name="pwd">
+    手机号<input type="tel" name="mobile">
+    <button type="submit" id="submitBtn">提交</button>
+  </form>
+
+  <script>
+    // 策略模式 表单验证  
+    //策略类是由一组验证方法组成的对象，即策略对象
+    var strategies = {
+      isNotEmpty: function (val, msg) {
+        return val === '' ? msg : void 0
+      },
+      minLength: function (val, length, msg) {
+        return val.length < length ? msg : void 0
+      },
+      isMobile: function (val, msg) {
+        return !/^1[3|5|6|7|8|9][0-9]{9}$/.test(val) ? msg : void 0
+      }
+    }
+
+    class Validator {
+      constructor() {
+        this.cache = [] // 保存校验规则
+      }
+      add(dom, rules) {
+        for (let rule of rules) {
+          let strategyArr = rule.strategy.split(':') // 拆开 ['lenght', 6]
+          let errorMsg = rule.errorMsg
+          this.cache.push(() => {
+            let strategy = strategyArr.shift() //用户挑选的策略
+            strategyArr.unshift(dom.value) // 把input的值添加仅参数列表
+            strategyArr.push(errorMsg) // 把errorMsg添加进去参数列表 [dom.value, 6, errorMsg]
+            console.log(strategyArr)
+            return strategies[strategy].apply(dom, strategyArr) // args
+          })
+        }
+
+      }
+      start() {
+        for (let ValidatorFunc of this.cache) { // 
+          let errorMsg = ValidatorFunc() // 开启校验，并取得校验返回的信息
+          if (errorMsg) { // 如果没有明确的返回值，说明校验未通过
+            return errorMsg
+          }
+        }
+      }
+    }
+    let form = document.querySelector('#form')
+    const ValidatorFunc = () => {
+      let validator = new Validator()
+      validator.add(form.username, [{
+          strategy: 'isNotEmpty',
+          errorMsg: '用户名不能为空'
+        },
+        {
+          strategy: 'minLength:6',
+          errorMsg: '用户吗不能少于6位'
+        }
+      ])
+      validator.add(form.pwd, [{ // 校验空在前面
+        strategy: 'isNotEmpty',
+        errorMsg: '密码不能为空'
+      }, {
+        strategy: 'minLength:6',
+        errorMsg: '密码不能少于6位'
+      }])
+      validator.add(form.mobile, [{
+        strategy: 'isMobile',
+        errorMsg: '手机号格式错误'
+      }])
+      let errorMsg = validator.start()
+      return errorMsg
+    }
+
+    form.addEventListener('submit', function () {
+      var errorMsg = ValidatorFunc()
+      if (errorMsg) {
+        alert(errorMsg)
+        return false
+      }
+    }, false)
+  </script>
+
+</body>
+
+</html>
