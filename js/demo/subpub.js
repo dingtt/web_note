@@ -1,3 +1,5 @@
+import { Model } from "mongoose"
+
 // 主题对象 保存状态 ，保存观察者，状态变化之后触发所有的观察者对象
 class Sub {
   constructor() {
@@ -216,24 +218,23 @@ let adapter = new Adapter()
 console.log(adapter.getName())
 
 var aisMap = {
-  show: function() {
-  }
+  show: function () {}
 }
 var baiduMap = {
-  display: function() {
+  display: function () {
 
   }
 }
 
 var adapterBaiduMap = {
-  show: function() {
+  show: function () {
     return baiduMap.display()
   }
 }
 console.log(aisMap.show(), adapterBaiduMap.show())
 
 // 建造者模式
-var Person = function(name, work) {
+var Person = function (name, work) {
   // 创建应聘者缓存对象
   var _person = new Human()
   // 创建应聘者姓名解析对象
@@ -275,14 +276,14 @@ var d = new Decorator(dep)
 console.log(d.init())
 
 const withLog = Component => {
-  class NewComponent extends React.Component{
+  class NewComponent extends React.Component {
     //  16.4 shouldReceiveProps shouldUpdate componentUpdate
     // 
     componentWillMount() {
       console.time(`ComponentRender`)
     }
     render() {
-      return <Component>{ ...this.props }</Component>
+      return <Component> {...this.props } </Component>
     }
     componentDidMount() {
       console.time(`componentRenderEnd`)
@@ -299,20 +300,24 @@ export const connect = (mapStateToProps = state => state, mapDispatchToProps = {
     static contextTypes = {
       store: PropTypes.object
     }
-    constructor(props, context){
+    constructor(props, context) {
       super(props, context)
       this.state = {
         props: {}
       }
     }
     componentWillMount() {
-      const { store } = this.context
+      const {
+        store
+      } = this.context
       // 当状态 update 后，放入监听器中，用于下一次的更新， 每次 dispatch 后会执行 subscribe 中的函数
       store.subscribe(() => this.update())
       this.update()
     }
     update() {
-      const { store } = this.context
+      const {
+        store
+      } = this.context
       const stateProps = mapStateToProps(store.getState())
       const dispatchProps = bindActionCreators(mapDispatchToProps, sotre.dispatch)
       this.setState({
@@ -324,44 +329,356 @@ export const connect = (mapStateToProps = state => state, mapDispatchToProps = {
       })
     }
     render() {
-    return <WarpComponent>{...this.state.props}</WarpComponent>
+      return <WarpComponent > {...this.state.props} </WarpComponent>
     }
   }
 }
 
 // 装饰器模式  原型链方法
-Function.prototype.before = function(beforefn) {
+Function.prototype.before = function (beforefn) {
   var _self = this // 保存原函数的引用
-  return function() { // 返回包含原函数和新函数的 装饰函数
+  return function () { // 返回包含原函数和新函数的 装饰函数
     beforefn.apply(this, arguments) // 执行新函数，且保证 this 不被劫持，新函数接收的参数，也会元丰不动地传入原函数，新韩淑在原函数之前执行
     return _self.apply(this, arguments) // z执行原函数，并返回原函数的执行结果，并保证this不被劫持
   }
 }
-Function.prototype.after = function(afterfn) {
+Function.prototype.after = function (afterfn) {
   var _self = this
-  return function() {
+  return function () {
     var ret = _self.apply(this, arguments)
     afterfn.apply(this, arguments)
     return ret
   }
 }
 // 使用装饰器
-var showLogin = function(){
+var showLogin = function () {
   console.log('打开登录框')
 }
-var log = function(){
+var log = function () {
   console.log('上报日志')
 }
 var dicoratorShowlogin = showLogin.after(log)
 
 // 外观模式 兼容浏览器事件绑定
-let addMyEvent = function(el, ev, fn) {
-  if(el.addEventListener){
+let addMyEvent = function (el, ev, fn) {
+  if (el.addEventListener) {
     length.addEventListener(ev, fn, false)
-  }else if(el.attachEvent) {
+  } else if (el.attachEvent) {
     el.attachEvent('on' + ev, fn)
-  }else{
+  } else {
     el['on' + ev] = fn
   }
 }
 // 封装接口
+
+// 代理模式  图片懒加载
+
+var imgLoad = (function () {
+  var img = document.createElement('img')
+  document.append(img)
+  return {
+    setSrc: function (src) {
+      img.src = src
+    }
+  }
+})()
+
+var layzLoadImg = (function () {
+  var img = new Image()
+  img.onload = function () {
+    imgLoad.src = img
+  }
+  return {
+    setStr: function (src) {
+      imgLoad.setSrc('loading.gif')
+      img.src = src
+    }
+  }
+})()
+layzLoadImg('realyImg.jpg')
+
+// 代理模式 集中上报
+var sendLog = function (id) {
+  console.log('开始发送请求' + id)
+}
+
+var proxySendLog = (function () {
+  var cache = [] // 保存需要发送的请求
+  var timer
+  return function (id) {
+    cache.push(id)
+    if (timer) return
+    timer = setTimeout(function () {
+      sendLog(cache.join(','))
+      clearTimeout(timer)
+      timer = null
+      cache.length = 0 // 清空缓存合集
+    }, 1000) //每1秒集中上报一次
+  }
+})()
+
+// 隐秘的角落中,严良找朝阳给张东升传信
+let Message = function (content) {
+  this.content = content
+}
+
+let yanliang = {
+  call: function (target) {
+    let message = new Message('30万')
+    target.receiveMsg(message)
+  }
+}
+
+let chaoyang = {
+  receiveMsg: function (message) {
+    zhang.listen(function () {
+      zhang.receiveMsg(message)
+    })
+  }
+}
+
+let zhang = {
+  receiveMsg: function (message) {
+    console.log('收到消息' + message.content)
+  },
+  listen: function (fn) {
+    setTimeout(function () {
+      fn()
+    }, 2000)
+  }
+}
+yanliang.call(chaoyang)
+
+// 中介者模式
+class A {
+  constructor(data) {
+    this.data = ''
+  }
+  // setData(data) {
+  //   this.data = data
+
+  //   B.setData(data)
+  // }
+  setData(data, m) {
+    this.data = data
+     m && m.setB(data)
+  }
+} 
+
+class B {
+  constructor(){
+    this.data = ''
+  }
+  // setData(data){
+  //   this.data = data
+  // }
+  setData(data, m) {
+    this.data = data
+    m && m.setA(data)
+  }
+}
+
+class Mediator {
+  constructor(a, b){
+    this.a = a
+    this.b = b
+  }
+  setA() {
+    let data = this.b.data
+    this.a.setData(data + '通过中介把b的值同步到A')
+  }
+  setB() {
+    let data = this.a.data
+    this.b.setData(data + '通过中介把a的值同步到B')
+  }
+}
+
+let a = new A()
+let b = new B()
+let m = new Mediator(a, b)
+a.setData('给a赋值', m)
+console.log(b.data)
+
+// 迭代器模式 es6
+class Iterator {
+  constructor(container){
+    this.index = 0
+    this.list = container.list
+  }
+  next() {
+    if(this.hasNext()){
+      return this.list[this.index++]
+    }
+  }
+  hasNext() {
+    if(this.index <= (this.list.length - 1)){
+      return true
+    }else{
+      return false
+    }
+  }
+}
+class Container {
+  constructor(list){
+    this.list = list
+  }
+  getIterator() {
+    return new Iterator(this)
+  }
+}
+
+let container = new Container(['aaa', 'bbb', 'ccc'])
+let iteartor = container.getIterator()
+while(iteartor.hasNext()){
+  console.log(iteartor.next())
+}
+
+// 迭代器es5
+var each = function(arr, callback){
+  for(var i = 0, len = arr.length; i < len; i++){
+    callback.call(arr[i], i, arr[i])
+  }
+}
+each([1, 2, 3],function(i, val){
+  console.log(i, val)
+})
+
+// 状态模式
+// 状态
+class State {
+  constructor(state) {
+    this.state = state
+  }
+  handle(context) {
+    console.log(this.state)
+    context.setState(this)
+  }
+}
+
+class Context {
+  constructor() {
+    this.state = null
+  }
+  getState() {
+    return this.state
+  }
+  setState(state) {
+    this.state = state
+  }
+}
+
+let context = new Context()
+let weak = new State('weak')
+let strong = new State('strong')
+let off = new State('off')
+
+weak.handle(context)
+console.log(context.getState())
+
+// 享元模式
+// 普通写法
+var model = function(sex, underwear) {
+  this.sex = sex
+  this.underwear = underwear
+}
+Model.prototype.takePhoto = function(){
+}
+for(var i = 1; i < 50; i++){
+  var maleModel = new Model('male', 'underwear' + i)
+  maleModel.takePhoto()
+}
+for(var i = 0; i < 100; i++){
+  var femaleModel = new Model('female', 'underwear' + i)
+  femaleModel.takePhoto()
+}
+// 享元写法
+var model = function(sex){
+  this.sex = sex
+}
+Model.prototype.takePhoto = function() {
+}
+for(var i = 0; i < 50; i ++ ){
+  var maleModel = new Model('male')
+  maleModel.underwear = 'underwear' + 1
+  maleModel.takePhoto()
+}
+
+// vue 通知组件 Notification.js
+export default {
+  install(Vue) {
+    // 在使用Vue.use(Notification)时实例化一个Dialog对象
+    const Dialog = new Vue({
+      data() {
+        return {
+          icon: '',
+          fontStyle: '',
+          bgStyle: '',
+          title: '',
+          message: ''
+        }
+      }
+      // ...
+    })
+    Vue.prototype.$notify = {
+      success(obj) {
+        Dialog.icon = successIcon
+        // ...
+        Dialog.title = obj.title
+        Dialog.message = message
+        document.append(Dialog.$el)
+      },
+      info() {
+
+      },
+      warning() {
+
+      },
+      error() {
+
+      }
+    }
+  }
+}
+
+class Common {
+  constructor(abstractMethod){
+    this.abstractMethod = abstractMethod
+  }
+  commonMethod() {
+    console.log('公共方法')
+  }
+  init() {
+    //执行顺序
+    this.commonMethod()
+    this.abstractMethod()
+  }
+}
+
+const children = new Common(function(){
+  console.log('子类具体的执行')
+})
+children.init()
+
+// 职责链模式
+class Step {
+  constructor(order) {
+    this.order = order
+    this.nextStep = null
+  }
+  setNextStep(step) { // 指定在链中的下一个节点
+    this.nextStep = step
+  }
+  resolve() {
+    console.log('流转', this.order)
+    if(this.nextStep !== null){
+      this.nextStep.resolve()
+    }
+  }
+}
+
+let step1 = new Step('步骤1')
+let step2 = new Step('步骤2')
+let step3 = new Step('步骤3')
+step1.setNextStep(step2)
+step2.setNextStep(step3)
+step1.resolve()
