@@ -109,20 +109,35 @@ output: {
 
 loader是webpack中处理多种文件格式的机制，负责把某种文件格式的内容转换成webpack可以支持打包的模块。
 
+loader可以是链式的，接收的可能是工程源文件的字符串，也可能是上个loader转化后的结果字符串、source map，以及AST对象，输出类似。
+
 ```
 modules.export = {
   modules: {
-    rules:[
+    rules:[ // 模块的处理规则
       {
-        test: /\.xxx$/,  // 匹配文件，通常是匹配文件后缀
+        test: /\.xxx$/,  // 匹配文件，通常是匹配文件后缀  接收正则表达式，或元素为正则表达式的数组
+        enforce:'pre', // pre所有loader之前，比如eslint； post所有loader之后；不配置该项为normal；inline已不推荐
         include: [
           path.recolve(__dirname, 'src') // 指定哪些路径下的该类文件需要处理
         ],
+        exclude:/node_modules/, // 排除目录，exclude和include同时存在，exclude优先级更高
+        // /node_modules\/(?!(foo|bar)\/).*/ // 排除 排除中的目录的模块，从而设置对该模块生效
         // use: 'xxx-loader', 
-        // use: ['xxx-loader', 'yyy-loader'] // loader有顺序，从右向左，从下向上
+        // use: ['xxx-loader', 'yyy-loader'] // loader有顺序，从后向前，从下向上
         use: {
           loader: 'xxx-load',
-          options:{}
+          options:{} // 可以传入配置项，还可以在loader名称后使用query的方式传入
+        },
+        // 还可以写成如下格式，resource 和issuer
+        // resource: {
+        //  test:'',
+        //  include:''
+        // },
+        issuer: { // 对于引用模块的文件生效
+          test:/\.js$/,
+          include:'src/pages' // 只有该目录下的，同上类型文件，引入的符合test的模块，才会进行loader处理
+          exclude:/node_modules/ // 排除该目录下，同上类型的文件，其他文件引入的符合test的模块
         }
       }
     ]
@@ -133,6 +148,66 @@ modules.export = {
 
 
 #### 常用loader
+
+##### babel-loader 将ES6转化为ES5
+
+babel-loader需要设置exclude排除node_modules
+
+babel-loader本身添加了cacheDirectory配置项，缓存机制在重复打包未改变过的模块时防止二次编译
+
+```
+rules: [
+  test: /\.js*/,
+  exclude: /node_modules/,
+  use: {
+    loader: 'babel-loader',
+    options: {
+      cacheDirectory: true,
+      presets: [[
+        'env',{
+          modules: false // 阻止@babel/preset-env会ES6 转化为CommonJS的形式（会导致webpack中的tree-shaking失效）
+        }
+      ]]
+    }
+  }
+]
+```
+
+babel-loader 支持从 .babelrc文件读取babel配置
+
+##### ts-loader
+
+将Typescript 转换未javascript
+
+```
+rules: [
+  {
+    test: /\.ts$/,
+    use: 'ts-loader'
+  }
+]
+```
+
+TS的配置在工程目录下的tscofig.json中
+
+```
+{
+  "compilerOptions": {
+  	"target": 'es5',
+  	"sourceMap": true
+  }
+}
+```
+
+##### html-loader 
+
+用于将HTML文件转化为字符串并进行格式化
+
+##### handlebars-loader 处理handlebars模板
+
+handlebars文件加载后得到一个函数，函数接收变量对象作为参数，可返回最终的字符串
+
+
 
 ##### file-loader 处理静态资源模块
 
@@ -153,7 +228,7 @@ module: {
       	loader: 'file-loader',
       	options: { // 配置资源名称输出目录等
       	  name: '[name]_[hash].[ext]', // 原来的资源文件名，文件hash，扩展名
-      	  publicPath:'imgages/' // 输出到的位置
+      	  publicPath:'imgages/' // 输出到的位置 file-loader中的publicPath会覆盖Webpack中的publicPath
       	}
       }
     }
@@ -207,19 +282,15 @@ postcss-loader自动添加样式前缀，配置文件postcss.config.js
 
 ##### Vue模板解析
 
-vue-loader
+vue-loader   还依赖 vue-tempalte-compiler css-loader  , CSS样式的预处理器
 
 ```
 rules: [
   {
   test: /^\.vue$/
-  use:
+  use:'vue-loader'
   }
 ]
 ```
 
 
-
-##### .hbs模板解析
-
-handlebars-loader
