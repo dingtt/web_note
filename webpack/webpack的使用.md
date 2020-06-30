@@ -18,7 +18,7 @@ webpack是一个模块打包工具，可以识别出引入模块的语法
 - 完备的代码分割（code splitting）解决方案
 - 可以处理各种类型的资源
 
-```
+```javascript
 npm install webpack webpack-cli -D
 ```
 
@@ -26,7 +26,7 @@ npm install webpack webpack-cli -D
 
 scripts是npm提供的脚本命令功能
 
-```
+```javascript
 "scripts": {
     "build": "webpack --mode production"
 }
@@ -44,7 +44,7 @@ scripts是npm提供的脚本命令功能
 
 配置入口文件，即webpack构建的入口，会从它开始依赖分析进行打包。打包结果默认放在当前目录下的dist目录，打包的模块名是main.js
 
-```
+```javascript
 // 直接字符串
 module.exports = {
   // ...
@@ -84,7 +84,7 @@ module.exports = {
 
 打包后的文件位置
 
-```
+```javascript
 output: {
   pubilcPath: '', // 用来指定资源的请求位置，
   // 可以使用相对HTML的路径， '' ,'./js', './static', '../assets'
@@ -111,7 +111,7 @@ loader是webpack中处理多种文件格式的机制，负责把某种文件格�
 
 loader可以是链式的，接收的可能是工程源文件的字符串，也可能是上个loader转化后的结果字符串、source map，以及AST对象，输出类似。
 
-```
+```javascript
 modules.export = {
   modules: {
     rules:[ // 模块的处理规则
@@ -155,7 +155,7 @@ babel-loader需要设置exclude排除node_modules
 
 babel-loader本身添加了cacheDirectory配置项，缓存机制在重复打包未改变过的模块时防止二次编译
 
-```
+```javascript
 rules: [
   test: /\.js*/,
   exclude: /node_modules/,
@@ -269,6 +269,10 @@ style-loader会把css-loader生成的内容，以style挂载到页面的header�
 
 sass-loader把sass语法转换成css，依赖node-sass模块 `npm install sass-loader node-sass -D`
 
+less-loader
+
+postcss-loader post-css需要有单独的配置文件 postcss-loader
+
 ```
 {
   test: /^\.scss$/,
@@ -276,9 +280,7 @@ sass-loader把sass语法转换成css，依赖node-sass模块 `npm install sass-l
 }
 ```
 
-##### 样式自动添加前缀
 
-postcss-loader自动添加样式前缀，配置文件postcss.config.js 
 
 ##### Vue模板解析
 
@@ -293,4 +295,107 @@ rules: [
 ]
 ```
 
+##### CSS Modules
+
+每个css文件都有单独的作用域，对css进行依赖关系，可以通过相对路径引入css文件，可以通过composes轻松复用其他CSS模块
+
+只需要开启css-loader配置项中的modules : true
+
+```
+options:{
+  modules:true,
+  localIdentName:'[name]_[local]_[hash:base64:5]' // 模块名 选择符 5位哈希
+}
+```
+
+使用CSSmodules时css文件会导出一个对象，我们需要把对象的属性添加到html标签上
+
+```
+// style.css
+.title {
+  color:#f938ab;
+}
+// app.js
+import styles from './style.css'
+document.write(`<h1 calss={$styles.title}>优点复杂</h1>`)
+```
+
+
+
+#### 常用plugin
+
+##### html-webpack-plugin
+
+会自动把打包处理的资源名放入到生成的index.html中，支持传入html模板
+
+##### extract-text-webpack-plugin 样式文件处理webpack4前
+
+样式的提取是以资源入口开始的整个chunk为单位的，chunk是一组具有依赖关系的模块的封装
+
+##### mini-css-extract-plugin 
+
+支持按需加载，
+
+```javascript
+module: {
+  rules: [
+    {
+      test: /\.css$/,
+      use: [
+        {
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath:'../'
+          }
+        },
+        'css-loader'
+      ]
+    }
+  ]
+}
+plugins:[
+  new MiniCssExtractPlugin({
+    filename: '[name].css', // chunkname 对英entry里的key  同步加载的css资源名
+    chunkFilename: '[id].css' // 指定异步加载的css资源名
+  })
+]
+```
+
+##### 样式自动添加前缀
+
+postcss-loader结合autoprefixer 自动添加样式前缀，配置文件postcss.config.js 
+
+```javascript
+// postcss.config.js
+const autoprefixer = require('autoprefixer')
+module.exports = {
+  plugins: [
+    autoprefixer({
+      grid:true // 为grid特性添加ie前缀
+      browers: {
+        '> 1%',
+        'last 3 versions',
+        'android 4.4',
+        'ie 8'
+      }
+    })
+  ]
+}
+```
+
+##### stylelint 代码格式检查
+
+##### CSSNext
+
+postcss-cssnext 
+
+```
+postcssCssnext({
+  // 指定所支持的浏览器
+  browers:[
+    '> 1%',
+    'last 2 versions'
+  ]
+})
+```
 
