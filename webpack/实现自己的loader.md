@@ -2,18 +2,22 @@
 
 ### loader原理
 
-loader本身就是一个函数，对接收到的内容进行转换，然后返回转换后的结果
+loader本身就是一个函数，对接收到的内容进行转换，然后返回转换后的结果。声明式函数，不能⽤用箭头函数
 
 content是模块内容，可以是字符串，Buffer，map是sourcemap对象，meta是其他一些元数据
 
 ```javascript
 module.exports = function(content, map, meta) {
-  var callback = this.async() // 使用this.async获取callback函数 ？？？？？？？？
+  // var callback = this.async() // 异步事件的适合使用this.async，返回的是callback函数  
+  // setTimeout(() => {    
+      // ...    
+      //callback(null, result)  
+  // }, 3000);
   var result = handler(content, map, meta)
-  // loader函数本身只返回一个值，如果需要返回sourcemap或者meta对象，需要使用this.callback()
+  // loader函数本身只返回一个值，如果需要返回sourcemap或者meta对象等多个值，需要使用this.callback()
   this.callback(
    null, // error 自行赋值
-   result.content, // 转换后的内容
+   result.content, // 转换后的内容  string Buffer
    result.map, // 转换后的source-map
    result.meta // 转换后的AST
   )
@@ -27,13 +31,14 @@ npm init -y
 ```javascript
 // my-diy-loader/index.js
 // 还可以安装引入其他的依赖
-var loaderUtils = require("loader-utils") // loader-utils是webpack官方提供的库
+var loaderUtils = require("loader-utils") // loader-utils是webpack官方提供的处理loader，query的库
 var SourceNode = require('source-map').SourceNode // source-map便于开发调试在控制台中查看源码
 var SourceMapConsumer = require("source-map").SourceMapConsumer // 如果不处理sourece-map无法生成正确的map文件
 module.exports = function(content, soureceMap) {
   if(this.cacheable) { // 缓存
     this.cacheable()
   }
+  //this.query 通过this.query来接受配置⽂文件传递进来的参数
   var options = loaderUtils.getOptions(this) || {} // 获取options
   // source-map
   if(options.sourceMap && sourceMap) { // 获取sourceMap对象
@@ -87,6 +92,8 @@ resolveLoaders: {
 ```
 
 另外也可以使用 `npm link` 的方式来开发和调试
+
+**处理loader路径的问题** ？？？
 
 ### Pitching loader
 

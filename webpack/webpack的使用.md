@@ -19,16 +19,21 @@ webpack是一个模块打包工具，可以识别出引入模块的语法
 - 可以处理各种类型的资源
 
 ```javascript
-npm install webpack webpack-cli -D
+// 局部安装 
+npm install webpack webpack-cli -D //webpack-cli 可以帮助我们在命令⾏行行⾥里里使⽤用npx ,webpack等相关指令
+npx webpack -v // npx帮助我们在项⽬目中的node_modules⾥里里查找webpack
+
+npx webpack // 使用默认配置文件
+npx webpack --config webpackconfig.js //指定webpack使⽤用webpackconfig.js⽂文件来作为 配置⽂文件并执⾏行行
 ```
 
-4.X版本之后需要单独安装webpack-cli
+*4.X版本之后需要单独安装webpack-cli*
 
 scripts是npm提供的脚本命令功能
 
 ```javascript
 "scripts": {
-    "build": "webpack --mode production"
+    "build": "webpack --mode production" // 有npm run 时无需npx
 }
 ```
 
@@ -37,6 +42,8 @@ scripts是npm提供的脚本命令功能
 默认的配置文件为 webpack.config.js，webpack运行时会读取目录下的该文件
 
 不同项目使用的webpack版本可能不一致，所以不推荐全局安装
+
+
 
 ### Webpack的核心概念
 
@@ -93,7 +100,7 @@ output: {
   filename: 'main.js', // 这里支持路径，不存在将创建
   // filename: '[name]_[hash].[ext]' // 
   // 绝对路径
-  path: path.resolve(_dirname, 'dist') // path指资源的输出位置
+  path: path.resolve(_dirname, 'dist') // path指资源的输出位置，必须是绝对路径
   // __dirname Node.js内置变量，值为当前文件所在的绝对路径
   // path.resolve拼装函数  / ./ ../
 }
@@ -156,6 +163,14 @@ babel-loader需要设置exclude排除node_modules
 babel-loader本身添加了cacheDirectory配置项，缓存机制在重复打包未改变过的模块时防止二次编译
 
 ```javascript
+// 在dev模式中，默认开启，关闭的话 可以在配置⽂文件⾥里里
+
+//babel-loader是webpack 与 babel的通信桥梁梁，不不会做把es6转成es5的⼯工作，这部分⼯工作需要⽤用 到@babel/preset-env来做
+//@babel/preset-env⾥里里包含了了es6转es5的转换规则
+
+```
+
+```javascript
 rules: [
   test: /\.js*/,
   exclude: /node_modules/,
@@ -174,6 +189,59 @@ rules: [
 ```
 
 babel-loader 支持从 .babelrc文件读取babel配置
+
+##### @babel/polyfill
+
+把es的新特性都引入，例如Promise等，默认会把所有特性都注入到**全局变量**
+
+```
+// 按需引入的设置，可以配置到.babelrc里
+options: {
+  presets: [
+    ["@babel/preset-env",
+     {
+      targets: {
+       edge:"17",
+       firefix:"60",
+       chrome:"66",
+       safari:"11.1",
+      },
+      useBuiltIns: 'usage' // 按需引入,useBuiltIns 选项是 babel 7 的新功能,告诉 babel 如何配置                      // @babel/polyfill  entry 需要在entry里引入import "@babel/polyfill"，usage 不需要import
+     }
+     // , "@babel/preset-react"  // 打包react选安装配置的
+    ]
+  ]
+}
+```
+
+##### @babel/plugin-tranform-runtime
+
+闭包方式引入
+
+```
+npm i @babel/plugin-tranform-runtime -S
+npm i @babel/runntime -S
+```
+
+```
+// 注释preset-env 写入配置文件.babelrc
+{
+  plugins: [
+   [
+     "@babel/plugin-transform-runtime",
+     {
+       "absoluteRuntime": false,        
+       "corejs": 2, 
+        "helpers": true,        
+        "regenerator": true,        
+        "useESModules": false 
+     }
+   ]
+  ]
+}
+```
+
+
 
 ##### ts-loader
 
@@ -226,8 +294,8 @@ module: {
       test: /^\.(png|jpe?g|gif)$/,
       use: {
       	loader: 'file-loader',
-      	options: { // 配置资源名称输出目录等
-      	  name: '[name]_[hash].[ext]', // 原来的资源文件名，文件hash，扩展名
+      	options: { // 额外的配置，资源名称输出目录等
+      	  name: '[name]_[hash].[ext]', // [name]原来的资源文件名，文件hash，[ext]扩展名
       	  publicPath:'imgages/' // 输出到的位置 file-loader中的publicPath会覆盖Webpack中的publicPath
       	}
       }
@@ -263,11 +331,11 @@ module: {
 
 ##### 样式处理loader
 
-css-loader分析各css模块之间的关系，合成一个css
+css-loader 分析各css模块之间的关系，合成一个css
 
-style-loader会把css-loader生成的内容，以style挂载到页面的header部分
+style-loader 会把css-loader生成的内容，以style挂载到页面的header部分
 
-sass-loader把sass语法转换成css，依赖node-sass模块 `npm install sass-loader node-sass -D`
+sass-loader 把sass语法转换成css，依赖node-sass模块 `npm install sass-loader node-sass -D`
 
 less-loader
 
@@ -361,11 +429,20 @@ plugins:[
 ]
 ```
 
+##### clean-webpack-plugin
+
+自动清除上次打包目录生成的文件
+
 ##### 样式自动添加前缀
 
 postcss-loader结合autoprefixer 自动添加样式前缀，配置文件postcss.config.js 
 
+```
+npm i postcss-loader -D
+```
+
 ```javascript
+// npm i autoprefixer -D
 // postcss.config.js
 const autoprefixer = require('autoprefixer')
 module.exports = {
@@ -397,5 +474,19 @@ postcssCssnext({
     'last 2 versions'
   ]
 })
+```
+
+#### sourceMap
+
+源代码于打包后的代码的映射关系
+
+在dev模式中，默认开启，关闭的话 可以在配置件⾥
+
+```
+devtool:'none' // eval速度最快 cheap 较快，不管列的报错 module 第三方模块
+// 开发坏境推荐
+devtool:'cheap-module-eval-source-map'
+// 线上坏境推荐
+devtool:'cheap-module-source-map'
 ```
 
