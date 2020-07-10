@@ -78,7 +78,13 @@ rules: [
   {
     test: /\.js$/,
     exclude: /node_modules/,
-    loader:path.resolve('./loader/index.js') // 使用本地的loader文件作为loader
+    // loader:path.resolve('./loader/index.js') // 使用本地的loader文件作为loader
+    loader:[
+        path.resolve(__dirname, "./loader/index.js"), {
+        loader: path.resolve(__dirname, "./loader/index.js"),
+        options: {}
+      }
+    ]
   }
 ]
 
@@ -88,6 +94,19 @@ resolveLoaders: {
         'node_modules',
         path.resolver(__dirname, 'loaders')
     ]
+}
+
+module: {
+  rules: [{
+    test: /\.js$/,
+    use: ["replaceLoader", {
+      loader: "replaceLoaderAsync",
+      options: {
+        name: "开课吧"
+      }
+    }]
+    // use: [path.resolve(__dirname, "./loader/index.js")]      
+  }]
 }
 ```
 
