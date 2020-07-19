@@ -1,4 +1,6 @@
-import { Model } from "mongoose"
+import {
+  Model
+} from "mongoose"
 
 // 主题对象 保存状态 ，保存观察者，状态变化之后触发所有的观察者对象
 class Sub {
@@ -283,7 +285,9 @@ const withLog = Component => {
       console.time(`ComponentRender`)
     }
     render() {
-      return <Component> {...this.props } </Component>
+      return <Component > {
+        ...this.props
+      } < /Component>
     }
     componentDidMount() {
       console.time(`componentRenderEnd`)
@@ -329,7 +333,9 @@ export const connect = (mapStateToProps = state => state, mapDispatchToProps = {
       })
     }
     render() {
-      return <WarpComponent > {...this.state.props} </WarpComponent>
+      return <WarpComponent > {
+        ...this.state.props
+      } < /WarpComponent>
     }
   }
 }
@@ -461,12 +467,12 @@ class A {
   // }
   setData(data, m) {
     this.data = data
-     m && m.setB(data)
+    m && m.setB(data)
   }
-} 
+}
 
 class B {
-  constructor(){
+  constructor() {
     this.data = ''
   }
   // setData(data){
@@ -479,7 +485,7 @@ class B {
 }
 
 class Mediator {
-  constructor(a, b){
+  constructor(a, b) {
     this.a = a
     this.b = b
   }
@@ -501,25 +507,25 @@ console.log(b.data)
 
 // 迭代器模式 es6
 class Iterator {
-  constructor(container){
+  constructor(container) {
     this.index = 0
     this.list = container.list
   }
   next() {
-    if(this.hasNext()){
+    if (this.hasNext()) {
       return this.list[this.index++]
     }
   }
   hasNext() {
-    if(this.index <= (this.list.length - 1)){
+    if (this.index <= (this.list.length - 1)) {
       return true
-    }else{
+    } else {
       return false
     }
   }
 }
 class Container {
-  constructor(list){
+  constructor(list) {
     this.list = list
   }
   getIterator() {
@@ -529,17 +535,17 @@ class Container {
 
 let container = new Container(['aaa', 'bbb', 'ccc'])
 let iteartor = container.getIterator()
-while(iteartor.hasNext()){
+while (iteartor.hasNext()) {
   console.log(iteartor.next())
 }
 
 // 迭代器es5
-var each = function(arr, callback){
-  for(var i = 0, len = arr.length; i < len; i++){
+var each = function (arr, callback) {
+  for (var i = 0, len = arr.length; i < len; i++) {
     callback.call(arr[i], i, arr[i])
   }
 }
-each([1, 2, 3],function(i, val){
+each([1, 2, 3], function (i, val) {
   console.log(i, val)
 })
 
@@ -577,27 +583,25 @@ console.log(context.getState())
 
 // 享元模式
 // 普通写法
-var model = function(sex, underwear) {
+var model = function (sex, underwear) {
   this.sex = sex
   this.underwear = underwear
 }
-Model.prototype.takePhoto = function(){
-}
-for(var i = 1; i < 50; i++){
+Model.prototype.takePhoto = function () {}
+for (var i = 1; i < 50; i++) {
   var maleModel = new Model('male', 'underwear' + i)
   maleModel.takePhoto()
 }
-for(var i = 0; i < 100; i++){
+for (var i = 0; i < 100; i++) {
   var femaleModel = new Model('female', 'underwear' + i)
   femaleModel.takePhoto()
 }
 // 享元写法
-var model = function(sex){
+var model = function (sex) {
   this.sex = sex
 }
-Model.prototype.takePhoto = function() {
-}
-for(var i = 0; i < 50; i ++ ){
+Model.prototype.takePhoto = function () {}
+for (var i = 0; i < 50; i++) {
   var maleModel = new Model('male')
   maleModel.underwear = 'underwear' + 1
   maleModel.takePhoto()
@@ -641,7 +645,7 @@ export default {
 }
 
 class Common {
-  constructor(abstractMethod){
+  constructor(abstractMethod) {
     this.abstractMethod = abstractMethod
   }
   commonMethod() {
@@ -654,7 +658,7 @@ class Common {
   }
 }
 
-const children = new Common(function(){
+const children = new Common(function () {
   console.log('子类具体的执行')
 })
 children.init()
@@ -670,7 +674,7 @@ class Step {
   }
   resolve() {
     console.log('流转', this.order)
-    if(this.nextStep !== null){
+    if (this.nextStep !== null) {
       this.nextStep.resolve()
     }
   }
@@ -682,3 +686,5 @@ let step3 = new Step('步骤3')
 step1.setNextStep(step2)
 step2.setNextStep(step3)
 step1.resolve()
+
+
