@@ -83,17 +83,17 @@
 
 **实体头**
 
-| Allow |      |      |
-| ----- | ---- | ---- |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
+| Allow            |      |      |
+| ---------------- | ---- | ---- |
+| Content-Encoding |      |      |
+| Content-Length   |      |      |
+| Content-Type     |      |      |
+| Expires          |      |      |
+| Last-Modified    |      |      |
+| Content-language |      |      |
+| Content-Location |      |      |
+| Content-Range    |      |      |
+| EtagS            |      |      |
 
 
 
