@@ -86,17 +86,17 @@ HTTP是一个无状态的协议，简单的可以理解为即使同一个客户�
 
 **实体头**
 
-| Allow |      |      |
-| ----- | ---- | ---- |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
-|       |      |      |
+| Allow            |      |      |
+| ---------------- | ---- | ---- |
+| Content-Encoding |      |      |
+| Content-Length   |      |      |
+| Content-Type     |      |      |
+| Expires          |      |      |
+| Last-Modified    |      |      |
+| Content-language |      |      |
+| Content-Location |      |      |
+| Content-Range    |      |      |
+| EtagS            |      |      |
 
 
 
