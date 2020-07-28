@@ -1,5 +1,7 @@
 # HTTP协议请求方法和状态码
 
+HTTP是一个无状态的协议，简单的可以理解为即使同一个客户端连续两次发送请求给服务器，服务器也无法识别这个同一个客户端发的请求。为了解决 HTTP 无状态导致的问题（HTTP1.x），后来出现了 Cookie。
+
 ## 常见的HTTP请求方法
 
 | 方法    | 描述                                                         |
@@ -54,32 +56,33 @@
 
 **请求头**
 
-| 名称                | 释义 |      |
-| ------------------- | ---- | ---- |
-| Authorization       |      |      |
-| From                |      |      |
-| If-Modified-Since   |      |      |
-| Referer             |      |      |
-| User-agent          |      |      |
-| Accept              |      |      |
-| Accept-Charset      |      |      |
-| Accept-Encoding     |      |      |
-| Accept-Language     |      |      |
-| Host                |      |      |
-| If-Match            |      |      |
-| If-None-Match       |      |      |
-| If-Unmodified-Since | MDN  |      |
-| Range               |      |      |
+| 名称                | 释义 |
+| ------------------- | ---- |
+| Authorization       |      |
+| From                |      |
+| If-Modified-Since   |      |
+| Referer             |      |
+| User-agent          |      |
+| Accept              |      |
+| Accept-Charset      |      |
+| Accept-Encoding     |      |
+| Accept-Language     |      |
+| Host                |      |
+| If-Match            |      |
+| If-None-Match       |      |
+| If-Unmodified-Since | MDN  |
+| Range               |      |
 
 **响应头**
 
-| 名称                         | 释义 |      |
-| ---------------------------- | ---- | ---- |
-| Location                     |      |      |
-| Server                       |      |      |
-| WWW-Authenticate             |      |      |
-| Accept-Ranges                |      |      |
-| Access-Control-allow-origins |      |      |
+| 名称                         | 取值                                                         | 释义                                                         |
+| ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Location                     |                                                              |                                                              |
+| Server                       |                                                              |                                                              |
+| WWW-Authenticate             |                                                              |                                                              |
+| Accept-Ranges                |                                                              |                                                              |
+| Access-Control-allow-origins |                                                              |                                                              |
+| Set-Cookie                   | Set-Cookie: id=aad3fWa; Expires=Wed, 21 May 2020 07:28:00 GMT;Max-Age=604800; Secure HTTPOnly SameSite | Expires 属性缺省时，值为 Session时，表示是会话性 Cookie，值保存在客户端内存中，并在用户关闭浏览器时失效；Max-Age用于设置在 Cookie 失效之前需要经过的秒数;Expires 和 Max-Age 都存在，Max-Age 优先级更高；Domain 指定了 Cookie 可以送达的主机名；Path=/docs`，`/docs/Web/；Domain 和 Path 标识共同定义了 Cookie 的作用域：即 Cookie 应该发送给哪些 URL；SameSite 属性可以让 Cookie 在跨站请求时（src href get post iframe）不会被发送 |
 
 **实体头**
 
@@ -120,19 +123,21 @@
 
 ### HTTP响应头中与缓存相关的Header
 
-| 名称          | 取值                                                         | 释义 |
-| ------------- | ------------------------------------------------------------ | ---- |
-| Cache-Control | no-chache不使用缓存；public响应被缓存，并且在多用户间共享；private响应自能作为私有缓存，不能再用户之间共享；no-store，绝对禁止缓存；max-age=60，60s之后缓存过期。 |      |
-| Date          | 当前响应发送的时间                                           |      |
-| Expires       | 缓存过期的时间，绝对时间                                     |      |
-| Last-modified | 服务器端文件的最后修改时间                                   |      |
-| ETag          | 服务器端文件的ETag                                           |      |
-|               |                                                              |      |
-|               |                                                              |      |
+| 名称                                  | 取值                                  | 释义                                                         |
+| ------------------------------------- | ------------------------------------- | ------------------------------------------------------------ |
+| Cache-Control(HTTP1.1，优先于Expires) | max-age=6000                          | 强缓存，no-chache不使用缓存；public响应被缓存，并且在多用户间共享；private响应自能作为私有缓存，不能再用户之间共享；no-store，绝对禁止缓存；max-age=60，60s之后缓存过期。如果同时存在Cache-Control和Expires，优先使用前者 |
+| Date                                  | 当前响应发送的时间                    |                                                              |
+| Expires(HTTP1.0)                      | Expires:Mon, 29 Jun 2020 11:10:23 GMT | 强缓存，缓存过期的时间，绝对时间。*服务器的时间和浏览器的时间可能并不一致* |
+| Last-modified（性能更好）             | 绝对时间                              | 协商缓存，服务器中该资源的最后修改时间，服务器拿到请求头中的`If-Modified-Since`的字段后，其实会和这个时间做对比。单位时间是秒， |
+| ETag（优先级高，精度更准）            | hash值                                | 协商缓存，Etag用于某些服务器不能精确得到文件的最后修改时间，某些文件的修改非常频繁，文件修改时间变量但内容未变 |
+|                                       |                                       |                                                              |
+|                                       |                                       |                                                              |
 
-如果同时存在Cache-Control和Expires，优先使用前者
+#### 缓存位置
 
-Etag用于某些服务器不能精确得到文件的最好修改时间，某些文件的修改非常频繁，文件修改时间变量但内容未变
+Service Worker Cache PWA使用的 ，内存缓存Memory Cache，渲染进程结束后消失；Disk Cache 磁盘缓存
+
+
 
 ### HTTP协议压缩
 
