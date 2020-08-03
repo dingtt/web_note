@@ -4,9 +4,18 @@
 
 https://ts.xcatliu.com/basics/type-assertion.html
 
-### 原始数据类型
+### TS的原始数据类型
 
-boolean number string null undefined symbol
+boolean、number、string、null、undefined、symbol 、void、bigint
+
+#### number
+
+```
+const decLiteral: number = 6
+const hexLiteral: number = 0xf00d
+const binaryLiteral: number = 0b1010
+const octalLiteral: number = 0o744
+```
 
 #### 空值 void
 
@@ -16,9 +25,9 @@ let unusable: void = undefined;
 
 #### Null 和 Undefined
 
-`undefined` 和 `null` 是所有类型的子类型。也就是说 `undefined` 类型的变量，可以赋值给 `number` 类型的变量
+`undefined` 和 `null` 是所有类型的子类型。 `undefined` 类型的变量，可以赋值给 `number` 类型的变量
 
-```
+```ts
 let u: undefined = undefined;
 let n: null = null;
 // 这样不会报错
@@ -30,15 +39,78 @@ let num: number = u;
 
 `void` 类型的变量不能赋值给 `number` 类型的变量
 
-### 任意值
+开启 `--strictNullChecks` 检测，则null 和 undefined 只能赋值给 any 和它们各自(例外是 undefined 是也可以分配给void)。
+
+#### Symbol
+
+使用 `Symbol` 必须添加 `es6` 的编译辅助库
+
+```
+Symbol('key1') === Symbol('key1') // false
+```
+
+#### BigInt
+
+使用 `BigInt` 的时候，必须添加 `ESNext` 的编译辅助库
+
+
+
+### Typescript 中其他常见类型
+
+#### 任意值any
 
 `any` 类型，允许被赋值为任意类型。
 
 声明一个变量为任意值之后，对它的任何操作，返回的内容的类型都是任意值。
 
-#### 未声明类型的变量
+##### 未声明类型的变量
 
 变量如果在声明的时候，未指定其类型，那么它会被识别为任意值类型。
+
+#### unknow
+
+当 `unknown` 类型被确定是某个类型之前,它不能被进行任何操作比如实例化、getter、函数执行等等
+
+#### never
+
+never 类型表示的是那些永不存在的值的类型，never 类型是任何类型的子类型，也可以赋值给任何类型；然而，没有类型是 never 的子类型或可以赋值给 never 类型（除了never本身之外）。即使是any也不可以赋值给never。
+
+```ts
+/ 抛出异常的函数永远不会有返回值
+function error(message: string): never {
+    throw new Error(message);
+}
+
+// 空数组，而且永远是空的
+const empty: never[] = []
+```
+
+#### 数组
+
+#### 元组
+
+表示一个已知元素数量和类型的数组，各元素的类型不必相同。但是各元素的类型，必须严格与事先声明的类型一致。元素数量不能多不能少，顺序也不能错乱。
+
+```
+let x: [string, number];
+x = ['hello', 10]; // OK
+x = [10, 'hello']; // Error
+```
+
+元组越界问题
+
+```
+const tuple: [string, number] = ['a', 1];
+tuple.push(2); // ok
+console.log(tuple); // ["a", 1, 2] -> 正常打印出来
+console.log(tuple[2]); // 访问新加入的元素时，会报错
+```
+
+#### Object
+
+普通对象、枚举、数组、元组通通都是 `object` 类型。
+
+
 
 ### 类型推导
 
@@ -55,6 +127,8 @@ let num: number = u;
 只能访问此联合类型的所有类型里共有的属性或方法。
 
 联合类型的变量在被赋值的时候，会根据类型推论的规则推断出一个类型。
+
+
 
 ### 对象的类型——接口
 
@@ -111,6 +185,8 @@ let tom: Person = {
 readonly 
 ```
 
+
+
 ### 数组的类型
 
 #### 类型+方括号表示法
@@ -163,6 +239,8 @@ function sum() {
 ```
 let list: any[] = ['xcatliu', 25, { website: 'http://xcatliu.com' }];
 ```
+
+
 
 ### 函数的类型
 
@@ -287,3 +365,118 @@ swim(tom);
 使用类型断言时一定要格外小心，尽量避免断言后调用方法或引用深层属性，以减少不必要的运行时错误。
 
 #### 将一个父类断言为更加具体的子类
+
+```ts
+class ApiError extends Error {
+    code: number = 0;
+}
+class HttpError extends Error {
+    statusCode: number = 200;
+}
+
+function isApiError(error: Error) {
+    if (typeof (error as ApiError).code === 'number') {
+        return true;
+    }
+     //if (error instanceof ApiError) {
+     //   return true;
+     //}
+    return false;
+}
+```
+
+ 当`ApiError` 和 `HttpError` 不是一个真正的类，而只是一个 TypeScript 的接口（`interface`），接口是一个类型，此时就只能用类型断言。
+
+#### 将任何一个类型断言为 `any`
+
+```
+(window as any).foo = 1;
+```
+
+有可能掩盖了真正的类型错误，所以如果不是非常确定，就不要使用 `as any`。
+
+#### 将 `any` 断言为一个具体的类型
+
+```
+const tom = getCacheData('tom') as Cat;
+```
+
+#### 类型断言的限制
+
+- 联合类型可以被断言为其中一个类型
+- 父类可以被断言为子类
+- 任何类型都可以被断言为 any
+- any 可以被断言为任何类型
+- 要使得 `A` 能够被断言为 `B`，只需要 `A` 兼容 `B` 或 `B` 兼容 `A` 即可
+  - 允许 `animal as Cat` 是因为「父类可以被断言为子类」，这个前面已经学习过了
+  - 允许 `cat as Animal` 是因为既然子类拥有父类的属性和方法，那么被断言为父类，获取父类的属性、调用父类的方法，就不会有任何问题，故「子类可以被断言为父类」
+
+#### 双重断言
+
+双重断言 `as any as Foo`，可能会导致运行时错误。
+
+#### 类型断言 vs 类型转换
+
+类型断言只会影响 TypeScript 编译时的类型，类型断言语句在编译结果中会被删除。
+
+所以类型断言不是类型转换，它不会真的影响到变量的类型。
+
+#### 类型断言 vs 类型声明
+
+```ts
+interface Animal {
+    name: string;
+}
+interface Cat {
+    name: string;
+    run(): void;
+}
+
+const animal: Animal = {
+    name: 'tom'
+};
+let tom = animal as Cat;
+
+// let tom: Cat = animal;
+
+// index.ts:12:5 - error TS2741: Property 'run' is missing in type 'Animal' but required in type 'Cat'.
+```
+
+- `animal` 断言为 `Cat`，只需要满足 `Animal` 兼容 `Cat` 或 `Cat` 兼容 `Animal` 即可
+- `animal` 赋值给 `tom`，需要满足 `Cat` 兼容 `Animal` 才行，但是 `Cat` 并不兼容 `Animal`。
+
+类型声明是比类型断言更加严格。不能通过声明，直接把父类声明为子类。只能子类声明为父类。
+
+#### 类型断言 vs 泛型
+
+```
+function getCacheData<T>(key: string): T {
+    return (window as any).cache[key];
+}
+
+interface Cat {
+    name: string;
+    run(): void;
+}
+
+const tom = getCacheData<Cat>('tom');
+tom.run();
+```
+
+### 声明文件
+
+#### 新语法索引
+
+
+
+#### 什么是声明文件
+
+通常我们会把声明语句放到一个单独的文件（`jQuery.d.ts`）中，声明文件必需以 `.d.ts` 为后缀。
+
+```
+// src/jQuery.d.ts
+
+declare var jQuery: (selector: string) => any;
+```
+
+#### 第三方声明文件
