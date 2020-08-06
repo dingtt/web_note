@@ -185,6 +185,12 @@ let tom: Person = {
 readonly 
 ```
 
+#### 函数类型
+
+```
+
+```
+
 
 
 ### 数组的类型
@@ -324,6 +330,8 @@ function reverse(x: number | string): number | string {
     }
 }
 ```
+
+
 
 ### 类型断言
 
