@@ -2,6 +2,8 @@
 // 高阶  promise axios
 // 其他 webpack-loader webpack-plugin
 
+const { set } = require("lodash")
+
 // 手写new
 const myNew = function () {
   //
@@ -67,7 +69,6 @@ console.log(bar.call2(obj, "kevin", 18))
 Function.prototype.apply = function (context, arr) {
   var context = Object(context) || window
   context.fn = this
-
   var result
   if (!arr) {
     result = context.fn()
@@ -128,3 +129,74 @@ function deepClone(obj) {
   }
   return newObj
 }
+
+// 防抖
+// 最后一次触发事件，在 delay 时间后执行
+// 指触发事件后函数不会立即执行，而是在一定时间（比如 3 秒）后执行，
+// 如果这段时间（3 秒）内又触发了事件，则会重新计算函数执行时间
+const debounce = (fn, delay) => {
+  let timer = null
+  return function () {
+    let ctx = this
+    let args = arguments
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      fn.apply(ctx, ...args)
+    }, delay)
+  }
+}
+// 防抖  立即执行
+// 指触发事件后函数会立即执行，然后一定时间（秒）内不触发事件才能继续执行函数的效果
+const debounce2 = (fn, delay) => {
+  let timer = null
+  return function () {
+    let ctx = this
+    let args = arguments
+    if (timer) {
+      clearTimeout(timer)
+    }
+    let callNow = !timer
+    timer = setTimeout(() => {
+      timer = null // timer 只起到锁定作用
+    }, delay)
+    if (callNow) {
+      fn.apply(ctx, args)
+    }
+  }
+}
+// 异步防抖
+
+// 节流
+// 定时器实现的节流函数在第一次触发时不会执行，而是在 delay 秒之后才执行，
+// 当最后一次停止触发后，还会再执行一次函数。
+const throttle = (fn, delay) => {
+  let timer = null
+  return function () {
+    let ctx = this
+    let args = arguments
+    if (timer) return
+    timer = setTimeout(() => {
+      fn.apply(ctx, args)
+      clearTimeout(timer)
+    }, delay)
+  }
+}
+// 时间戳实现的节流函数会在第一次触发事件时【立即执行】，以后每过 delay 秒之后才执行一次
+// 最后一次触发事件可能不会被执行
+const throttle2 = (fn, delay) => {
+  let beginTime = Date.now()
+  return function () {
+    let ctx = this
+    let args = arguments
+    let time = Date.now()
+    if (time - beginTime > delay) {
+      fn.apply(ctx, args)
+      beginTime = Date.now()
+    }
+  }
+}
+// resize scroll keypress mousedown
+// 防抖  搜索请求
+// 节流 
