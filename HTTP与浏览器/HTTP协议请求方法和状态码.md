@@ -2,6 +2,11 @@
 
 HTTP是一个无状态的协议，简单的可以理解为即使同一个客户端连续两次发送请求给服务器，服务器也无法识别这个同一个客户端发的请求。为了解决 HTTP 无状态导致的问题（HTTP1.x），后来出现了 Cookie。
 
+请求部分，第一行被称作 request line，它分为三个部分，HTTP Method，也就是请求的“方法”，请求
+的路径和请求的协议和版本。  
+
+响应部分，第一行被称作 response line，它也分为三个部分，协议和版本、状态码和状态文本 。
+
 ## 常见的HTTP请求方法
 
 | 方法    | 描述                                                         |
@@ -33,9 +38,9 @@ HTTP是一个无状态的协议，简单的可以理解为即使同一个客户�
 | 204     | No Content 返回的响应中只有一个状态行和一些响应头，没有响应的Body。常用于：了解资源情况，查看对象是否存在，通过Header查看资源是否被修改 |
 | 206     | 仅限GET方法，代表服务器已经成功处理了部分GET请求。配合请求头中的Range和响应头中的Content—Range，常用于断电续传，流媒体技术，如视频HLS |
 | 301/302 | 请求的URL已已移走，Response中应该包含一个Location URL，说明资源限制所处的位置。301永久重定向，旧的资源已经被永久移除了，例如更换了域名，设置旧域名301；302临时重定向，旧的资源还在，仍然可以访问，例如未登录，跳转到登录页面。 |
-| 304     | Not Modified 未修改，客户端的缓存时最新的，需要客户端使用缓存 |
+| 304     | Not Modified 未修改。客户端本地已有缓存版本，并且通过request告诉了服务端，当服务端通过时间或者tag，发现没有更新的适合，就会返回一个不含body的304状态。 |
 | 401     | Unauthorized未授权错误                                       |
-| 403     | Forbidden 服务器拒绝请求                                     |
+| 403     | Forbidden 服务器拒绝请求，无权限。                           |
 | 404     | Not Found 未找到，资源不存在                                 |
 | 500     | Internal Server Error 服务器内部错误，无法对请求提供服务     |
 | 503     | 服务器暂时不可用，维护或过载等。                             |
@@ -45,40 +50,40 @@ HTTP是一个无状态的协议，简单的可以理解为即使同一个客户�
 
 **通用头**
 
-| 名称               | 释义                     |      |
-| ------------------ | ------------------------ | ---- |
-| Date               |                          |      |
-| Pragma             |                          |      |
-| Cache-Control      |                          |      |
-| Connection         |                          |      |
-| Transfer-Encodeing | 消息主体的编码格式       |      |
-| Via                | 记录途中经过的代理和网关 |      |
+| 名称               | 释义                                                     |      |
+| ------------------ | -------------------------------------------------------- | ---- |
+| Date               | 日期                                                     |      |
+| Pragma             | HTTP1.0 控制缓存的时效性                                 |      |
+| Cache-Control      | 控制缓存的时效性                                         |      |
+| Connection         | 连接方式，如果是keep-alive，并且服务端支持，则会复用连接 |      |
+| Transfer-Encodeing | 消息主体的编码格式                                       |      |
+| Via                | 记录途中经过的代理和网关                                 |      |
 
 **请求头**
 
-| 名称                | 释义 |
-| ------------------- | ---- |
-| Authorization       |      |
-| From                |      |
-| If-Modified-Since   |      |
-| Referer             |      |
-| User-agent          |      |
-| Accept              |      |
-| Accept-Charset      |      |
-| Accept-Encoding     |      |
-| Accept-Language     |      |
-| Host                |      |
-| If-Match            |      |
-| If-None-Match       |      |
-| If-Unmodified-Since | MDN  |
-| Range               |      |
+| 名称                | 释义                                     |
+| ------------------- | ---------------------------------------- |
+| Authorization       |                                          |
+| From                |                                          |
+| If-Modified-Since   | 上传访问时的更改时间                     |
+| Referer             | 来源                                     |
+| User-agent          | 客户端标识                               |
+| Accept              | 浏览器端接受的格式                       |
+| Accept-Charset      |                                          |
+| Accept-Encoding     | 浏览器端接受的编码方式                   |
+| Accept-Language     | 浏览器端接受的语言，用于服务端判断多语言 |
+| Host                | 域名                                     |
+| If-Match            |                                          |
+| If-None-Match       | 上次访问时使用的E-Tag                    |
+| If-Unmodified-Since |                                          |
+| Range               |                                          |
 
 **响应头**
 
 | 名称                         | 取值                                                         | 释义                                                         |
 | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Location                     |                                                              |                                                              |
-| Server                       |                                                              |                                                              |
+| Server                       |                                                              | 服务端语言                                                   |
 | WWW-Authenticate             |                                                              |                                                              |
 | Accept-Ranges                |                                                              |                                                              |
 | Access-Control-allow-origins |                                                              |                                                              |
@@ -86,40 +91,27 @@ HTTP是一个无状态的协议，简单的可以理解为即使同一个客户�
 
 **实体头**
 
-| Allow            |      |      |
-| ---------------- | ---- | ---- |
-| Content-Encoding |      |      |
-| Content-Length   |      |      |
-| Content-Type     |      |      |
-| Expires          |      |      |
-| Last-Modified    |      |      |
-| Content-language |      |      |
-| Content-Location |      |      |
-| Content-Range    |      |      |
-| EtagS            |      |      |
+| Allow            |                                                      |      |
+| ---------------- | ---------------------------------------------------- | ---- |
+| Content-Encoding | 内容编码方式，通常是gzip                             |      |
+| Content-Length   | 内容的长度，有利于浏览器判断内容是否结束             |      |
+| Content-Type     | 内容类型，MIME。                                     |      |
+| Expires          | 过期时间，                                           |      |
+| Last-Modified    | 页面最后修改时间                                     |      |
+| Content-language |                                                      |      |
+| Content-Location |                                                      |      |
+| Content-Range    |                                                      |      |
+| Etag             | 页面的信息摘要，用于判断是否需要重新到服务端取回页面 |      |
 
-
-
-- Cookies
-- Accept
-- Accept-Encoding   gzip压缩
-- Accept-Language
-- User-Agent
-- Referer  可用作防盗链，链路统计
-- Connection
-- Host
+使用html的form标签提交产生的html请求，默认会产生	application/x-www-form-urlencoded	的数据 格式，当有文件上传时，则会使用multipart/form-data
 
 ### HTTP请求头中于缓存相关的Header
 
 | 名称              | 取值                    | 释义                   |
 | ----------------- | ----------------------- | ---------------------- |
-| Cache             | max-age=0，以秒为单位； |                        |
+| Cache-Control     | max-age=0，以秒为单位； |                        |
 | If-Modefied-Since | 时间                    | 缓存文件的最后修改时间 |
 | If-None-Match     | 字符哈希                | 缓存文件的Etag         |
-|                   |                         |                        |
-|                   |                         |                        |
-|                   |                         |                        |
-|                   |                         |                        |
 
 ### HTTP响应头中与缓存相关的Header
 
@@ -137,7 +129,7 @@ HTTP是一个无状态的协议，简单的可以理解为即使同一个客户�
 
 Service Worker Cache PWA使用的 ，内存缓存Memory Cache，渲染进程结束后消失；Disk Cache 磁盘缓存
 
-
+图片文件是磁盘缓存。
 
 ### HTTP协议压缩
 
@@ -158,3 +150,7 @@ URL Encode就是把所有非英文字母，数字字符都替换成百分号（%
 协议栈：操作系统中的网络控制软件，将消息打包加上目的地等控制信息，错误时重新发包，调节数据发送速率。
 
 网卡会将包转换为电信号，
+
+### HTTPS
+
+### HTTP 2

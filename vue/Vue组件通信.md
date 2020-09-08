@@ -51,7 +51,7 @@ export default {
 </script>
 ```
 
-
+### event bus
 
 ### provide / inject 主要用于子组件获取上级组件的状态
 
