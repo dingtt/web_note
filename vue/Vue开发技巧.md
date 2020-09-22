@@ -1,3 +1,59 @@
+- ### 通过 v-bind="$props" 以及v-bind="$attrs" 实现属性透传
+
+  ```
+  <template>
+    <child-component v-bind="$props"/>
+  </template>
+  ```
+
+`vm.$attrs` 包含了父作用域中不作为 `prop` 被识别 (且获取) 的 `attribute` 绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 `v-bind="$attrs"` 传入内部组件
+
+```
+<template>
+  <div>
+    <el-input v-bind="$attrs" ></el-input>
+  </div>
+</template>
+```
+
+- ### 两个 component 接受同样的 props
+
+```
+<template>
+  <child-component v-bind="$props"/>
+</template>
+
+<script>
+  import ChildComponent from '@/components/ChildComponent'
+  
+  export default {
+    props:{
+      ...ChildComponent.options.props
+    }
+  }
+</script>
+```
+
+- ### Props校验
+
+`type` 除了可以设置 `String` `Number` `Boolean` `Array` `Object` `Date` `Function` `Symbol` 之外，还可以自定义构造函数，其底层实现原理是通过 `instanceof` 去判断
+
+- ### 透传所有事件监听
+
+```
+<template>
+  <div>
+    ...
+    <el-form v-on="$listeners"/>
+    ...
+  </div>
+</template>
+```
+
+`$listeners` 包含了父作用域中的 (不含 `.native` 修饰器的) `v-on` 事件监听器。它可以通过 `v-on="$listeners"` 传入内部组件，当然如果子组件是父组件的根元素，则不需要这么写，`Vue` 默认已经做了这一层的操作了
+
+- ### 作用域插槽实现 UI 和业务逻辑的分离
+
 ### 动态的指令参数
 
 将动态的指令参数传递给组件
@@ -544,4 +600,9 @@ let router = new Router({
   routes
 })
 ```
+
+- ### 
+
+
+>>>>>>> Stashed changes
 
