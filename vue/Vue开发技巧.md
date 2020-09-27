@@ -238,7 +238,7 @@ watch: {
 }
 ```
 
-函数式定义
+函数式定义，可卸载watch观察
 
 ```javascript
 // 返回一个取消观察函数，用来停止触发回调：
@@ -249,11 +249,192 @@ let unwatchFn = this.$watch('count', function(){
 })
 ```
 
-
-
 ### 在 Vue 中使用 JSX
 
 ？？？
+
+适用于替代手写render
+
+```javascript
+export default {
+  // 通过配置functional属性指定组件为函数式组件
+  functional: true,
+  /**
+   * 渲染函数
+   * @param {*} h
+   * @param {*} context 函数式组件没有this, props, slots等都在context上面挂着
+   */
+  render(h, context) {
+    const { props } = context
+    if (props.avatar) {
+      return <img src={props.avatar}></img>
+    }
+    return <img src="default-avatar.png"></img>
+  }
+}
+```
+
+`createElement`函数返回的值称之为虚拟节点，即`VNode`，而由`VNode`扎堆组成的树便是大名鼎鼎，面试必问的`虚拟DOM`。
+
+在`JSX`中， 你唯一可以使用的指令是`v-show`,除此之外，其他指令都是不可以使用的。
+
+##### v-model
+
+通过传递`value`属性并监听`input`事件来实现数据的双向绑定。
+
+版脚手架`vue-cli4`中，可以直接使用`<input v-model={this.value}>`，之前的版本可以安装插件`babel-plugin-jsx-v-model`来进行支持
+
+##### `.sync`也需要用属性+事件来实现
+
+```javascript
+// parent
+export default {
+  methods: {
+    $_handleChangeVisible(value) {
+      this.visible = value
+    }
+  },
+  render() {
+    return (
+      <ElDialog
+        title="测试.sync"
+        visible={this.visible}
+        on={{ 'update:visible': this.$_handleChangeVisible }}
+      ></ElDialog>
+    )
+  }
+}
+
+```
+
+`v-for`，你可以使用`for`循环,`array.map`来代替，对于`v-if`，可以使用`if`语句，`三元表达式`等来代替
+
+v-bind
+
+v-html 与 v-text，v-text正常写法
+
+```
+ <div domPropsInnerHTML={this.content}></div>
+```
+
+##### 监听事件与原生事件
+
+通过`on` + 事件名称的大驼峰写法来监听，比如事件`icon-click`,在`JSX`中写为`onIconClick`
+
+```
+render() {
+    return <CustomSelect onChange={this.$_handleChange}></CustomSelect>
+  }
+```
+
+监听原生事件的规则与普通事件是一样的，只需要将前面的`on`替换为`nativeOn`
+
+```javascript
+ render() {
+    // 监听下拉框根元素的click事件
+    return <CustomSelect nativeOnClick={this.$_handleClick}></CustomSelect>
+  }
+```
+
+```javascript
+  render() {
+    return (
+      <ElInput
+        value={this.content}
+        on={{
+          focus: this.$_handleFocus,
+          input: this.$_handleInput
+        }}
+        nativeOn={{
+          click: this.$_handleClick
+        }}
+      ></ElInput>
+    )
+  }
+```
+
+##### 事件修饰符
+
+`.stop` ： 阻止事件冒泡，在`JSX`中使用`event.stopPropagation()`来代替
+
+`.prevent`：阻止默认行为，在`JSX`中使用`event.preventDefault()` 来代替
+
+`.self`：只当事件是从侦听器绑定的元素本身触发时才触发回调，使用下面的条件判断进行代替
+
+```
+if (event.target !== event.currentTarget){
+  return
+}
+复制代码
+```
+
+`.enter`与`keyCode`:  在特定键触发时才触发回调
+
+```
+if(event.keyCode === 13) {
+  // 执行逻辑
+}
+```
+
+```javascript
+ render() {
+    return (
+      <div
+        on={{
+          // 相当于 :click.capture
+          '!click': this.$_handleClick,
+          // 相当于 :input.once
+          '~input': this.$_handleInput,
+          // 相当于 :mousedown.passive
+          '&mousedown': this.$_handleMouseDown,
+          // 相当于 :mouseup.capture.once
+          '~!mouseup': this.$_handleMouseUp
+        }}
+      ></div>
+    )
+  }
+
+```
+
+##### 插槽
+
+具名插槽
+
+自定义具名插槽  
+
+```
+ <div class="custom-dialog__foolter">{this.$slots.footer}</div>
+```
+
+作用域插槽   
+
+```
+scopedSlots={{
+    default: ({ row }) => {
+       return <div style="color:red;">{row.name}</div>
+     }
+}}
+```
+
+自定义作用域插槽
+
+```
+render() {
+    const { data } = this
+    // 获取标题作用域插槽
+    const titleSlot = this.$scopedSlots.title
+    return (
+      <div class="item">
+        {/** 如果有标题插槽，则使用标题插槽，否则使用默认标题 */}
+        {titleSlot ? titleSlot(data) : <span>{data.title}</span>}
+      </div>
+    )
+  }
+```
+
+##### 指令  修饰符  
+
+？？？6846687590704381959
 
 ### v-cloak 解决页面闪烁问题
 
@@ -278,9 +459,9 @@ let unwatchFn = this.$watch('count', function(){
 
 ### 函数式组件
 
-？？？  1 2
+？？？  6872128694639394830
 
-### 使用 Vue.observable 实现状态共享
+### 使用 Vue.observable 实现小型状态管理器
 
 ```
 import Vue from "vue";
@@ -325,7 +506,7 @@ Vue.directive('enterIntNumber', {
 }）
 ```
 
-**按钮权限**  **指令**
+##### **按钮权限**  自定义**指令**
 
 概思路为获取权限列表，如果当前绑定权限不在列表中，则删除该节点元素。
 
@@ -417,9 +598,11 @@ Vue.prototype.$popup = Vue.$popup = function () {
 }
 ```
 
-### 优雅更新props
+### .sync优雅更新props
 
-只需要在绑定属性上添加 `.sync`，在子组件内部就可以触发 `update:属性名` 来更新 `prop`
+在子组件中不允许直接修改 `prop`，因为这种做法不符合单向数据流的原则。只需要在父组件v-bind:value 加上.sync修饰符，即 v-bind:value.sync，在子组件内部就可以触发 `update:属性名` 来更新 `prop`
+
+##### 用法1: v-bind:prop.sync="propvalue"
 
 ```javascript
 // parent
@@ -436,6 +619,14 @@ export defalut {
     }
 }
 ```
+
+##### 用法2 v-bind.sync="obj"
+
+如果一个组件的多个prop都要实现双向绑定， v-bind.sync = "对象"
+
+带有.sync修饰符的v-bind不能喝表达式一起使用，只能绑定属性名。
+
+*一个组件需要提供多个双向绑定的属性时使用，只能选用一个属性来提供 v-model 功能，但如果有其他属性也要提供双向绑定，就需要.sync*
 
 ### provide/inject
 
@@ -483,6 +674,8 @@ inject: {
 ```
 
 ### 过滤器复用
+
+过滤器被用于一些常见的文本格式化，被添加在表达式的尾部，由“管道”符号指示。
 
 ```
 <div>{{ text | capitalize }}</div>
@@ -603,6 +796,5 @@ let router = new Router({
 
 - ### 
 
-
->>>>>>> Stashed changes
+V
 
