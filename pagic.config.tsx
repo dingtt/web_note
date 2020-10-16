@@ -33,7 +33,9 @@ export default {
         link: "js/todo.md",
         children: [
           "js/basics.md",
+          "js/data-structure.md",
           "js/Object.md",
+          "js/context.md",
           "js/closure.md",
           "js/regex.md",
           "js/algo.md",

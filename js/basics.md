@@ -257,7 +257,7 @@ avaScript	中，没有任何方法可以更改私有的	Class	属性，因此Obj
   ```
   var o = {} ; 
   o[Symbol.toPrimitive]	=	()	=>	{console.log("toPrimitive");	return	"hello"};  
-o == 'hello'  // true
+  o == 'hello'  // true
   o === 'hello' // false
   ```
   
