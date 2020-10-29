@@ -56,6 +56,7 @@ const myInstanceof = function (O, i) {
 ### call
 
 ```javascript
+// eval
 Function.prototype.call2 = function (context) {
   // 没有传参，及window
   var context = context || window
@@ -68,6 +69,7 @@ Function.prototype.call2 = function (context) {
   delete context.fn
   return result
 }
+// object隐式绑定
 ```
 
 ```javascript
@@ -92,22 +94,41 @@ console.log(bar.call2(obj, "kevin", 18))
 
 ```javascript
 Function.prototype.apply = function (context, arr) {
-  var context = Object(context) || window
-  context.fn = this
-  var result
-  if (!arr) {
-    result = context.fn()
-  } else {
-    var args = []
-    for (var i = 0, len = arr.length; i < len; i++) {
-      args.push("arr[" + i + "]")
-    }
-    result = eval("context.fn(" + args + ")")
-  }
-
+     context = new Object(context) || window
+ if(typeof arr === 'undefined' || arr === null){
+   arr = []
+ }
+  const fn = this
+  const symbol = Symbol(fn)
+  context[symbol] = fn
+  const result = context[symbol](...arr)
   delete context.fn
   return result
 }
+
+// 测试Symbol
+const fn2 = function(){}
+const obj = {}
+const a = Symbol(fn2)
+obj[a] = 1
+console.log(obj[a])
+
+// 测试一下
+var value = 2
+var obj = {
+  value: 1,
+}
+function bar([name, age]) {
+  console.log(this.value)
+  return {
+    value: this.value,
+    name: name || 'default',
+    age: age || 18,
+  }
+}
+ // console.log(bar.apply(window)) // 2
+console.log(bar.apply(obj, ["kevin", 18]))
+
 ```
 
 ### *bind*
