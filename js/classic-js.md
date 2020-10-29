@@ -6,7 +6,7 @@
 
 ### 实现new
 
-```
+```javascript
 // 手写new
 const myNew = function () {
   //
@@ -16,11 +16,17 @@ const myNew = function () {
   let res = Constructor.apply(obj, arguments)
   return res instanceof Constructor ? res : obj
 }
+
+function _new(fn, ...arg) {
+  const obj = Object.create(fn.prototype);
+  const ret = fn.apply(obj, arg);
+return ret instanceof Object ? ret : obj;
+}
 ```
 
 ### 实现Object.create()
 
-```
+```javascript
 // Object.create()
 const myCreate = function (obj) {
   function F() {}
@@ -31,7 +37,7 @@ const myCreate = function (obj) {
 
 ### 实现*instanceof*
 
-```
+```javascript
 const myInstanceof = function (O, i) {
   const left = O.prorotype
   const right = i.__proto__
@@ -49,7 +55,7 @@ const myInstanceof = function (O, i) {
 
 ### call
 
-```
+```javascript
 Function.prototype.call2 = function (context) {
   // 没有传参，及window
   var context = context || window
@@ -64,7 +70,7 @@ Function.prototype.call2 = function (context) {
 }
 ```
 
-```
+```javascript
 // 测试一下
 var value = 2
 var obj = {
@@ -84,7 +90,7 @@ console.log(bar.call2(obj, "kevin", 18))
 
 ### apply
 
-```
+```javascript
 Function.prototype.apply = function (context, arr) {
   var context = Object(context) || window
   context.fn = this
@@ -106,7 +112,7 @@ Function.prototype.apply = function (context, arr) {
 
 ### *bind*
 
-```
+```javascript
 // bind() 方法会创建一个新函数
 // bind() 的第一个参数将作为它运行时的 this，之后的一序列参数将会在传递的实参前传入作为它的参数。
 
@@ -129,7 +135,7 @@ Object.prototype.bind2 = function (context) {
 
 ### 拷贝
 
-```
+```javascript
 // 深拷贝与浅拷贝
 // 浅拷贝是创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。如果属性是基本类型，拷贝的就是基本类型的值，如果属性是引用类型，拷贝的就是内存地址 ，所以如果其中一个对象改变了这个地址，就会影响到另一个对象。
 // 浅 Object.assgin() lodash 展开运输算符 Array.prototype.concat() Array.prototype.slice()
@@ -162,6 +168,32 @@ function deepClone(obj) {
 ### 防抖与节流
 
 ```
+const debounce = (fn,delay) => {
+ 	const timer = null
+ 	return function(){
+ 		if(timer){
+ 		  clearTimeout(timer)
+ 		}
+ 		const args = arguments
+ 		const ctx = this
+        let flag = false
+ 		timer = setTimeout(function(){
+ 		   fn.apply(ctx, [...args])
+ 		},delay)
+ 	}
+}
+// 测试
+let beginTime = Date.now()
+window.requestAnimationFrame = debounce(function(){
+ 	console.log('实际执行')
+ 	console.log(Date.now() - beginTime)
+ 		beginTime = Date.now()
+},2000)
+```
+
+
+
+```javascript
 // 最后一次触发事件，在 delay 时间后执行
 // 指触发事件后函数不会立即执行，而是在一定时间（比如 3 秒）后执行，
 // 如果这段时间（3 秒）内又触发了事件，则会重新计算函数执行时间
@@ -174,13 +206,13 @@ const debounce = (fn, delay) => {
       clearTimeout(timer)
     }
     timer = setTimeout(() => {
-      fn.apply(ctx, ...args)
+      fn.apply(ctx, [...args])
     }, delay)
   }
 }
 ```
 
-```
+```javascript
 // 防抖  立即执行
 // 指触发事件后函数会立即执行，然后一定时间（秒）内不触发事件才能继续执行函数的效果
 const debounce2 = (fn, delay) => {

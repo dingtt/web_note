@@ -1,6 +1,51 @@
 # 算法
 
+### 数组扁平化 + 去重 + 排序
+
+```
+Array.from(new Set(arr.flat(Infinity))).sort((a,b)=>{ return a-b})
+```
+
 给定一个数组，就满足两数之和的下标，可以假定最多只有一组满足条件的
+
+```javascript
+
+```
+
+### 桶排序
+
+### 冒泡排序
+
+```javascript
+const arr =[7,4,22,4,75,43,9]
+function popSort(arr){
+     // 需要重复len-1次
+  for(let i = 0; i < arr.length - 1; i ++){
+  	// 干活的部分
+  	 for(let j= 0;j < arr.length - i; j++){
+  	 	if(arr[j] < arr[j+1]){
+  	 	  const temp = arr[j]
+  	 	  arr[j] = arr[j+1]
+  	 	  arr[j + 1] = temp
+  	 	}
+  	 }
+  }
+}
+popSort(arr)
+console.log(arr)
+```
+
+### 快速排序  
+
+while  递归
+
+```
+var arr = [7,4,22,4,75,43,9,43,24,55,3,22,18,97,56]
+function quickSort(arr){
+}
+```
+
+
 
 ### 求和求差
 
