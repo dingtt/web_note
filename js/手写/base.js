@@ -5,14 +5,30 @@
 const { set } = require("lodash")
 
 // 手写new
+const newByCreate = function (Fn, ...args) {
+  const obj = Object.create(Fn.prototype)
+  const res = Fn.apply(obj,args)
+  return res instanceof Object ? res : obj
+}
+
 const myNew = function () {
-  //
-  let Constructor = Array.prorotype.shift(arguments)
-  let obj = {}
-  obj.__proto__ = Constructor.prorotype
-  let res = Constructor.apply(obj, arguments)
+  let Constructor = [...arguments].shift()
+  const obj = {}
+  obj.__proto__ = Constructor.prototype
+  let res = Constructor.apply(obj, [...arguments].slice(1))
   return res instanceof Constructor ? res : obj
 }
+
+const Dog = function(name){
+  this.name = name
+}
+Dog.prototype.sayName = function(){
+  console.log(`name${this.name}`)
+}
+
+const da = myNew(Dog,'dahuang')
+const xiao = newByCreate(Dog,'xiaohuang')
+da.sayName()
 
 // Object.create()
 const myCreate = function (obj) {
