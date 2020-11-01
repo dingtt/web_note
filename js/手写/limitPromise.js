@@ -20,10 +20,12 @@ const LoadImg = (url) => {
 
 const loadByLimit = (arr, LoadImg, limit) => {
   const arrCopy = [...arr]
+  // 数组小于最大并发数
   if(arr.length < limit){
     const promiseArray = arr.map(item => LoadImg(item)) 
     return Promise.all(promiseArray)
   }
+  // 大于  slice
   const promiseArray = arrCopy.splice(0,limit).map(item => LoadImg(item))
   arrCopy.reduce((prevPromise,item) => {
     prevPromise.then(() => Promise.race(promiseArray))

@@ -266,7 +266,7 @@ const debounce2 = (fn, delay) => {
 }
 ```
 
-```
+```javascript
 // 节流
 // 定时器实现的节流函数在第一次触发时不会执行，而是在 delay 秒之后才执行，
 // 当最后一次停止触发后，还会再执行一次函数。
@@ -284,7 +284,7 @@ const throttle = (fn, delay) => {
 }
 ```
 
-```
+```javascript
 // 时间戳实现的节流函数会在第一次触发事件时【立即执行】，以后每过 delay 秒之后才执行一次
 // 最后一次触发事件可能不会被执行
 const throttle2 = (fn, delay) => {
@@ -305,4 +305,150 @@ const throttle2 = (fn, delay) => {
 ```
 
 ### todo异步防抖
+
+### 数组扁平化
+
+```javascript
+array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+```
+
+
+
+```javascript
+var arr = [1,4,3,2,[6,4,3,5]]
+var arr1 = arr.flat(Infinity)
+var arr2 = JSON.stringify(arr).replace(/\[|\]/g,'')
+var arr3 = JSON.parse('['+ JSON.stringify(arr).replace(/\[|\]/g,'')+']')
+var flatten = arr => {
+    return arr.reduce((pre,cur) => {
+        return pre.concat(Array.isArray(cur) ? flatten(cur) : cur)
+    },[])
+}
+console.log(flatten(arr))
+```
+
+### 数组的去重
+
+```
+new Set(arr)
+```
+
+```javascript
+//set indexOf  includes filter map  object
+var arr = [1,4,3,2,6,4,3,5,4,2,1,2,5,6]
+
+const unique = arr => {
+    const res = []
+    arr.forEach((item) => {
+        if(res.indexOf(item) === -1 || !res.includes(item)){
+            res.push(item)
+        }
+    })
+    return res
+}
+
+const unique2 = arr => {
+  return  arr.filter((item,index) => (arr.indexOf(item) === index))
+}
+
+const unique3 = arr => {
+    const map = new Map()
+    const res = []
+    arr.forEach((item,index) => {
+        if(!map.has(item)){
+            map.set(item,true)
+            res.push(item)
+        }
+    })
+    return res
+}
+
+console.log(unique(arr),'-',unique2(arr),'-',unique3(arr))
+```
+
+### 类数组转化为数组
+
+```javascript
+Array.from()
+Array.prototype.slice.call()
+[...arguments]
+Array.prototype.concat.apply([],arguments)
+
+```
+
+### 函数的 compose
+
+### 柯里化
+
+实现`add(1)(2)(3)(4)=10;` 、 `add(1)(1,2,3)(2)=9;`
+
+```javascript
+// `add(1)(2)(3)(4)=10;` 、 `add(1)(1,2,3)(2)=9;`
+function add(){
+   let _args = [...arguments]  // 箭头函数没有arguments 不能用new
+    function fn(){
+      _args =  _args.concat([...arguments])
+        return fn
+    }
+    fn.toString = function(){
+       return  _args.reduce((sum,cur) => sum + cur)
+    }
+    return fn
+}
+
+console.log(add(1)(2)(3)(4),add(1)(1,2,3)(2))
+```
+
+### 继承
+
+```javascript
+// 原型继承  继承自同一个实例，指向同一个内存地址，一改全改
+function Parent(){	
+}
+function Child(){
+}
+Child.prototype = new Parent()
+```
+
+```javascript
+// 构造函数继承
+function Parent(){
+}
+function Child(){
+  Parent.call(this)
+}
+```
+
+```
+// 寄生组合继承
+function Parent(){
+  this.name = 'parent'
+}
+function Child(){
+ Parent.call(this)
+ this.type = 'chidren'
+}
+// 构造函数的原型
+Child.ptototype = Object.create(Parent.prototype)
+Child.prototype.contructor = Child
+```
+
+### Object.is
+
+主要用来解决
+
+```
++0 === -0 true
+NaN === NaN false
+```
+
+```javascript
+const is = (x,y) => {
+  if(x === y ){
+    return x !==0 || y !== 0 || 1/x === 1/y
+  }else {
+    return x !== x && y !== y
+  }
+}
+```
 

@@ -37,12 +37,35 @@ console.log(arr)
 
 ### 快速排序  
 
-while  递归
+左右快排
 
-```
-var arr = [7,4,22,4,75,43,9,43,24,55,3,22,18,97,56]
-function quickSort(arr){
+```javascript
+const quickSort = arr => {
+    if(arr.length <=1) {
+        return arr
+    }
+    const left = []
+    const right = []
+    const current = arr.splice(0,1)
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] < current){
+            left.push(arr[i])
+        }
+        if(arr[i] >= current){
+            right.push(arr[i])
+        }
+    }
+    return quickSort(left).concat(current,quickSort(right))
 }
+console.log(quickSort(arr))
+```
+
+原地快排
+
+```javascript
+var arr = [7,4,22,4,75,43,9,43,24,55,3,22,18,97,56]
+
+console.log(quickSort(arr))
 ```
 
 
