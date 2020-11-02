@@ -6,7 +6,7 @@ export default {
   exclude: ["ref"],
   theme: "docs",
   plugins: ["sidebar", "prev_next"],
-  title: "前端笔记",
+  title: "Ding前端笔记",
   description: "前端笔记",
   nav: [],
   blog: false,

@@ -67,9 +67,26 @@ Symbol('key1') === Symbol('key1') // false
 
 变量如果在声明的时候，未指定其类型，那么它会被识别为任意值类型。
 
+#### void
+
+void 类型像是与 any 类型相反，它表示没有任何类型。  
+
 #### unknow
 
-当 `unknown` 类型被确定是某个类型之前,它不能被进行任何操作比如实例化、getter、函数执行等等
+当 `unknown` 类型被确定是某个类型之前,它不能被进行任何操作比如实例化、getter、函数执行等等。
+
+所有类型也都可以赋值给 unknown  。
+
+unknown 类型只能被赋值给 any 类型和 unknown 类型本身。直观地说：只有能够保
+存任意类型值的容器才能保存 unknown 类型的值。  
+
+```
+let value: unknown;
+let value1: unknown = value; // OK
+let value2: any = value; // OK
+let value3: boolean = value; // Error
+let value4: number = value; // Error
+```
 
 #### never
 
@@ -83,6 +100,19 @@ function error(message: string): never {
 
 // 空数组，而且永远是空的
 const empty: never[] = []
+// 使⽤ never 避免出现新增了联合类型没有对应的实现
+type Foo = string | number;
+function controlFlowAnalysisWithNever(foo: Foo) {
+if (typeof foo === "string") {
+// 这⾥ foo 被收窄为 string 类型
+} else if (typeof foo === "number") {
+// 这⾥ foo 被收窄为 number 类型
+} else {
+// foo 在这⾥是 never
+const check: never = foo;
+}
+}
+// type Foo = string | number | boolean;
 ```
 
 #### 数组
@@ -106,9 +136,64 @@ console.log(tuple); // ["a", 1, 2] -> 正常打印出来
 console.log(tuple[2]); // 访问新加入的元素时，会报错
 ```
 
-#### Object
+#### object  Object  {}
 
 普通对象、枚举、数组、元组通通都是 `object` 类型。
+
+object 类型是： TypeScript 2.2 引⼊的新类型，它⽤于表示⾮原始类型。  
+
+```
+
+```
+
+Object 类型  
+
+Object 类型：它是所有 Object 类的实例的类型，它由以下两个接⼝来定义：  
+
+Object 接⼝定义了 Object.prototype 原型对象上的属性；  
+
+```
+// node_modules/typescript/lib/lib.es5.d.ts
+interface Object {
+constructor: Function;
+toString(): string;
+toLocaleString(): string;
+valueOf(): Object;
+hasOwnProperty(v: PropertyKey): boolean;
+isPrototypeOf(v: Object): boolean;
+propertyIsEnumerable(v: PropertyKey): boolean;
+}
+```
+
+ObjectConstructor 接⼝定义了 Object 类的属性。  
+
+```
+// node_modules/typescript/lib/lib.es5.d.ts
+interface ObjectConstructor {
+/** Invocation via `new` */
+new(value?: any): Object;
+/** Invocation via function calls */
+(value?: any): any;
+readonly prototype: Object;
+getPrototypeOf(o: any): any;
+// ···
+}
+declare var Object: ObjectConstructor;
+```
+
+Object 类的所有实例都继承了 Object 接⼝中的所有属性。  
+
+#### {}
+
+{} 类型描述了⼀个没有成员的对象。  可以使⽤在 Object 类型上定义的所有属性和⽅法  
+
+```javascript
+// Type {}
+const obj = {};
+// Error: Property 'prop' does not exist on type '{}'.
+obj.prop = "semlinker";
+obj.toString();
+```
 
 
 
@@ -453,7 +538,7 @@ let tom = animal as Cat;
 - `animal` 断言为 `Cat`，只需要满足 `Animal` 兼容 `Cat` 或 `Cat` 兼容 `Animal` 即可
 - `animal` 赋值给 `tom`，需要满足 `Cat` 兼容 `Animal` 才行，但是 `Cat` 并不兼容 `Animal`。
 
-类型声明是比类型断言更加严格。不能通过声明，直接把父类声明为子类。只能子类声明为父类。
+类型声明是比类型断言更加严格。不能通过声明，直接把父类声明为子类。**只能子类声明为父类。**
 
 #### 类型断言 vs 泛型
 
