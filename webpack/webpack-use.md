@@ -63,7 +63,7 @@ module.exports = {
 // 数组类型入口 
 module.exports = {
   entry: ['babel-polyfill', './src/index.js']
-  // 传入一个数组的作用是将做个资源预先合并，在打包时Webpack会将数组的最好一个元素作为实际的入口路径，相当于index.js中 import('babel-polyfill')
+  // 传入一个数组的作用是将做个资源预先合并，在打包时Webpack会将数组的最后一个元素作为实际的入口路径，相当于index.js中 import('babel-polyfill')
   
 }
 //  对象类型入口 单入口
