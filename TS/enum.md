@@ -138,6 +138,9 @@ extends
 function getValue<T extends object, U extends keyof T>(obj: T, key: U) {
   return obj[key] // ok
 }
+function getValue<t extends object, U extends key of T>(obj:T,key:U): U as key of T {
+   return obj[key]
+}
 ```
 
 
