@@ -86,6 +86,7 @@ for(var m = 0; m < len1; m++){
 后进先出，只能从栈顶添加删除元素（相当于数组的push pop）
 
 ```javascript
+
 // 取栈顶
 const stack = []
 stack.push('老冰棍')
@@ -97,6 +98,30 @@ while(stack.length){
 }
 
 ```
+
+模拟实现
+
+```js
+class Stack {
+  constructor() {
+    this.list = [];
+  }
+  push(item) {
+    this.list.push(item);
+  }
+  pop() {
+    return this.list.pop();
+  }
+  length() {
+    return this.list.length;
+  }
+  clear() {
+    this.list = [];
+  }
+}
+```
+
+
 
 ### 队列 —— 先进先出   只允许尾部添加，头部取出 (相当于数组的push shift)
 
@@ -111,6 +136,53 @@ while(queue.length){
 }
 ```
 
+### 集合
+
+模拟集合实现
+
+```js
+// add has remove get size get values
+class Set {
+  constructor() {
+    this.items = {};
+  }
+  has(value) {
+    return this.items.hasOwnProperty(value);
+  }
+  add(value) {
+    if (!this.has(value)) {
+      this.items[value] = value;
+      return true;
+    }
+    return false;
+  }
+  remove(value) {
+    if (this.has(value)) {
+      delete this.items[value];
+      return true;
+    }
+    return false;
+  }
+  get size() {
+   return  Object.keys(this.items).length
+  }
+
+  get value() {
+    return Object.keys(this.items)
+  }
+}
+const set = new Set()
+set.add(2)
+set.add(2)
+set.add(3)
+console.log(set.size)
+console.log(set.value)
+set.remove(2)
+console.log(set.size)
+```
+
+
+
 ### 链表
 
 链表的增加删除元素不用挪动其他多余的的元素   链表的添加删除复杂度O(1)
@@ -123,6 +195,9 @@ function ListNode(val) {
 const node1 = new ListNode('1')
 const node2 = new ListNode('2')
 node1.next = node2
+Node
+
+linkedList   // append   removeAt   insert remove size getHead isEmpty log 
 ```
 
 访问
@@ -134,6 +209,39 @@ for(var i = 0; i < index&&node; i ++){
   node = node.next
 }
 ```
+
+### 哈希表
+
+```js
+class hashTable{
+  constructor (){
+    this.items = {}
+  }
+  put(key,value){
+    this.items[this.keyToHash(key)] = value
+  }
+  get(key){
+    return this.items[this.keyToHash(key)]
+  }
+  delete(key){
+    delete (this.items[this.keyToHash(key)])
+  }
+  keyToHash(key){
+    let hash = 0
+    for(let i = 0; i < key.length; i++){
+      hash += key.charCodeAt(i)
+    }
+  }
+}
+
+const ht = new hashTable()
+ht.put('name','custom hashTable')
+console.log(ht.get('name'))
+ht.delete('name')
+console.log(ht.get('name'))
+```
+
+
 
 ## 树
 

@@ -1,4 +1,329 @@
-# 正则
+#  正则
+
+string.match()
+
+### 字符匹配
+
+#### 两种模糊匹配
+
+横向模糊匹配  {m,n} 数量
+
+纵向模糊匹配 [] 任一个
+
+#### **字符组**
+
+范围[a-z] 
+
+排除[ ^ abc] 除 "a" "b" "c"
+
+大写为排除
+
+\d \D \s \S
+
+ \w \W ， \w是字符组 [0-9a-zA-Z_] 的简写形式，即 \w 是字母数字或者下划线的中任何一个字符  
+
+\W   [ ^0-9a-zA-Z_]
+
+匹配任意字符，可以使用 [\d\D]、[\w\W]、[\s\S] 和 [^] 中任何的一个。  
+
+#### **量词**
+
+{m,}  至少m次
+
+{m} m次
+
+？ {0,1} 出现不出现 
+
++, {1,}
+
+*, {0,}     量词 * 是贪婪的  
+
+惰性量词  加 ?  表示从最少的开始匹配，匹配到了就行了
+
+{m,n}?    {m,}?    ??    +?     *?
+
+#### **多选分支**
+
+/1| 2/    (|)
+
+分支结构也是惰性的，即当前面的匹配上了，后面的就不再尝试了  
+
+#### **案例**
+
+匹配颜色值
+
+```js
+const c1 =  '#ffbbad #Fc01DF #FFF #ffE'
+console.log(c1.match(/\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})/g)) // 注意顺序，分支结构是惰性的，3在前头，6就被截断了
+```
+
+匹配时间
+
+```js
+const regexp = /^([01][0-9]|[2][1-4]):[0-5][0-9]$/
+const regexp2 = /^(0?[0-9]|1[0-9]|[2][1-4]):(0?[0-9]|[1-5][0-9])$/
+console.log(regexp.test('23:59'))
+console.log(regexp.test('02:07'))
+console.log(regexp2.test('7:9'))
+```
+
+{1}可以省略  
+
+匹配日期
+
+```js
+const regexpDate = /^[0-9]{4}-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])$/
+console.log(regexpDate.test('2017-06-10'))
+console.log(regexpDate.test('2017-6-10'))
+console.log(regexpDate.test('2017-6-9'))
+```
+
+window 操作系统文件路径  ???
+
+```
+const str = 'D:\wwwroot\hellouni\store'
+```
+
+匹配属性
+
+```js
+const regex = /id=".*?"/
+const string = '<div id="container" class="main"></div>'
+console.log(string.match(regex)[0])
+```
+
+### 位置匹配
+
+在ES5中共有6个锚
+
+^    $   \b  \B  (?=p)  (?|p)
+
+**^ $**
+
+^（脱字符）匹配开头，在多行匹配中匹配行开头。
+$（美元符号）匹配结尾，在多行匹配中匹配行结尾。  //gm
+
+```js
+console.log('id'.replace(/^|$/g,'*'))
+console.log('id\nname\nclass'.replace(/^|$/gm,'*'))
+```
+
+**单词边界 \b 和 \B**    
+
+\w 与 \W，\w 与 ^ $ 的之间
+
+```js
+console.log('id name class data.key'.replace(/\b/g,'#')) //  #id# #name# #class# #data#.#key#
+```
+
+\B 就是 \b 的反面的意思，非单词边界。  \w与\w \W与\W
+
+```js
+console.log('id name class data.key'.replace(/\B/g,'#')) // i#d n#a#m#e c#l#a#s#s d#a#t#a.k#e#y
+console.log('id name class data....key'.replace(/\B/g,'#')) //  i#d n#a#m#e c#l#a#s#s d#a#t#a.#.#.#.k#e#y
+```
+
+**(?=p) 和 (?!p)**  
+
+p前面的位置  （后面是p）， (?!p) 后面不是p
+
+**案例**
+
+不匹配任何东西的正则   /.^/
+
+字符串数字分割
+
+```js
+console.log('123456789'.replace(/(?!^)(?=(\d{3})+$)/g,','))  // (?1^)不能是开头   （?=(\d{3}+$)） //不带$ 1,2,345
+console.log("12345678 123456789".replace(/(?!\b)(?=(\d{3})+\b)/g,','))  // 12,345,678 123,456,789  (?!\b)|\B
+```
+
+```js
+console.log("1888".replace(/$/g,'.00').replace(/^/g,'$ '))
+```
+
+```js
+console.log(Number(1888).toFixed(2).replace(/\B(?=(\d{3})+\b)/g, ",").replace(/^/, "$ "))
+```
+
+#### 分组和分支结构
+
+分组  （ab）
+
+分支结构 （p1|p2）
+
+分组引用   string.match(regexp)   返回整体匹配 分组
+
+```js
+console.log('2020-11-01'.match(/(\d{4})-(\d{2})-(\d{2})/))
+// ["2020-11-01", "2020", "11", "01", index: 0, input: "2020-11-01", groups: undefined]
+console.log(/(\d{4})-(\d{2})-(\d{2})/.exec('2020-11-01'))
+```
+
+```js
+console.log('2020-11-01'.replace(/(\d{4})-(\d{2})-(\d{2})/,'$3-$2-$1')) // 01-11-2020
+console.log('2020-11-01'.replace(/(\d{4})-(\d{2})-(\d{2})/,function(...args){
+    console.log(RegExp.$1,RegExp.$2,RegExp.$3)
+    return args.join('* ')
+}))
+// args 是同上的一大长串，RegExp.$1 才是分组
+```
+
+//  RegExp.$1   '$1'
+
+```js
+console.log('border-right-width'.replace(/-([a-z]{1})/g,function(){console.log(RegExp.$1); return RegExp.$1.toUpperCase()}))
+// -r, w
+// -w, w
+// borderWightWidth
+```
+
+##### 反向引用
+
+在正则本身中引用分组，只能引用前面的分组。
+
+```js
+var regex = /\d{4}(-|\/|\.)\d{2}(-|\/|\.)\d{2}/;
+"2020-11-06" "2020/11/06" "2020.11.06"  "2020/11-06"
+var regex = /\d{4}(-|\/|\.)\d{2}\1\d{2}/; // 后面引用前面的符号，保持一致  \1 \2 \3
+```
+
+##### 括号嵌套
+
+以左括号为准   /1 /2 /3 /4 第 1 2 3 4 个
+
+\10 表示第10个分组，匹配 \1 和 0 的话，使用 (?:\1)0 或者 \1(?:0)。 
+
+**引用不存在**
+
+引用不存在, \2 就表示 “\2” 对2 进行转义
+
+**分组后面有量词**
+
+分组捕获到的数据是最后一次匹配
+
+```js
+console.log('1234'.match(/(\d)+/))
+// ["1234", "4", index: 0, input: "1234", groups: undefined]
+```
+
+**非捕获括号** 
+
+(?:p) 和 (?:p1|p2|p3)  
+
+**案例**
+
+去除字符串首尾空格
+
+```js
+console.log('  1234  '.replace(/^\s+|\s+$/g,''))
+```
+
+首字母大写
+
+```js
+console.log('hello world hei'.replace(/(^|\s)\w/g,function(c){return c.toUpperCase()}))
+console.log('hello world hei'.replace(/(?:^|\s)\w/g,function(c){return c.toUpperCase()}))
+```
+
+驼峰化   （.）表示首字母
+
+中划线化
+
+```js
+console.log('BorderRightWidth'.replace(/([A-Z])/g,'-$1').replace(/[-_\s]+/g,'-').toLowerCase()) //  -border-right-width
+```
+
+html转义与反转义
+
+匹配成对标签   （引用 加 + ）
+
+#### 回溯法原理  
+
+回溯法也称试探法（判断回文字符串）（深度优先搜索算法  ）
+
+没有回溯的匹配
+
+有回溯的匹配
+
+贪婪量词  {1,3} 先按照3去匹配，匹配不到减掉一个，按2去匹配
+
+```js
+console.log('12345'.match(/(\d{1,3})(\d{1,3})/))  // 多个贪婪量词，前面的优先
+["12345", "123", "45", index: 0, input: "12345", groups: undefined]
+```
+
+惰性量词
+
+分支结构也是惰性的
+
+#### 正则的拆分
+
+**结构和操作符**
+
+字符字面量、字符组 []、量词{} ?  * + 、锚 ^ $ \b、分组 () (?:ab)、选择分支 | 、反向引用。  
+
+优先级  转义符  括号/方括号 量词  位置和序列  管道符竖杠
+
+**元字符转义**
+
+^、$、.、*、+、?、|、\、/、(、)、[、]、{、}、=、!、:、- ,     匹配这些字符本身，可以一律转义
+
+[abc]   /\ [abc]/   /\ [abc \]/    {1,3}  /\ {1,3}/  /\ {1,3\ }/    第一个括号被转义了，第二个括号自然也无法成对，可以不转移
+
+/\(123\)/   括号需要前后都转义
+
+=、!、:、-、, 等符号，只要不在特殊结构中，并不需要转义。  
+
+^、$、.、*、+、?、|、\、/ 等字符，只要不在字符组内，都需要转义的 ，都是正则会用到的符号。
+
+**案例**
+
+匹配ip地址（）
+
+string.search(/\?/)  判断是否有问号
+
+拆分支
+
+不需要使用分组引用和反向引用时，此时可以使用非捕获分组。   （?: ...）
+
+#### 正则表达式的四种操作
+
+验证、
+
+reg.test rer.exec  string.match()  string.serach()
+
+切分、
+
+string.spilt(regexp) // 正则
+
+提取、
+
+regex.match  数组
+
+regex.exec()  数组
+
+regex.test(string);     RegExp.$1 
+
+regex.search()  RegExp.$1
+
+regex.replace()   第二个参数可为 function(){}
+
+替换  
+
+replace
+
+```
+String#search // 会把字符串参数修成正则 "."  "\\."  /\./
+String#split
+String#match // 会把字符串参数修成正则  没有g返回标准格式，整体+分组，下一个目标，目标字符串，有g返回的是所有匹配的内容，没有匹配时，不管有无g，都返回null
+String#replace
+RegExp#test  test 整体匹配时需要使用 ^ 和 $  
+RegExp#exec  能接着上一次匹配的内容继续匹配
+```
+
+使用构造函数需要写\ 反斜杠
+
 ## RegExp 对象用于存储检索规则
 - test()
 
