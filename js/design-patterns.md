@@ -103,7 +103,7 @@ let ob2 = new Observer('ob2', sub)
 sub.setState(12)
 ```
 
-事件侦听
+事件侦听  EventBus
 
 ```javascript
 class Event {

@@ -31,6 +31,10 @@ for  forEach
 
 map 返回对每一项处理之后的全新数组
 
+7个改变原数组的方法，vue劫持
+
+数字操作的复杂度，查询为常数复杂度O(1) ，插入、删除为线性复杂度O(n)
+
 ### 二维数组 
 
 fill([]) 不能用了填充二位数组，fill参数是引用类型的话，填充的也是引用类型，所以实际上是一样的值，一改全改。所以需要用for循环，对每一项赋值数组。
@@ -87,15 +91,6 @@ for(var m = 0; m < len1; m++){
 
 ```javascript
 
-// 取栈顶
-const stack = []
-stack.push('老冰棍')
-stack.push('巧乐兹')
-stack.push('小不丁')
-while(stack.length){
-  const stacktop = stack[stack.length - 1] // 栈顶值
-  stack.pop() // 出栈
-}
 
 ```
 
@@ -104,35 +99,75 @@ while(stack.length){
 ```js
 class Stack {
   constructor() {
-    this.list = [];
+    this.stack = [];
   }
   push(item) {
-    this.list.push(item);
+    this.stack.push(item);
   }
   pop() {
-    return this.list.pop();
+    return this.stack.pop();
   }
-  length() {
-    return this.list.length;
+  // 窥视
+  peek() {
+    return this.isEmpty() ? undefined : this.stack[this.size() - 1];
   }
-  clear() {
-    this.list = [];
+  isEmpty() {
+    return this.size() == 0;
   }
+  size() {
+    return this.stack.length;
+  }
+}
+
+// 取栈顶
+const stack = new Stack()
+stack.push('老冰棍')
+stack.push('巧乐兹')
+stack.push('小不丁')
+while(stack.size()){
+  const stacktop = stack.peek() // 栈顶值
+  console.log(stacktop)
+  stack.pop() // 出栈
 }
 ```
 
-
+应用 进制转换 括号匹配  栈混洗 表达式求值
 
 ### 队列 —— 先进先出   只允许尾部添加，头部取出 (相当于数组的push shift)
 
 ```javascript
-const queue = []
-queue.push('队1')
-queue.push('队2')
-queue.push('队3')
-while(queue.length){
-  const top = queue[0] // 取队首
-  queue.shift(0) // 出队
+class Queue{
+  constructor(){
+    this.queue = []
+  }
+  enqueue(item){
+    this.queue.push(item)
+  }
+  dequeue(){
+   return this.queue.shift()
+  }
+  front(){
+  return  this.isEmpty() ? undefined : this.queue[0]
+  }
+  back(){
+    return this.isEmpty() ? undefined : this.queue[this.size() -1]
+  }
+  isEmpty(){
+    return this.size() == 0
+  }
+  size(){
+    return this.queue.length
+  }
+}
+
+const queue = new Queue()
+queue.enqueue('队1')
+queue.enqueue('队2')
+queue.enqueue('队3')
+while(queue.size()){
+  const top = queue.front() // 取队首
+  console.log(top)
+  queue.dequeue(0) // 出队
 }
 ```
 
@@ -185,19 +220,25 @@ console.log(set.size)
 
 ### 链表
 
-链表的增加删除元素不用挪动其他多余的的元素   链表的添加删除复杂度O(1)
+链表通过每个元素指向下一个元素的方式访问，不需要一段连续的存储空间。
 
-```
+链表的增加删除元素不用挪动其他多余的的元素 ，链表的添加删除复杂度为常数O(1)，查询读取元素的复杂度为线性复杂度O(n)
+
+读取元素不能直接获取，只能顺序访问，从第一个开始找 
+
+```js
 function ListNode(val) {
     this.val = val;
     this.next = null;
+    this.
 }
 const node1 = new ListNode('1')
 const node2 = new ListNode('2')
 node1.next = node2
 Node
-
+// 构造节点类
 linkedList   // append   removeAt   insert remove size getHead isEmpty log 
+// 双链表  prev  next  head fail
 ```
 
 访问
@@ -209,6 +250,8 @@ for(var i = 0; i < index&&node; i ++){
   node = node.next
 }
 ```
+
+**链表数组**：数组中的每一项指向一个链表
 
 ### 哈希表
 
