@@ -22,7 +22,7 @@ const setStatePromise = (me, state) => {
 }
 ```
 
-
+*setState只有在合成事件和⽣生命周期函数中是异步的，在原⽣生事件和setTimeout中都是同步的。*
 
 #### 原生事件和React合成事件
 
@@ -56,6 +56,29 @@ e.nativeEvent.stopImmediatePropagation()
 
 准纯组件是渲染数据全部来自props，但是会产生副作用的组件。
 
+#### 生命周期
+
+```
+// React 15
+constructor()
+componentWillReceiveProps()
+shouldComponentUpdate()
+componentWillMount() // 不涉及真实 DOM 操作的准备工作
+componentWillUpdate() // 不涉及真实 DOM 操作的准备工作
+render()
+componentDidUpdate() // 处理 DOM 操作，作为子组件更新完毕的标志通知到父组件
+componentDidMount() // 处理 DOM 操作
+componentWillUnmount()
+```
+
+componentReceiveProps 并不是由 props 的变化触发的，而是由父组件的更新触发的
+
+shouldComponentUpdate 的默认值为 true，往往通过手动往 shouldComponentUpdate 中填充判定逻辑，或者直接在项目中引入 PureComponent 等最佳实践，来实现“有条件的 re-render”。
+
+**React16**
+
+![img](https://s0.lgstatic.com/i/image/M00/5D/D9/CgqCHl-FVVeAaMJvAAKXOyLlUwM592.png)
+
 #### 数据状态管理
 
 React组件内部的state， redux中的store
@@ -73,3 +96,30 @@ React组件内部的state， redux中的store
 合理connect
 
 扁平化数据状态
+
+react-redux   map
+
+#### React-router
+
+#### PureComponent
+
+#### Hook
+
+useState是允许在React函数组件中添加state 的Hook。（没有钩子之前需要转为class组件）
+
+useEffect 副作用，
+
+在函数组件主体内，改变Dom、添加订阅、设置定时器、记录日志以及执行其他包含副作用的操作都是不被允许的。
+
+赋值给useEffect的函数会在组件渲染到屏幕之后执行。
+
+effect的条件执行，第二个参数，是effect依赖的值数组。useEffect函数需要返回一个清楚函数，清除函数胡子爱组件卸载前执行。
+
+#### 自定义Hook
+
+#### useMemo  
+
+类似计算属性
+
+#### useCallback
+
