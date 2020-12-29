@@ -17,38 +17,39 @@ console.log('  fff sss  '.replace(/\s/g,''))
 *字符流中第一个不重复的字符*
 
 ```js
-let container = new Array(256).fill(-1)
+// let container = new Array(256).fill(-1)
+let container = new Map()
 let index = 0
 function init(){
-  container = new Array(256).fill(-1)
+  container = new Map()
   index = 0
 }
 
-function insert(*ch*){
-  const code = *ch*.charCodeAt(index)
-  if(container[code] === -1){
-    container[code] = index
+function insert(ch){
+  const code = ch.charCodeAt(index)
+  if(!container.has(code)){
+    container.set(code,index)
   }else{
-    container[code] = -2
+    container.set(code,-2)
   }
-  if(index < *ch*.length -1){
+  if(index < ch.length -1){
     index ++ 
-    insert(*ch*)
+    insert(ch)
   } 
   console.log(container)
 }
 insert('google')
-*// -1 没出现过 code 出现过1次  -2 出现过多次*
+// -1 没出现过 code 出现过1次  -2 出现过多次
 let first = 256
-container.map((*item*,*index*) => {
-   if(*item* !== -1 && *item* !== -2){
-        if( *item* < first){
-           first = *item*
+container.forEach((value,key) => {
+    console.log(value,key)
+    if(value !== -2 ){
+        if(value < first){
+            first = value
         }
-       console.log(*item*,*index*)
-   }
+    }
 })
-console.log(first)
+console.log(first !== 256 ? first : "#")
 ```
 
 *// 字符串的排列  回溯法*
