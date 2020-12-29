@@ -109,6 +109,51 @@ map 返回对每一项处理之后的全新数组
 
 数字操作的复杂度，查询为常数复杂度O(1) ，插入、删除为线性复杂度O(n)
 
+##### 数组排成最小数字
+
+输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。
+
+例如输入数组{3，32，321}，则打印出这三个数字能排成的最小数字为321323。
+
+```js
+function PrintMinNumber(numbers) {
+  if (!numbers || numbers.length === 0) {
+    return "";
+  }
+  return numbers.sort(compare).join('');
+}
+
+function compare(a, b) {
+  const front = "" + a + b;
+  const behind = "" + b + a;
+  return front - behind;
+}
+```
+
+##### 数组奇偶重排
+
+**输入一个整数数组**，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分  双指针
+
+```js
+function reOrderArray(arr){
+  let start = 0
+  let end = arr.length -1 
+  while(start < end){
+      if(arr[start] % 2 === 1){
+          start ++
+      }
+      if(arr[end] % 2 === 0){
+          end --
+      }
+      [arr[start],arr[end]] = [arr[end],arr[start]]
+  }
+  return arr 
+}
+console.log(reOrderArray([0,1,2,3,4,5,6,7,8,9,0]))
+```
+
+
+
 ### 二维数组 
 
 fill([]) 不能用了填充二位数组，fill参数是引用类型的话，填充的也是引用类型，所以实际上是一样的值，一改全改。所以需要用for循环，对每一项赋值数组。
