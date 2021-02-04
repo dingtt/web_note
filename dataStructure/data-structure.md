@@ -2,19 +2,19 @@
 
 ### 字符串
 
-替换空格
+##### 替换空格
 
 ```
 console.log('  fff sss  '.replace(/\s/g,''))
 ```
 
-表示数值的字符串
+##### 表示数值的字符串
 
 ```
 '1235678656.93'.replace()
 ```
 
-*字符流中第一个不重复的字符*
+##### *字符流中第一个不重复的字符*
 
 ```js
 // let container = new Array(256).fill(-1)
@@ -52,17 +52,17 @@ container.forEach((value,key) => {
 console.log(first !== 256 ? first : "#")
 ```
 
-*// 字符串的排列  回溯法*
+##### * 字符串的排列  回溯法*
 
 
 
-*// 字符串反转*
+##### *字符串反转*
 
 ```
 'hello world'.split(' ').reverse().join(' ') *// world hello*
 ```
 
-*// 左旋转字符串*
+##### *左旋转字符串*
 
 *// 输入字符串"abcdefg"和数字2，该函数将返回左旋转2位得到的结果"cdefgab"*
 
@@ -72,11 +72,11 @@ const str = 'abcdefg'
 console.log((str+str).substr(2,str.length))
 ```
 
-*// 翻转单词顺序：*
+##### * 翻转单词顺序：*
 
 ### 数组
 
-创建  
+**创建**  
 
 ```javascript
 const arr = [] 
@@ -85,7 +85,7 @@ const arr1 = [1,1,1]
 consr arr1 = (new Array(3)).fill(1)
 ```
 
-方法
+**方法**
 
 concat、some、
 
@@ -99,7 +99,7 @@ pop、push shift unshift
 
 splice(a, b, c)   a索引/b删除个数/c添加元素 splice(1, 1) 删除   splice(1, 0, 'add')  
 
-遍历
+**遍历**
 
 for  forEach  
 

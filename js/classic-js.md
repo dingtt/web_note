@@ -199,18 +199,20 @@ function deepClone(obj) {
 
 ### 防抖与节流
 
-```
+```javascript
+// 定时器防抖
+// 指触发事件后函数不会立即执行 
+// 第一次触发创建定时器delay，如果这段时间（delay）内又触发了事件，则会删除定时器重新定时
+// 最后一次触发事件，在 delay 时间后执行
 const debounce = (fn,delay) => {
  	const timer = null
- 	return function(){
+ 	return function(...args){
+    const ctx = this
  		if(timer){
  		  clearTimeout(timer)
  		}
- 		const args = arguments
- 		const ctx = this
-        let flag = false
  		timer = setTimeout(function(){
- 		   fn.apply(ctx, [...args])
+ 		   fn.apply(ctx, args)
  		},delay)
  	}
 }
@@ -226,32 +228,12 @@ window.requestAnimationFrame = debounce(function(){
 
 
 ```javascript
-// 最后一次触发事件，在 delay 时间后执行
-// 指触发事件后函数不会立即执行，而是在一定时间（比如 3 秒）后执行，
-// 如果这段时间（3 秒）内又触发了事件，则会重新计算函数执行时间
-const debounce = (fn, delay) => {
-  let timer = null
-  return function () {
-    let ctx = this
-    let args = arguments
-    if (timer) {
-      clearTimeout(timer)
-    }
-    timer = setTimeout(() => {
-      fn.apply(ctx, [...args])
-    }, delay)
-  }
-}
-```
-
-```javascript
-// 防抖  立即执行
+// 防抖  立即执行 callNow
 // 指触发事件后函数会立即执行，然后一定时间（秒）内不触发事件才能继续执行函数的效果
-const debounce2 = (fn, delay) => {
+const debounceImmediate = (fn, delay) => {
   let timer = null
-  return function () {
+  return function (...args) {
     let ctx = this
-    let args = arguments
     if (timer) {
       clearTimeout(timer)
     }
@@ -264,38 +246,75 @@ const debounce2 = (fn, delay) => {
     }
   }
 }
+// flag
+  immediateDebounce(fn, delay) {
+        let timer = null
+        let flag = true
+        return function (...args) {
+          const ctx = this
+          if (timer) {
+            clearInterval(timer)
+          }
+          if (flag) {
+            fn.apply(ctx, args)
+            flag = false
+          }
+          timer = setTimeout(() => {
+            flag = true
+          }, delay)
+        }
+      },
+        // 合并防抖
+      commonDebounce(fn, delay, immediate) {
+        let timer = null
+        let flag = true
+        return function (...args) {
+          const ctx = this
+          if (timer) clearTimeout(timer)
+          if (immediate && flag) {
+            fn.apply(ctx, args)
+            flag = false
+          }
+          timer = setTimeout(() => {
+            if (immediate) {
+              flag = true
+            } else {
+              fn.apply(ctx, args)
+            }
+          })
+        }
+      },
 ```
 
 ```javascript
-// 节流
-// 定时器实现的节流函数在第一次触发时不会执行，而是在 delay 秒之后才执行，
+// 定时器节流
+// 定时器实现的节流函数在第一次触发时【不会执行】，而是在 intervel 秒之后才执行，
 // 当最后一次停止触发后，还会再执行一次函数。
-const throttle = (fn, delay) => {
+const throttle = (fn, intervel) => {
   let timer = null
-  return function () {
+  return function (...args) {
     let ctx = this
-    let args = arguments
     if (timer) return
     timer = setTimeout(() => {
       fn.apply(ctx, args)
       clearTimeout(timer)
-    }, delay)
+    }, intervel)
   }
 }
 ```
 
 ```javascript
-// 时间戳实现的节流函数会在第一次触发事件时【立即执行】，以后每过 delay 秒之后才执行一次
-// 最后一次触发事件可能不会被执行
-const throttle2 = (fn, delay) => {
-  let beginTime = Date.now()
-  return function () {
+// 时间戳节流
+// 时间戳实现的节流函数会在第一次触发事件时【立即执行】，以后每过 intervel 秒之后才执行一次
+// 缺点：最后一次触发事件可能不会被执行
+const throttle2 = (fn, intervel) => {
+  let last = 0
+  return function (...args) {
     let ctx = this
-    let args = arguments
-    let time = Date.now()
-    if (time - beginTime > delay) {
+    let now = Date.now()
+    if (now - last > intervel) {
       fn.apply(ctx, args)
-      beginTime = Date.now()
+      last = now
     }
   }
 }
@@ -304,7 +323,34 @@ const throttle2 = (fn, delay) => {
 // 节流 
 ```
 
-### todo异步防抖
+```javascript
+ // 合并节流防抖  解决防抖频率太快，一直没响应的问题, 防抖配合的是时间戳节流
+
+      debounceThrottle(fn, delay) {
+        let timer = null
+        let last = 0
+        return function (...args) {
+          const ctx = this
+          let now = Date.now()
+          // 节流时间内  防抖
+          if (now - last < delay) {
+            if (timer) clearTimeout(timer)
+            timer = setTimeout(() => {
+              fn.apply(ctx, args)
+            }, delay)
+          } else {
+            fn.apply(ctx, args)
+            last = now
+          }
+        }
+      },
+```
+
+
+
+### todo异步防抖 ?
+
+
 
 ### 数组扁平化
 
