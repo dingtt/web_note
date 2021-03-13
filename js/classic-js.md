@@ -352,76 +352,6 @@ const throttle2 = (fn, intervel) => {
 
 
 
-### 数组扁平化
-
-```javascript
-array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
-```
-
-
-
-```javascript
-var arr = [1,4,3,2,[6,4,3,5]]
-var arr1 = arr.flat(Infinity)
-var arr2 = JSON.stringify(arr).replace(/\[|\]/g,'')
-var arr3 = JSON.parse('['+ JSON.stringify(arr).replace(/\[|\]/g,'')+']')
-var flatten = arr => {
-    return arr.reduce((pre,cur) => {
-        return pre.concat(Array.isArray(cur) ? flatten(cur) : cur)
-    },[])
-}
-console.log(flatten(arr))
-```
-
-### 数组的去重
-
-```
-new Set(arr)
-```
-
-```javascript
-//set indexOf  includes filter map  object
-var arr = [1,4,3,2,6,4,3,5,4,2,1,2,5,6]
-
-const unique = arr => {
-    const res = []
-    arr.forEach((item) => {
-        if(res.indexOf(item) === -1 || !res.includes(item)){
-            res.push(item)
-        }
-    })
-    return res
-}
-
-const unique2 = arr => {
-  return  arr.filter((item,index) => (arr.indexOf(item) === index))
-}
-
-const unique3 = arr => {
-    const map = new Map()
-    const res = []
-    arr.forEach((item,index) => {
-        if(!map.has(item)){
-            map.set(item,true)
-            res.push(item)
-        }
-    })
-    return res
-}
-
-console.log(unique(arr),'-',unique2(arr),'-',unique3(arr))
-```
-
-### 类数组转化为数组
-
-```javascript
-Array.from()
-Array.prototype.slice.call()
-[...arguments]
-Array.prototype.concat.apply([],arguments)
-
-```
-
 ### 函数的 compose
 
 ### 柯里化
@@ -496,5 +426,49 @@ const is = (x,y) => {
     return x !== x && y !== y
   }
 }
+```
+
+## 常见的关于`async`的笔试题
+
+[`async` 函数原理](https://mp.weixin.qq.com/s/eCkVvW_3iyqM_MtEYYtP-A)就是 `Generator`函数 和 自动执行器包装了一下。
+
+- 实现一个`sleep`
+
+  ```javascript
+  function sleep(interval) {
+      return new Promise(resolve => {
+          setTimeout(resolve, interval);
+      })
+  }
+  
+  // 用法
+  async function one2FiveInAsync() {
+      for (let i = 1; i <= 5; i++) {
+          console.log(i);
+          await sleep(1000);
+      }
+  }
+  one2FiveInAsync();
+  ```
+
+- 实现一个红绿灯：红灯2秒，黄灯1秒，绿灯3秒
+
+  ```js
+  async function changeColor(color, duration) {
+      console.log('当前颜色', color);
+      await sleep(duration);
+  }
+  async function main() {
+      await changeColor('红色', 2000);
+      await changeColor('黄色', 1000);
+      await changeColor('绿色', 3000);
+  }
+  main();
+  ```
+
+- 使用 `async` 实现`Promise.all()`的效果
+
+```
+
 ```
 

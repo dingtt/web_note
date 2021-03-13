@@ -1,5 +1,42 @@
 # 不同模块的标准及区别
 
+## 早期方案
+
+#### 命名空间
+
+```js
+const module1 = {
+  foo:'bar',
+  fnl:function(){}
+}
+// 调用 module1.fn1()
+// 缺点:可任意修改赋值
+```
+
+#### 立即执行函数+闭包
+
+```js
+const module1 = (function(){
+  var foo = 'bar'
+  var fnl = function(){}
+  return {
+   fn1:fn1
+  }
+})()
+// 只能访问暴露出来的方法
+
+// 升级版 调用模块module暴露给window
+const module1 = (function(){
+  var foo = 'bar'
+  var fnl = function(){}
+  window.module = {
+    fn1
+  }
+})(window)
+```
+
+
+
 ### CommonJS
 
 Node.js的实现采取了CommonJS标准的一部分，并在其基础上进行了一些调整。
@@ -8,7 +45,13 @@ Node.js的实现采取了CommonJS标准的一部分，并在其基础上进行�
 
 CommonJS中规定了每个文件是一个模块，会形成一个属于模块自身的作用域，所有的变量及函数只有自己可以访问，对外是不可见。
 
-require('')   
+- 文件即模块，独立作用域。
+- 模块可以被多次引用加载，第一次加载之后会被缓存。
+- 加载某个模块，就是引入模块的module.exports属性
+- module.export属性输出的是值的拷贝
+- 模块按照代码引入的顺序进行加载
+
+导入 require('')   
 
 导出  module.exports{}
 

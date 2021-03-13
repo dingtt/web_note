@@ -2,25 +2,27 @@
 
 string.match()
 
+regex.test()
+
 ### 字符匹配
 
 #### 两种模糊匹配
 
-横向模糊匹配  {m,n} 数量
+横向模糊匹配  {m,n} ，出现次数数量
 
-纵向模糊匹配 [] 任一个
+纵向模糊匹配 [a, b, c] 任一个
 
 #### **字符组**
 
-范围[a-z] 
+范围表示法 [a-z] ，如果要匹配 - ，需要放到开头或结尾，或加 \
 
 排除[ ^ abc] 除 "a" "b" "c"
 
 大写为排除
 
-\d \D \s \S
+\d 数字 ； \D 非数字； \s 空白符，包括各种符号； \S 非空白符，即通配符
 
- \w \W ， \w是字符组 [0-9a-zA-Z_] 的简写形式，即 \w 是字母数字或者下划线的中任何一个字符  
+ \w \W ， \w是字符组 [0-9a-zA-Z_] 的简写形式，即 \w 是*字母 数字*或者*下划线*的中任何一个字符  
 
 \W   [ ^0-9a-zA-Z_]
 
@@ -34,19 +36,19 @@ string.match()
 
 ？ {0,1} 出现不出现 
 
-+, {1,}
++, {1,} 至少出现一次
 
-*, {0,}     量词 * 是贪婪的  
+*, {0,}  任意次，可为0   量词 * 是贪婪的  
 
-惰性量词  加 ?  表示从最少的开始匹配，匹配到了就行了
+惰性量词  加 ?  表示从最少的开始匹配，匹配到了就行了，m个就够了，就不再尝试了
 
 {m,n}?    {m,}?    ??    +?     *?
 
 #### **多选分支**
 
-/1| 2/    (|)
+/1| 2/    (|)  
 
-分支结构也是惰性的，即当前面的匹配上了，后面的就不再尝试了  
+ /goodbye|good/ 分支结构也是惰性的，即当前面的匹配上了，后面的就不再尝试了  
 
 #### **案例**
 
@@ -86,10 +88,16 @@ const str = 'D:\wwwroot\hellouni\store'
 
 匹配属性
 
+因为 . 是通配符，本身就匹配双引号的，而量词 * 又是贪婪的，当遇到 container 后面双引号时，是不会
+
+停下来，会继续匹配，直到遇到最后一个双引号为止。 解决之道，可以使用惰性匹配：
+
 ```js
 const regex = /id=".*?"/
 const string = '<div id="container" class="main"></div>'
 console.log(string.match(regex)[0])
+// 优化方案
+var regex = /id="[^"]*"/
 ```
 
 ### 位置匹配
@@ -104,13 +112,16 @@ console.log(string.match(regex)[0])
 $（美元符号）匹配结尾，在多行匹配中匹配行结尾。  //gm
 
 ```js
-console.log('id'.replace(/^|$/g,'*'))
+ console.log('id'.replace(/^|$/g,'*')) // *id*
 console.log('id\nname\nclass'.replace(/^|$/gm,'*'))
+// *id*
+// *name*
+// *class*
 ```
 
-**单词边界 \b 和 \B**    
+**单词边界 \b 和 \B**    非单词边界  
 
-\w 与 \W，\w 与 ^ $ 的之间
+\w 与 \W，\w 与 ^ $ 的之间位置
 
 ```js
 console.log('id name class data.key'.replace(/\b/g,'#')) //  #id# #name# #class# #data#.#key#
@@ -125,13 +136,13 @@ console.log('id name class data....key'.replace(/\B/g,'#')) //  i#d n#a#m#e c#l#
 
 **(?=p) 和 (?!p)**  
 
-p前面的位置  （后面是p）， (?!p) 后面不是p
+p前面的位置  （后面是p）， (?!p) 后面不是p，即不在p的前面
 
 **案例**
 
 不匹配任何东西的正则   /.^/
 
-字符串数字分割
+**字符串数字分割**
 
 ```js
 console.log('123456789'.replace(/(?!^)(?=(\d{3})+$)/g,','))  // (?1^)不能是开头   （?=(\d{3}+$)） //不带$ 1,2,345
@@ -139,12 +150,33 @@ console.log("12345678 123456789".replace(/(?!\b)(?=(\d{3})+\b)/g,','))  // 12,34
 ```
 
 ```js
-console.log("1888".replace(/$/g,'.00').replace(/^/g,'$ '))
+console.log("1888".replace(/$/g,'.00').replace(/^/g,'$ ')) // $ 1888.00
 ```
 
 ```js
 console.log(Number(1888).toFixed(2).replace(/\B(?=(\d{3})+\b)/g, ",").replace(/^/, "$ "))
 ```
+
+***货币格式化问题***
+
+***密码校验***
+
+```js
+// 必须数字或字母 
+const regex = /^[0-9a-zA-Z]{6,12}$/
+// 必须包含数字 位置匹配，接下来的字符，必须包含个数字。
+const regex = /(?=.*[0-9])^[0-9a-zA-Z]{6,12}$/
+// 同时包含数字 小写字母
+const regex = /(?=.*[0-9])(?=.*[a-z])^[0-9a-zA-Z]{6,12}$/
+//  至少两种，用分支结构
+var regex = /((?=.*[0-9])(?=.*[a-z])|(?=.*[0-9])(?=.*[A-Z])|(?=.*[a-z])(?=.*[AZ]))^[0-9A-Za-z]{6,12}$/;
+// 反向思维  不能全部都是数字  
+const regex = /(?!^[0-9]{6,12}$)^[0-9a-zA-Z]{6,12}$/
+//不能全部都是小写字母 ...
+const regex = /(?!^[0-9]{6,12}$)(?!^[a-z]{6,12}$)(?!^[A-Z]{6,12}$)^[0-9a-zA-Z]{6,12}$/
+```
+
+
 
 #### 分组和分支结构
 
@@ -152,24 +184,37 @@ console.log(Number(1888).toFixed(2).replace(/\B(?=(\d{3})+\b)/g, ",").replace(/^
 
 分支结构 （p1|p2）
 
+**提取数据**
+
 分组引用   string.match(regexp)   返回整体匹配 分组
 
 ```js
+// 匹配
 console.log('2020-11-01'.match(/(\d{4})-(\d{2})-(\d{2})/))
 // ["2020-11-01", "2020", "11", "01", index: 0, input: "2020-11-01", groups: undefined]
 console.log(/(\d{4})-(\d{2})-(\d{2})/.exec('2020-11-01'))
+
+var regex = /(\d{4})-(\d{2})-(\d{2})/;
+var string = "2017-06-12";
+regex.test(string); // 正则操作即可，例如
+//regex.exec(string);
+//string.match(regex);
+console.log(RegExp.$1); // "2017"
+console.log(RegExp.$2); // "06"
+console.log(RegExp.$3); // "12"
 ```
 
 ```js
+// 替换 排序
 console.log('2020-11-01'.replace(/(\d{4})-(\d{2})-(\d{2})/,'$3-$2-$1')) // 01-11-2020
-console.log('2020-11-01'.replace(/(\d{4})-(\d{2})-(\d{2})/,function(...args){
-    console.log(RegExp.$1,RegExp.$2,RegExp.$3)
+console.log('2020-11-01'.replace(/(\d{4})-(\d{2})-(\d{2})/,function(match, year, month, day){
+    console.log(RegExp.$1,RegExp.$2,RegExp.$3) // 全局变量
     return args.join('* ')
 }))
 // args 是同上的一大长串，RegExp.$1 才是分组
 ```
 
-//  RegExp.$1   '$1'
+//  RegExp.$1   '$1'  横杠转驼峰
 
 ```js
 console.log('border-right-width'.replace(/-([a-z]{1})/g,function(){console.log(RegExp.$1); return RegExp.$1.toUpperCase()}))
@@ -178,9 +223,9 @@ console.log('border-right-width'.replace(/-([a-z]{1})/g,function(){console.log(R
 // borderWightWidth
 ```
 
-##### 反向引用
+##### 反向引用  
 
-在正则本身中引用分组，只能引用前面的分组。
+在正则本身中引用分组，只能引用前面的分组。 \1 \2 \3
 
 ```js
 var regex = /\d{4}(-|\/|\.)\d{2}(-|\/|\.)\d{2}/;
@@ -228,6 +273,17 @@ console.log('hello world hei'.replace(/(?:^|\s)\w/g,function(c){return c.toUpper
 
 驼峰化   （.）表示首字母
 
+```js
+console.log('-hello-world-hei'.replace(/[_-\s](.)?/g,function(match,c){
+    return c ? c.toUpperCase() : ''
+    }
+    ))
+    console.log('hello-world-hei'.replace(/[_-\s]+(.)?/g,function(match,c){
+    return c ? c.toUpperCase() : ''
+    }
+    ))
+```
+
 中划线化
 
 ```js
@@ -236,17 +292,25 @@ console.log('BorderRightWidth'.replace(/([A-Z])/g,'-$1').replace(/[-_\s]+/g,'-')
 
 html转义与反转义
 
-匹配成对标签   （引用 加 + ）
+
+
+匹配成对标签   （引用 加 + ）， 反向引用
+
+```js
+// 匹配一个开标签，可以使用正则 <[^>]+>，  ^> 表示非>
+// 匹配一个闭标签，可以使用 <\/[^>]+>，
+var regex = /<([^>]+)>[\d\D]*<\/\1>/;
+```
 
 #### 回溯法原理  
 
-回溯法也称试探法（判断回文字符串）（深度优先搜索算法  ）
+回溯法也称试探法（判断回文字符串）（深度优先搜索算法  ）（撞南墙回头）
 
 没有回溯的匹配
 
 有回溯的匹配
 
-贪婪量词  {1,3} 先按照3去匹配，匹配不到减掉一个，按2去匹配
+贪婪量词  {1,3} 先按照3个去匹配，匹配不到减掉一个，按2去匹配
 
 ```js
 console.log('12345'.match(/(\d{1,3})(\d{1,3})/))  // 多个贪婪量词，前面的优先
@@ -255,7 +319,14 @@ console.log('12345'.match(/(\d{1,3})(\d{1,3})/))  // 多个贪婪量词，前面
 
 惰性量词
 
-分支结构也是惰性的
+```js
+var string = "12345";
+var regex = /(\d{1,3}?)(\d{1,3})/;
+console.log( string.match(regex) );
+// => ["1234", "1", "234", index: 0, input: "12345"]
+```
+
+分支结构也是惰性的，比如 /can|candy/，去匹配字符串 "candy"，得到的结果是 "can"
 
 #### 正则的拆分
 
@@ -279,7 +350,20 @@ console.log('12345'.match(/(\d{1,3})(\d{1,3})/))  // 多个贪婪量词，前面
 
 **案例**
 
-匹配ip地址（）
+***匹配身份证号***
+
+```
+ /^(\d{15}|\d{17}[\dxX])$/
+```
+
+***匹配ip地址（）***
+
+```
+// 255.111.111.0
+// ((…)\.){3}(…) (...)内涵五个小分支
+//  1 01 001 ,  11 011 , 100 199 200 255
+（0{0,2}\d）(0?\d{2}) (1\d{2}) (2[0-4]/d) (25[0-5])
+```
 
 string.search(/\?/)  判断是否有问号
 
