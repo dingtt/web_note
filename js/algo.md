@@ -16,6 +16,8 @@ Array.from(new Set(arr.flat(Infinity))).sort((a,b)=>{ return a-b})
 
 ### 排序
 
+`avaScript` 的 `sort` 方法的实现原理，当数组长度小于等于 10 的时候，采用插入排序，大于 10 的时候，采用快排，快排的平均时间复杂度是 O(nlogn)O(nlogn)O(nlogn)。
+
 #### 桶排序
 
 #### 插入排序

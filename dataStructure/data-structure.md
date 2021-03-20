@@ -419,7 +419,7 @@ console.log(ht.get('name'))
 
 ### 空树
 
-如果部署空树，必须由根节点 左子树 右子树构成，且左右子树都是二叉树。二叉树的左右子树是严格约定不饿能交换的。
+如果不是空树，必须由根节点 左子树 右子树构成，且左右子树都是二叉树。二叉树的左右子树是严格约定不饿能交换的。
 
 ```
 function TreeNode(val) {
@@ -484,7 +484,7 @@ const preorderM = function(node){
 preorderM(root)
 // D B G H E A F C
 
-// 后序遍历（递归遍历）
+// 后序遍历（递归遍历）  
 const preorderR = function(node){
     if(!node)return
     preorderR(node.left)
