@@ -472,3 +472,35 @@ const is = (x,y) => {
 
 ```
 
+setTimeout实现setInterval
+
+```js
+function timerFun(){
+	let timer = setTimeout(() => {
+	console.log(1000)
+		clearTimeout(timer)
+		timerFun()
+	},1000)
+}
+timerFun()
+```
+
+setInterval准时执行
+
+```
+
+```
+
+es5实现私有变量
+
+```js
+function Person(name) {
+  this.name = name
+  this.getName = function(){
+    return this.name
+  }
+}
+const person = new Person('xiaoliu')
+console.log(person.getName())
+```
+
