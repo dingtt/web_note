@@ -504,3 +504,46 @@ const person = new Person('xiaoliu')
 console.log(person.getName())
 ```
 
+Vue2响应式原理
+
+```js
+function observe(obj) {
+    if(obj && typeof obj === 'object'){
+        for(let key in obj){
+            defineReactive(obj,key, obj[key])
+        }
+    }
+    // walk 
+}
+
+function defineReactive(obj, key, val){
+    const dep = new Dep()
+    observe(val)
+    Object.defineproperty(obj,key,{
+        enumerable:true,
+        configurable:true,
+        get:function(){
+            dep.addSub(Dep.target)
+            return val
+        },
+        set:function(){
+            dep.notify()
+        }
+    })
+}
+
+class Dep{
+    constructor(){
+        this.subs = []
+    }
+    addSub(watcher){
+        this.subs.push(watcher)
+    }
+    notify(){
+        this.subs.forEach(sub => {
+            sub.update()
+        })
+    }
+}
+```
+
