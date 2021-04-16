@@ -36,54 +36,37 @@
 - B端遇到的最复杂的数据结构
 - 数据展示的优化、数据截取和处理
 - 实际场景中，哪些地方应用到了堆、链表、多叉树
-- ES6及ES6+的能力集，最常用，最有用，能解决什么问题
 - GC 相关问题： es6+ ，eventloop 中涉及 GC 的部分。
-- 数组 flat 展开的各种解法，数组 map 应用
-- 讲下 V8 sort 的大概思路
-- Promise 并发限制
-- 手写 Promise.all
 - 省市区拼接查字段，要求 O(n) 内解出
 
 二
 
-- 项目的复盘优化
-- 说下业务上最复杂的点
 - node 限流算法
-- 最有效的性能优化方法
-- 你提到性能指标，能说说都是怎么计算的吗？比如 LCP，FID
-- 算法题：[数组全排列](https://leetcode-cn.com/problems/permutations/submissions/)
+
+  
 
 #### 猎豹
 
 一
 
-- input type 都有哪些类型，还记得其他 attrs 呢
-- css 的伪类和伪元素有哪些？有什么区别？
 - 在一个未知宽度的父元素内如何创建一个等边正方形
 - 异步加载 js 会阻塞什么
-- 数组所有方法都有哪些？findIndex 的参数说明
-- vue 和 react 的异同
 - 如何优化 vue 框架，注意是优化框架
 - vue 和 react 的 jsx 使用
 - id key 真的能使列表比对更高效吗？举个反例？
-- webpack 优化的手段
-- tree-shaking 怎么配置，如何 **避免**  tree-shaking？
 - electron 和小程序遇到什么坑？
 - 说下微信自动化测试
-- es2015 到 es2020 的新特性，你最常用什么，给你收益最大的。
 - weakMap 和 Map 的区别，weakMap 原理，为什么能被 GC？
 - 如何干扰 GC ？
-- webpack import 动态加载原理
 - 知道 webpack 中的 devTool 吗？
 - 如何进行错误定位和数据上报，线上异常的处理
 - 为什么有时候配置了 webpack caching，chunk 还是更新了？
 - 讲讲浏览器和 node 的 eventloop
 - 微任务后面还有哪些？requestAnimationFrame 是怎么调用的？requestAnimationFrame 帧内总是有任务吗？分情况说下。
 - 帧数怎么计算？
-- 了解网络安全吗？
 - 如何避免数据被 iframe 截获
-- 说下状态码
-- 说下 304，什么情况会 304？协商缓存的头部字段？
+
+  
 
 #### 头条
 
@@ -91,9 +74,6 @@
 
 - webpack 提高构建速度的方式
 - loader 输入什么产出什么 ？
-- webpack 原理
-- webpack 动态加载的原理
-- webpack 热更新
 - 如何写一个 webpack plugin
 - AST 的应用
 - 如何解析一个 html 文本，还是考 AST  （三元的文章，浏览器部分有）
@@ -107,7 +87,6 @@
 
 二
 
-- 业务，业务，还是业务，项目复盘有没有更好的解决方案。
 - 如何处理一个重大事故 bug
 - 监控体系
 - 虚拟 dom 有什么好的地方？ 框架为什么要设计虚拟 dom？
@@ -127,14 +106,6 @@ x[2] = z = 30;
 console.log(x, y, z);
 ```
 
-- 基础题：简单实现一个 LRU
-
-三
-
-- 算法题：`从数组 [1, 5, 8, 10, 12] 中找到两个数和为 9，返回 [1, 8] 这样的结果。`
-- 算法题：`从数组 [1, 5, 8, 10, 12] 中找到三个数和为 19，返回 [1, 8， 10] 这样的结果。`
-- 算法题 [leetcode 300](https://leetcode-cn.com/problems/longest-increasing-subsequence/)：`给定一个无序的整数数组，找到其中最长上升子序列的长度。`
-
 ### [山月最近的面试总结](https://juejin.cn/post/6922229465468633095)
 
 ### [两年工作经验成功面试阿里P6总结](https://juejin.im/post/6844903928442667015)
@@ -143,17 +114,8 @@ console.log(x, y, z);
 
 #### 酷乐家
 
-- TS有什么优势
-- type和interface的区别
 - React事件机制  [一文吃透 React 事件机制原理](https://toutiao.io/posts/28of14w/preview)
 - 盒子模型和 `box-sizing` 属性，判断元素的尺寸和颜色。
-- 实现一个 fill 函数，不能用循环。(考察递归)
-- 用 ES5 实现私有变量（考察闭包的使用）
-- 实现一个 Typescript 里的 Pick  `type Pick<T, K extends keyof T> = { [P in K]: T[P] }`
-- 手写 Promise.all
-
-- 手写并发只能 10 个
-- 算法题，怎么判断单链表相交。
 - 算法题，怎么找到第一个相交的节点。
 
 #### 拼多多
@@ -162,11 +124,7 @@ console.log(x, y, z);
 
 - 详细的介绍一下 `getDerivedStateFromProps`
 
-- 求最大公共前缀，如 `['aaafsd', 'aawwewer', 'aaddfff'] => 'aa'`
-
 - class 组件与函数式组件的区别  [函数式组件与类组件有何不同？](https://overreacted.io/zh-hans/how-are-function-components-different-from-classes/)
-
-- CSS优先级
 
 - 避免 css 全局污染。
 
@@ -192,8 +150,6 @@ console.log(x, y, z);
 
 - onChange 怎么规定 value 的类型
 
-- interface 和 type 的区别
-
 - 写一个 promise 重试函数，可以设置时间间隔和次数。`function foo(fn, interval, times) {}`
 
 - 实现一个 redux
@@ -204,12 +160,6 @@ console.log(x, y, z);
 
 #### YY
 
-- 说一下你们项目**动态表单**的实现
-- 说一下**动态表格**的实现
-- EventLoop
-- 实现一个findIndex
-- 什么是GPU加速
-- 进程和线程的区别
 - HTTP/2对比HTTP1.1
 - HTTP/2是怎么解决队头阻塞的
 - HTTP/2是如何压缩头部的
@@ -217,8 +167,6 @@ console.log(x, y, z);
 - 如何实现if(a===1&&a===2&&a===3)
 - 使用jsonp的话会有什么安全问题吗？
 - requestAnimationFrame属于宏任务还是微任务
-- HTTP/2对比HTTP/1.1
-- 首屏优化
 - HTTP/2中的多路复用
 
 #### 阿里
@@ -736,11 +684,7 @@ BOM和DOM的区别,BOM的方法讲完整一点
 
 promise中不声明async，可以用await吗
 
-promise的api：如果有10个调用请求，那么哪个api能查到最快调用的请求
-
-可以在捕获阶段实现事件代理吗，为什么业界都用冒泡？（原因应该是，捕获和冒泡没有明显的优劣之分，但是冒泡事件流模型被大多数浏览器支持，兼容性更好）	
-
-如何给不存在的元素绑定事件监听
+promise的api：如果有10个调用请求，那么哪个api能查到最快调用的请求	
 
 阻塞、非阻塞和异步同步是对应的吗？一样的吗？
 
@@ -776,8 +720,6 @@ ajax有哪些状态，每个状态分别对应什么
 
 async是什么的语法糖，generator怎么用
 
-promise介绍，你是怎么用promise的，怎么实现一个promise
-
 构造继承里 Function.call(argu)里传进来的参数argu是什么
 
 bind(object).bind(windows) 后的this指向
@@ -788,11 +730,9 @@ bind(object).bind(windows) 后的this指向
 
 如果要同时启动两个异步任务，怎么做
 
-ES6的新特性（变量声明，字符串模板，数组的新方法flat，函数的默认值，箭头函数、class继承，promise，await/async 讲的很详细）
+
 
 [简单说一下es6的symbol属性](https://www.zhangxinxu.com/wordpress/2018/04/known-es6-symbol-function/)
-
-ES6的使用，相比ES5的好处
 
 [this指向](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this)
 

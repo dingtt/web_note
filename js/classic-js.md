@@ -547,3 +547,61 @@ class Dep{
 }
 ```
 
+let const 的es5实现
+
+```js
+(function(){var a = 1;})()
+
+function _const(key,value){
+	window[key] = value
+	Object.defineProperty(window,key,{
+			configurable:false,
+			enumerable:false,
+			get:function(){
+				return value
+			}
+			set:function(newValue){
+			  if(newValue !==value){
+			    throw new TypeError('只读变量')
+			  }else{
+			    return value
+			  }
+			}
+	})
+}
+```
+
+获取页面最大嵌套深度，最大子元素个数
+
+```js
+function getMaxNestLevel() {
+    var i = 1, sel = '* > *'; /* html > body is always present */
+    var max = 0
+    while(document.querySelector(sel)) {
+        var node = document.querySelector(sel)
+        if(node && node.children){
+            max = node.children.length> max ? node.children.length: max
+        }
+        sel += ' > *';
+        i++;
+    }
+    return i + ' ' + max;
+};
+function getMaxLength(){
+  var max = 0
+  var allNodes = document.querySelector('html')
+  function tra(node){
+    if(node && node.children){
+       
+      max = node.children.length > max ? node.children.length : max
+      Array.from(node.children).forEach(item => {
+        tra(item)
+      })
+    }
+  }
+  tra(allNodes);
+  console.log(max) 
+};
+
+```
+
