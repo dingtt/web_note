@@ -113,6 +113,7 @@ Function.prototype.apply = function (context, arr) {
   const symbol = Symbol(fn)
   context[symbol] = fn
   const result = context[symbol](...arr)
+  // Reflect.deleteproperty(context.fn)
   delete context.fn
   return result
 }

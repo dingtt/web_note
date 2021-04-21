@@ -161,8 +161,6 @@ console.log(x, y, z);
 #### YY
 
 - HTTP/2对比HTTP1.1
-- HTTP/2是怎么解决队头阻塞的
-- HTTP/2是如何压缩头部的
 - HTTP请求的什么时候用的对称加密什么时候非对称加密
 - 如何实现if(a===1&&a===2&&a===3)
 - 使用jsonp的话会有什么安全问题吗？
@@ -170,28 +168,6 @@ console.log(x, y, z);
 - HTTP/2中的多路复用
 
 #### 阿里
-
-position属性有哪些值分别介绍一下
-
-relative的定位规则
-
-脱离文档流是会呈现什么样的效果呢？
-
-常规流(文档流)是个怎样的排列关系
-
-inline-block的使用场景
-
-GET和POST的区别
-
-为什么说GET会留下历史记录？
-
-GET可以上传图片吗？
-
-GET和POST的安全性问题为什么说POST相对安全一些
-
-GET就一定是幂等的吗？
-
-null为什么被typeof错误的判断为了'object'
 
 ### [一年半经验前端社招7家大厂&独角兽全过经历 | 掘金技术征文](https://juejin.cn/post/6844904137495150599)
 
@@ -209,17 +185,7 @@ null为什么被typeof错误的判断为了'object'
 
 1. componentWillReceiveProps用到了this，getDriverStateFromProps也要用，怎么办【伪代码】
 
-> 把this.xxx存到state里面，第二个参数是state，里面有xxx（有点挫，懂的人应该都有同样的感受吧，如果是函数组件，一个useRef保存一下即可）。另外的方法，如果和内部变量无关，把它抠到class组件外面去
-
-1. 编程题：求最大公共前缀，如`['aaafsd', 'aawwewer', 'aaddfff'] => 'aa'`(ide没有调试功能，也不能打开控制台，我只能写好了让面试官去运行。无调试，靠想象)【编程】
-2. 编程题：求最大公共路径前缀，`['aa/bb/sd', 'aa/bb/wwewer', 'aa/bb/ddfff'] => 'aa/bb'`(无调试，靠想象)【编程】 接上题改一下，不用一分钟即可解决
-3. 怎么理解ts【描述】
-
-> 类型检查、ide友好提示、文档、利于维护
-
-1. ts的type和interface什么区别【描述】
-
-> 经典问题，网上可搜，主要是列举出两者的特点，对比一下
+> 把this.xxx存到state里面，第二个参数是state，里面有xxx（有点挫，懂的人应该都有同样的感受吧，如果是函数组件，一个useRef保存一下即可）。另外的方法，如果和内部变量无关，把它抠到class组件外面去2
 
 1. ssr怎么实现，你们怎么做【描述】【举例】
 
@@ -257,18 +223,6 @@ null为什么被typeof错误的判断为了'object'
 
 > 有一个class A {},问他的实例a的`__proto__`和`A.prototype`的关系，`a.__proto__.__proto__`是什么，`a.__proto__.__proto__.__proto__`是什么。然后再问普通对象、function的。这里需要注意一下`Function.prototype === Function.__proto__`和a的三次proto是null。一开始就问三次取a的proto，其实潜意识是null的，但刚刚下班赶车回家，心跳都没有恢复正常就进入面试，没什么状态，“em～”了10秒钟，面试官说：哎，你别打开控制台喔，别偷偷的运行哦。我说这肯定是原型链终点了，我想想，确认一下——null！犹豫就会败北，开门一波丢脸
 
-1. 页面10张img，http1是怎样的加载表现，怎么解决。那多域名又为什么可以解决呢【描述】
-
-> 这个是面试重点高频率问题之一，http1下，浏览器对一个域名下最大tcp连接数为6，所以10张图片表现为6+4。所以可以用多域名部署解决。5个a域名，5个b域名就可以实现一瞬间全部出来了(或者6个a，4个b，融会贯通)。如果是1个a域名，9个多域名，会表现为(6 + 1) + 3
-
-1. 接上题，10张img，http2是怎样表现【描述】
-
-> 一瞬间全部
-
-1. http2为什么快，多了什么特性，头部压缩算法是怎样【描述】
-
-> 背书，搜http2答案都有了。头部压缩是HPACK算法
-
 1. react性能优化【描述】【举例】
 
 > scu生命周期、memo；usememo & usecallback记住一些值不用重新计算；虚拟列表；immutable+scu/memo；原生js；（这块聊了很久了）
@@ -305,14 +259,6 @@ null为什么被typeof错误的判断为了'object'
 { 'a.b.c.d': 1, aa: 2, 'c[0]': 1, 'c[1]': 2 }
 ```
 
-1. jsbridge了解么，说一下【举例】
-
-> 没做过，就我之前做少量内嵌webview的经验，我猜一下吧，大概就是两种：注入全局方法通信、监听url协议(如abc://，然后触发请求的地方可以做拦截如img、iframe、xhr、fetch等)。回去查了一下，发现我猜的的确是差不多，只是专业名词没到位，口头话很多
-
-1. addeventlistener第三个参数作用【描述】【举例】
-
-> 控制冒泡/捕获阶段执行。或者是一个对象`{ passive: true }`，针对的是Safari的，禁止/开启使用滚动的时候要用到
-
 1. 为什么浏览器不用cjs而用了esm【举例】
 
 > 个人观点类问题。cjs都是require系统本地文件，时间不用考虑。如果在浏览器使用类似cjs的require，实现过程无非就是创建script标签、发请求。这个发请求的过程就无法保证同步了，你要写成`callback/promise/async-await`，这样子写页面门槛又高了
@@ -321,8 +267,6 @@ null为什么被typeof错误的判断为了'object'
 
 ### 作业帮
 
-- 实现bind(送分)
-- 防抖&节流(送分)
 - settimeout实现interval(注意和普通的要无差别体验)
 
 ```
@@ -351,11 +295,8 @@ null为什么被typeof错误的判断为了'object'
 })()
 ```
 
-- 字符串大小写反转(送分) 
 - 节点是不是属于某个节点下(当时我写了一个不带parentid的版本，要自己一层层搜。如果带parentid的，就简单很多了，测试用例你自己写，他们也没有给出)
-- 反转链表(常规题)
 - 合并数组['a', 'b'], [1, 2, 3] => ['a', 1, 'b', 2, 3] (送分)
-- 合并有序数组 [1, 5], [2, 5, 6, 8] => [1, 2, 5, 5, 6, 8] (常规题，而且比合并有序链表还要简单一些)
 - 一堆数字字符串组成最大数是多少[50, 2, 5, 9] => 95502 (字典序+贪心)
 
 ```
@@ -415,10 +356,6 @@ new obj.f1; // instance
 new obj.f2; // instance
 复制代码
 ```
-
-1. Map/Set、WeakMap，什么作用【描述】
-
-> map可以用对象做key，set做集合使用。WeakMap弱引用，防止内存泄露
 
 1. 用setTimeout实现setInterval【编程】
 
@@ -746,5 +683,33 @@ bind(object).bind(windows) 后的this指向
 
 
 
+```js
+new Promise((resolve,reject) => {
+    // resolve('123')
+    // return new Error('message')
+   reject(new Error('message'))
+}).then(() => {
+    console.log('before error')
+}).catch(() => {
+    console.log('error')
+}).then(() => {
+    console.log('fater error')
+})
+```
 
+420
+
+hash history模式区别
+
+各种传递引用   页面  ES6  
+
+如何深拷贝  递归  
+
+判断对象在数组中  findindex  find
+
+性能优化功能
+
+按钮延迟分析
+
+锚点分析工具
 
