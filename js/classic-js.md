@@ -68,15 +68,15 @@ const myInstanceof = function (O, i) {
 
 ```javascript
 // eval
-Function.prototype.call2 = function (context) {
+Function.prototype.call2 = function () {
+  if(typeof this !== 'function') throw 'caller must be a function'
   // 没有传参，及window
-  var context = context || window
+  var context = arguments[0] || window
   // 调用call的函数
   context.fn = this
   // 函数参数
-  var argsArr = Array.prototype.slice.call(arguments, 1) // 这里按说不应该使用call，偷个懒
-  // var args = argsArr.slice(1, argsArr.length - 1)
-  var result = eval("context.fn(" + argsArr.join(",") + ")")
+  var argsArr = [...arguments].slice(1) 
+  var result = context.fn(argsArr)
   delete context.fn
   return result
 }
@@ -376,6 +376,21 @@ function add(){
 console.log(add(1)(2)(3)(4),add(1)(1,2,3)(2))
 ```
 
+```js
+function curry (fn, args = []){
+    return function (){
+        let newArgs = args.concat(arguments)
+        if(newArgs.length < fn.length){
+            return curry.call(this, fn, newArgs)
+        }else{
+            return fn.apply(this,newArgs)
+        }
+    }
+}
+```
+
+
+
 ### 继承
 
 ```javascript
@@ -392,22 +407,23 @@ Child.prototype = new Parent()
 function Parent(){
 }
 function Child(){
-  Parent.call(this)
+  Parent.call(this)  // 继承父类的属性
 }
 ```
 
-```
+```js
 // 寄生组合继承
-function Parent(){
+function Parent () {
   this.name = 'parent'
 }
-function Child(){
- Parent.call(this)
- this.type = 'chidren'
+
+function Child() {
+  Parent.call(this)  // 继承父类的属性
 }
-// 构造函数的原型
-Child.ptototype = Object.create(Parent.prototype)
-Child.prototype.contructor = Child
+Child.prototype = Object.create(Parent.prototype) // 继承父类原型
+Object.setPrototypeOf(Child, Parent) // 继承父类的静态方法
+Child.prototype.constructor = Child // 重新指向Child
+
 ```
 
 ### Object.is
