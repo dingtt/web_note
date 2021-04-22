@@ -485,8 +485,151 @@ const is = (x,y) => {
 
 - 使用 `async` 实现`Promise.all()`的效果
 
+  ```
+  
+  ```
+
+```js
+
+
+const PENDDING = 'pendding'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
+
+class Promise {
+    constructor(executor){
+        this.status = PENDDING
+        this.value = undefined
+        this.reason = undefined
+        this.onFulfilledCallbacks = []
+        this.onRejectedCallbacks = []
+
+        const resolve = value => {
+            if(this.status === PENDDING){
+                this.status = FULFILLED
+                this.value = value
+                this.onFulfilledCallbacks.forEach(cb => {
+                    cb(this.value)
+                })
+            }
+        }
+
+        const reject = reason => {
+            if(this.status === PENDDING){
+                this.status = REJECTED
+                this.reason = reason
+                this.onRejectedCallbacks.forEach(cb => {
+                    cb(reason)
+                })
+            }
+        }
+
+        try{
+            executor(resolve, reject)
+        }catch(e){
+            reject(e)
+        }
+
+    }
+
+    then(onFulfilled, onRejected){
+        onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
+        onRejected = typeof onRejected === 'function' ? onRejected : reason => {
+            throw new Error( reason instanceof Error ? reason.message :reason)
+        }
+        const self = this
+        return new Promise((resolve, reject) => {
+            if(self.status === PENDDING){
+                self.onFulfilledCallbacks.push(() => {
+                    try{
+                        // 模拟微任务
+                        setTimeout(() => {
+                            const result = onFulfilled(self.value)
+                            // 回调函数返回值是Promise,执行then操作
+                            // 如果不是Promise, 调用新的promise.resolve
+                            result instanceof Promise ? result.then(resolve, reject):
+                            resolve(result)
+                        })
+                    }catch(e){
+                        reject(e)
+                    }
+                })
+                slef.onRejectedCallbacks.push(() => {
+                    
+                })
+            }else if(self.status === FULFILLED){
+                try{
+                   const result = onFulfilled(self.value)
+                 result instanceof Promise ? result.then(resolve, reject)  : resolve(result)    
+                }catch(e){
+
+                }
+            } // rejected
+        })
+    }
+    static resolve(value){
+        if(value instanceof Promise){
+            return value
+        }else{
+            return new Promise((resolve, reject) => {
+                resolve(value)
+            })
+        }
+    }
+    // static reject
+   
+}
+Promise.prototype.finally = function(callback) {
+    this.then(value => {
+        return new Promise.resolve(callback()).then(() => {
+            return value
+        })
+    }, error => {
+        return new Promise.resolve(callback()).then(() => {
+            return error
+        })
+    })
+}
 ```
 
+
+
+```js
+Promise.all = function (promises) {
+    return new Promise((resolve, reject) => {
+        let result = [],  // 存储结果
+            index = 0, // 计数
+            len = promises.length
+        if (len === 0) {
+            resolve(result)
+            return
+        }
+        for (let i = 0; i < len; i++) {
+            Promise.resolve(promises[i]).then(data => {
+                result[i] = data
+                index++
+                if (index === len) resolve(result)
+            }, error => {
+                reject(error)
+            })
+        }
+
+    })
+}
+```
+
+```js
+Promise.race = function (promises) {
+    let len = promises.length
+    if(len === 0 ) return
+    for (let i = 0; i < len; i++) {
+        Promise.resolve(promises[i]).then(data => {
+            resolve(data)
+        }, err => {
+            reject(err)
+        })
+    }
+}
 ```
 
 setTimeout实现setInterval
