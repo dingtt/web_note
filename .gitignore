@@ -109,3 +109,4 @@ ref/
 dist/
 .history/
 docker/
+.DS_Store
