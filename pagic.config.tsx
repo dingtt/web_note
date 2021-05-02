@@ -3,6 +3,7 @@ import React from "https://dev.jspm.io/react@16.13.1";
 
 export default {
   srcDir: ".",
+  outDir:'docs',
   exclude: ["ref"],
   theme: "docs",
   plugins: ["sidebar", "prev_next"],
