@@ -1,0 +1,100 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="前端笔记"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">生产环境配置 · Ding前端笔记</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Ding前端笔记</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Ding前端笔记</a></h1></li><li style="flex-grow:1"></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/index.html" class="nav_link">Hello world</a></li><li class="unfold"><a href="/WebAPI/README.md" class="nav_link">WebAPI/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"></ol></li><li class="unfold"><a href="/HTTP/index.html" class="nav_link">HTTP协议与浏览器<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/HTTP/browser.html" class="nav_link">浏览器</a></li><li class=""><a href="/HTTP/HTTP.html" class="nav_link">HTTP协议请求方法和状态码</a></li><li class=""><a href="/HTTP/internet-hardware.html" class="nav_link">网络硬件</a></li></ol></li><li class="unfold"><a href="/js/todo.md" class="nav_link">js/todo.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/js/basics.html" class="nav_link">JavaScript基础</a></li><li class=""><a href="/js/Object.html" class="nav_link">基础</a></li><li class=""><a href="/js/context.html" class="nav_link">执行上下文</a></li><li class=""><a href="/js/closure.html" class="nav_link">闭包和面向对象</a></li><li class=""><a href="/js/regex.html" class="nav_link">正则</a></li><li class=""><a href="/js/algo.html" class="nav_link">算法</a></li><li class=""><a href="/js/design-patterns.html" class="nav_link">JS设计模式</a></li></ol></li><li class="unfold"><a href="/TS/index.html" class="nav_link">TS<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/TS/basics.html" class="nav_link">TS基础</a></li><li class=""><a href="/TS/enum.html" class="nav_link">TS枚举 类型 接口 泛型</a></li></ol></li><li class="unfold"><a href="/vue/index.html" class="nav_link">Vue<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/vue/vue-skills.html" class="nav_link">Vue开发技巧</a></li><li class=""><a href="/vue/vue-communication.html" class="nav_link">Vue组件通信</a></li><li class=""><a href="/vue/vue-router/vue-router.html" class="nav_link">Vue路由</a></li></ol></li><li class=""><a href="/react/lifecycle.html" class="nav_link">React的生命周期</a></li><li class="unfold"><a href="/webpack/index.html" class="nav_link">Webpack<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/webpack/webpack-use.html" class="nav_link">webpack的使用</a></li><li class=""><a href="/webpack/webpack-principle.html" class="nav_link">Webpack打包原理解析</a></li><li class=""><a href="/webpack/webpack-dev-config.html" class="nav_link active">生产环境配置</a></li><li class=""><a href="/webpack/webpack-custom-loader.html" class="nav_link">实现自己的loader</a></li><li class=""><a href="/webpack/webpack-custom-plugin.html" class="nav_link">实现自己的plugin</a></li><li class=""><a href="/webpack/webpack-split-chunks.html" class="nav_link">webpack代码分片</a></li><li class=""><a href="/webpack/webpack-dev-server-hmr.html" class="nav_link">webpack-dev-server 与 HMR</a></li></ol></li><li class=""><a href="/web-monitor/web-monitor.html" class="nav_link">前端监控简介</a></li><li class=""><a href="/git/git.html" class="nav_link">Git使用</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>生产环境配置</h1>
+<h2 id="%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">环境变量<a class="anchor" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">§</a></h2>
+<p>sourcemap</p>
+<p>cheap-source-map  eval-source-map 简版</p>
+<p>hidden-sourece-map  不会在js中添加引用，配合sentry等监控平台使用</p>
+<p>nosources-source-map u不显示文件结构</p>
+<p>通过nginx设置将.map文件只对固定的ip开放</p>
+<h2 id="mode%E9%85%8D%E7%BD%AE">mode配置<a class="anchor" href="#mode%E9%85%8D%E7%BD%AE">§</a></h2>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> webpack3<span class="token punctuation">.</span>X 使用UglifyJsPlugin
+<span class="token operator">/</span><span class="token operator">/</span> pagejson
+{
+  <span class="token string">"scripts"</span><span class="token punctuation">:</span> {
+    <span class="token string">"build"</span><span class="token punctuation">:</span> <span class="token string">"NODE_ENV=production webpack"</span><span class="token punctuation">,</span>
+    <span class="token string">"develop"</span><span class="token punctuation">:</span> <span class="token string">"NODE_ENV=development webpack-dev-server"</span>
+  }
+}
+<span class="token operator">/</span><span class="token operator">/</span> 在 `webpack<span class="token punctuation">.</span>config<span class="token punctuation">.</span>js` 文件中可以通过 `process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>NODE_ENV` 来获取命令传入的环境变量
+
+
+<span class="token operator">/</span><span class="token operator">/</span> webpack4<span class="token punctuation">.</span>X
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">(</span>env<span class="token punctuation">,</span> argv<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>{
+  <span class="token operator">/</span><span class="token operator">/</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 其他配置
+  optimization<span class="token punctuation">:</span> {
+    minimize<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token operator">/</span><span class="token operator">/</span> 使用 argv 来获取 mode 参数的值
+    minimizer<span class="token punctuation">:</span> argv<span class="token punctuation">.</span>mode <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'production'</span> <span class="token operator">?</span> <span class="token punctuation">[</span>
+      <span class="token operator">/</span><span class="token operator">/</span> new <span class="token function">UglifyJsPlugin</span><span class="token punctuation">(</span>{ <span class="token operator">/</span><span class="token operator">*</span> 你自己的配置 <span class="token operator">*</span><span class="token operator">/</span> }<span class="token punctuation">)</span><span class="token punctuation">,</span> 
+      <span class="token operator">/</span><span class="token operator">/</span> 仅在我们要自定义压缩配置时才需要这么做
+      <span class="token operator">/</span><span class="token operator">/</span>  minimize<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token operator">/</span><span class="token operator">/</span> 如果设置了mode<span class="token punctuation">:</span>production <span class="token punctuation">,</span>则无需单独设置，mode 为 production 时 webpack4<span class="token operator">*</span> 会默认使用压缩 JS 的 plugin
+    <span class="token punctuation">]</span> <span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  }<span class="token punctuation">,</span>
+}<span class="token punctuation">)</span>
+</code></pre>
+<p>DefinePlugin 插件，添加环境变量即可影响到运行时的代码，可注入动态变量</p>
+<pre class="language-autoit"><code class="language-autoit">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> {
+  <span class="token operator">/</span><span class="token operator">/</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  <span class="token operator">/</span><span class="token operator">/</span> webpack 的配置
+
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    new webpack<span class="token punctuation">.</span><span class="token function">DefinePlugin</span><span class="token punctuation">(</span>{
+      <span class="token operator">/</span><span class="token operator">/</span> webpack <span class="token number">3</span><span class="token punctuation">.</span>x 的 process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>NODE_ENV 是通过手动在命令行中指定 NODE_ENV<span class="token operator">=</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 的方式来传递的
+      <span class="token string">'process.env.NODE_ENV'</span><span class="token punctuation">:</span> JSON<span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span>NODE_ENV<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    }<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+}
+</code></pre>
+<p>webpack 4.x 的 mode 已经提供了上述差异配置的大部分功能，mode 为 production 时默认使用 JS 代码压缩，而 mode 为 development 时默认启用 hot reload</p>
+<h3 id="%E6%8B%86%E5%88%86%E9%85%8D%E7%BD%AE">拆分配置<a class="anchor" href="#%E6%8B%86%E5%88%86%E9%85%8D%E7%BD%AE">§</a></h3>
+<p>webpack-merge</p>
+<h3 id="%E8%B5%84%E6%BA%90%E5%8E%8B%E7%BC%A9">资源压缩<a class="anchor" href="#%E8%B5%84%E6%BA%90%E5%8E%8B%E7%BC%A9">§</a></h3>
+<h4 id="terser-webpack-plugin">terser-webpack-plugin<a class="anchor" href="#terser-webpack-plugin">§</a></h4>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword module">import</span> <span class="token maybe-class-name">TerserWebpackPlugin</span> <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'terser-webpack-plugin'</span><span class="token punctuation">)</span>
+module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+  optimization<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 覆盖默认设置</span>
+    minimizer<span class="token operator">:</span><span class="token punctuation">[</span>
+      <span class="token keyword">new</span> <span class="token class-name">TerserPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        test<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.js(\?.*)$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">,</span>
+        exclude<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\/excludes</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span>
+        include<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\includes</span><span class="token regex-delimiter">/</span></span> <span class="token punctuation">,</span>
+        chache<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 是否开启缓存</span>
+        parallel<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 允许多进程，可传入数字</span>
+        sourceMap <span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 是否生成sourceMap</span>
+        terserOptions<span class="token operator">:</span><span class="token punctuation">{</span>  <span class="token comment">// 压缩配置 是否对变量重命名 是否兼容ie8</span>
+          
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="%E5%8E%8B%E7%BC%A9css">压缩CSS<a class="anchor" href="#%E5%8E%8B%E7%BC%A9css">§</a></h3>
+<p>需要用extract-text-webpack-plugin 或者 min-css-extract-plugin先提取css，再使用 optimize-css-assets-webpack-plugin</p>
+<pre class="language-javascript"><code class="language-javascript">optimization<span class="token operator">:</span> <span class="token punctuation">{</span>
+  minimizer<span class="token operator">:</span> <span class="token punctuation">[</span>
+   <span class="token keyword">new</span> <span class="token class-name">OptimizeCssAssetsPlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+     <span class="token comment">// 生效范围 只压缩匹配到的css</span>
+     assetsNameRegExp<span class="token operator">:</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\.optimize\.css$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span>
+     <span class="token comment">// 压缩处理器 默认为cssnano</span>
+     cssProcessor<span class="token operator">:</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'cssnao'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+     <span class="token comment">// 压缩处理器的配置</span>
+     cssProcessorOptions<span class="token operator">:</span> <span class="token punctuation">{</span>discardComments<span class="token operator">:</span> <span class="token punctuation">{</span> removeAll<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+     <span class="token comment">// 是否展示 log</span>
+     canPrint<span class="token operator">:</span> <span class="token boolean">true</span>
+   <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></article><div class="prev_next"><a class="prev button" href="/webpack/webpack-principle.html">«  <!-- -->Webpack打包原理解析</a><a class="next button" href="/webpack/webpack-custom-loader.html">实现自己的loader<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F">环境变量</a></li><li><a href="#mode%E9%85%8D%E7%BD%AE">mode配置</a><ol><li><a href="#%E6%8B%86%E5%88%86%E9%85%8D%E7%BD%AE">拆分配置</a></li><li><a href="#%E8%B5%84%E6%BA%90%E5%8E%8B%E7%BC%A9">资源压缩</a><ol></ol></li><li><a href="#%E5%8E%8B%E7%BC%A9css">压缩CSS</a></li></ol></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

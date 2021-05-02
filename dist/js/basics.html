@@ -1,0 +1,2224 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="前端笔记"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">JavaScript基础 · Ding前端笔记</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Ding前端笔记</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Ding前端笔记</a></h1></li><li style="flex-grow:1"></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/index.html" class="nav_link">Hello world</a></li><li class="unfold"><a href="/WebAPI/README.md" class="nav_link">WebAPI/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"></ol></li><li class="unfold"><a href="/HTTP/index.html" class="nav_link">HTTP协议与浏览器<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/HTTP/browser.html" class="nav_link">浏览器</a></li><li class=""><a href="/HTTP/HTTP.html" class="nav_link">HTTP协议请求方法和状态码</a></li><li class=""><a href="/HTTP/internet-hardware.html" class="nav_link">网络硬件</a></li></ol></li><li class="unfold"><a href="/js/todo.md" class="nav_link">js/todo.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/js/basics.html" class="nav_link active">JavaScript基础</a></li><li class=""><a href="/js/Object.html" class="nav_link">基础</a></li><li class=""><a href="/js/context.html" class="nav_link">执行上下文</a></li><li class=""><a href="/js/closure.html" class="nav_link">闭包和面向对象</a></li><li class=""><a href="/js/regex.html" class="nav_link">正则</a></li><li class=""><a href="/js/algo.html" class="nav_link">算法</a></li><li class=""><a href="/js/design-patterns.html" class="nav_link">JS设计模式</a></li></ol></li><li class="unfold"><a href="/TS/index.html" class="nav_link">TS<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/TS/basics.html" class="nav_link">TS基础</a></li><li class=""><a href="/TS/enum.html" class="nav_link">TS枚举 类型 接口 泛型</a></li></ol></li><li class="unfold"><a href="/vue/index.html" class="nav_link">Vue<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/vue/vue-skills.html" class="nav_link">Vue开发技巧</a></li><li class=""><a href="/vue/vue-communication.html" class="nav_link">Vue组件通信</a></li><li class=""><a href="/vue/vue-router/vue-router.html" class="nav_link">Vue路由</a></li></ol></li><li class=""><a href="/react/lifecycle.html" class="nav_link">React的生命周期</a></li><li class="unfold"><a href="/webpack/index.html" class="nav_link">Webpack<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/webpack/webpack-use.html" class="nav_link">webpack的使用</a></li><li class=""><a href="/webpack/webpack-principle.html" class="nav_link">Webpack打包原理解析</a></li><li class=""><a href="/webpack/webpack-dev-config.html" class="nav_link">生产环境配置</a></li><li class=""><a href="/webpack/webpack-custom-loader.html" class="nav_link">实现自己的loader</a></li><li class=""><a href="/webpack/webpack-custom-plugin.html" class="nav_link">实现自己的plugin</a></li><li class=""><a href="/webpack/webpack-split-chunks.html" class="nav_link">webpack代码分片</a></li><li class=""><a href="/webpack/webpack-dev-server-hmr.html" class="nav_link">webpack-dev-server 与 HMR</a></li></ol></li><li class=""><a href="/web-monitor/web-monitor.html" class="nav_link">前端监控简介</a></li><li class=""><a href="/git/git.html" class="nav_link">Git使用</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>JavaScript基础</h1>
+<p>程序 = 算法 + 数据结构</p>
+<p>// 记录到wt第5章</p>
+<h2 id="javascript%E7%9A%84%E7%BB%84%E6%88%90">JavaScript的组成<a class="anchor" href="#javascript%E7%9A%84%E7%BB%84%E6%88%90">§</a></h2>
+<ul>
+<li>
+<p>词法</p>
+<ul>
+<li>直接量，关键字，运算符，标识符，保留字，操作符</li>
+</ul>
+</li>
+<li>
+<p>语法语义</p>
+<ul>
+<li>表达式，语句，函数，对象，模块</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型<a class="anchor" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">§</a></h2>
+<h3 id="%E5%9F%BA%E6%9C%AC%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><strong>基本(简单)数据类型</strong><a class="anchor" href="#%E5%9F%BA%E6%9C%AC%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">§</a></h3>
+<ul>
+<li>
+<p><strong>null</strong></p>
+<ul>
+<li>null是基本类型中唯一一个假值，<strong>判断null</strong> <code>!n &amp;&amp; typeof n === &quot;object&quot;</code>，null	是	JavaScript	关键字</li>
+</ul>
+</li>
+<li>
+<p><strong>undefined</strong></p>
+<ul>
+<li>Undefined	类型表示未定义，它的类型只有一个值，就是	undefined</li>
+<li><code>typeof undefined === &quot;undefined&quot;</code>，undefined是一个变量 ，undefined不是关键字，可以作为标识符，**测试chrome80下为， 全局、局部对 undefined 直接赋值已无效，全局 var undefined 无效，局部  <code>var undefined = 1</code>**有效</li>
+<li>已声明还未赋值的变量，是undefined的；没有声明的变量（有的语言中称为undeclared），是<code>ReferenceError: b is not defined</code>，但是typeof仍为undefined；使用typeof检查变量是否被声明，防止直接if()判断报错，也可以使用全局对象<code>if(window.atob)</code>。</li>
+<li>void	运算来把任一一个表达式变成	undefined</li>
+</ul>
+</li>
+<li>
+<p><strong>boolean</strong></p>
+</li>
+<li>
+<p><strong>number</strong></p>
+<ul>
+<li>
+<p><strong>指数</strong>  toExponential() 5e+10 ; toFixed()指定小数部分显示位数，52.toFiex()会报Syntax错误，.运算符会优先识别为数字常量的一部分；toPrecision() 方法指定有效数位的显示位数</p>
+<pre class="language-autoit"><code class="language-autoit">var a <span class="token operator">=</span> <span class="token number">52.55</span><span class="token comment">; a.toPrecision(1) // 5e+1 a.roPrecision(2); // 52 不足补0</span>
+</code></pre>
+</li>
+<li>
+<p><strong>整数</strong> 最大安全整数 <strong>2^53 -1</strong>，ES6中为Number.MAX_SAFE_INTEGER，最小为最大的负值 -2^53 +1，ES6中定义为Number.MAX_SAFE_INTEGER；ES6整数检测，isInteger，isSafeInteger，polyfill用Mach.abs()和MAX_SAFE_INTEGER比大小</p>
+</li>
+<li>
+<p><strong>浮点数</strong> 机器精度 二进制存储位权引起的，<strong>浮点数不等差值 Math.pow(2, -52)，ES6中 Number.EPSION</strong>，最大浮点数Number.MAX_VALUE约为1.798e+308，最小浮点数Number.MIN_VALUE大约5e-324</p>
+</li>
+<li>
+<p>进制</p>
+<ul>
+<li>十进制</li>
+<li>二进制 0b01</li>
+<li>八进制 0o77</li>
+<li>十六进制  0x1F</li>
+</ul>
+</li>
+<li>
+<p>JavaScript中的Number类型有	18437736874454810627(即2^64-2^53+3)	个值。</p>
+</li>
+<li>
+<p>0 === -0 ，ES5区分	+0	和	-0	的方式，正是 检测	1/x	是	Infinity	还是	-Infinity</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>NaN</strong>   设计NaN的操作，都会返回NaN;NaN与任何值都不相等;isNaN 会尝试把类型转换为数字类型。</p>
+<pre class="language-autoit"><code class="language-autoit"> typeof NaN<span class="token comment">; // number NaN != NaN;  isNaN();// true  isNaN(''); // false </span>
+ <span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token comment">; // false isNaN(true); // false </span>
+</code></pre>
+<p>全局isNaN会把字符串转化为true，ES6中的新增方法Number.isNaN()</p>
+<pre class="language-autoit"><code class="language-autoit">Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> flase    Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> <span class="token boolean">false</span>
+</code></pre>
+</li>
+<li>
+<p><strong>string</strong></p>
+<ul>
+<li>
+<p>属性方法：length indexof() concat()  toUpperCase()</p>
+</li>
+<li>
+<p>借用数组的方法</p>
+<pre class="language-autoit"><code class="language-autoit">Array<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>join<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token string">'-'</span><span class="token punctuation">)</span>
+Array<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>join<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> fn<span class="token punctuation">)</span>
+Array<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>join<span class="token punctuation">.</span><span class="token function">reverse</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> fn<span class="token punctuation">)</span>  <span class="token operator">/</span><span class="token operator">/</span> 笨办法，split revserse join，仅适用于不带unicode、特殊字符
+</code></pre>
+</li>
+<li>
+<p>String	有最大长度是	2^53	-	1，charAt、charCodeAt、 length	等方法针对的都是	UTF16	编码。	Unicode	的码点通常用	U+???	来表示，其 中	???	是十六进制的码点值，0-65536（U+0000	-	U+FFFF）的码点被称为基本字符区域 。星形符号，一个字素，两个length；</p>
+</li>
+<li>
+<p>JavaScript	字符串把每个	UTF16	单元当作一个字符来处理，所以处理非BMP（超出	U+0000	-	U+FFFF	范围） 的字符时，你应该格外小心</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Object</strong></p>
+<ul>
+<li>
+<p>对象的定义是“属性的集合”，属性并非只是简单的名称和值，JavaScript用一组特征（attribute）来描述属性 （property）。属性分为数据属性和访问器属性，二者都是key-value结 构，key可以是字符串或者Symbol类型。</p>
+</li>
+<li>
+<p>函数对象的length是其声明的参数的个数</p>
+</li>
+<li></li>
+<li>
+<p>.	运算符提供了装箱操作，它会根据基础类型构造一个临时对象，使得 我们能在基础类型上调用对应对象的方法。</p>
+<ul>
+<li>
+<p>数据属性</p>
+<ul>
+<li>value：就是属性的值。</li>
+<li>writable：决定属性能否被赋值。</li>
+<li>enumerable：决定for in能否枚举该属性。</li>
+<li>configurable：决定该属性能否被删除或者改变特征值。</li>
+</ul>
+</li>
+<li>
+<p>访问器属性 访问器属性使得属性在读和写时执行代码，它允许使用者在写和读属性时，得到完全不同的值。</p>
+<ul>
+<li>getter：函数或undefined，在取属性值时被调用。</li>
+<li>setter：函数或undefined，在设置属性值时被调用。</li>
+<li>enumerable：决定for in能否枚举该属性。</li>
+<li>configurable：决定该属性能否被删除或者改变特征值</li>
+</ul>
+</li>
+<li>
+<p>获取方式</p>
+<ul>
+<li>Object.getOwnPropertyDescriptors(obj)</li>
+<li>Object.getOwnPropertyDescripter(O,key)</li>
+</ul>
+</li>
+<li>
+<p>Object.getOwnPropertyNames(obj)   Object.getOwnPropertySymbols(obj)  hasOwnProperty()</p>
+</li>
+<li>
+<p>Object.defineProperty 修改访问器属性</p>
+<pre class="language-autoit"><code class="language-autoit">var obj <span class="token operator">=</span> {a<span class="token punctuation">:</span><span class="token string">'q'</span><span class="token punctuation">,</span> get <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> {return <span class="token string">'p'</span>}<span class="token punctuation">,</span> b<span class="token punctuation">:</span><span class="token function">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>{}} <span class="token comment">;</span>
+Object<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptor</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">)</span>
+<span class="token operator">/</span><span class="token operator">/</span> {set<span class="token punctuation">:</span> undefined<span class="token punctuation">,</span> enumerable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> configurable<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> get<span class="token punctuation">:</span> ƒ}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>symbol</strong> 符号</p>
+<ul>
+<li>一切非字符串的对象key的集合，创建	Symbol	的方式是使用全局的	Symbol	函数，	var	mySymbol	=	Symbol(&quot;my	symbol&quot;)。</li>
+<li>Symbol	可以具有字符串类型的描述，但是即使描述相同，Symbol也不相等。</li>
+<li>Symbol.iterator	来自定义	for…of	在对象上的行为。</li>
+<li>typeof Object(Symbol(&quot;a&quot;))[Symbol.toPrimitive] ()  // 'symbol'</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E7%B1%BB%E5%9E%8B%E8%8E%B7%E5%8F%96%E5%92%8C%E5%88%A4%E6%96%AD">类型获取和判断<a class="anchor" href="#%E7%B1%BB%E5%9E%8B%E8%8E%B7%E5%8F%96%E5%92%8C%E5%88%A4%E6%96%AD">§</a></h2>
+<h3 id="%E8%8E%B7%E5%8F%96%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">获取判断数据类型<a class="anchor" href="#%E8%8E%B7%E5%8F%96%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">§</a></h3>
+<ul>
+<li>
+<pre><code>运算符:typeof ，适用于基本数据类型
+-         typeof null    ---&gt; object(正确)
+
+-         typeof （function(){}）  function
+</code></pre>
+</li>
+<li>
+<p>value instanceof type  只适用于复杂数据类型</p>
+<ul>
+<li>判断一个实例是否是某一个类型，只要在当前实例的原型链上，用instanceof检测出来的结果都是true，所以在类的原型继承中，最后检测 出来的结果未必是正确的，而且instanceof后面必须更一个对象。
+不能检测基本类型</li>
+</ul>
+</li>
+<li>
+<p>constructor</p>
+<ul>
+<li>每个构造函数的原型对象都有一个constructor属性，并且指向构造函数本身，由于我们可以手动修改 这个属性，所以结果也不是很准确。 不能检测null和undefined</li>
+</ul>
+</li>
+<li>
+<p>Object.prototype.toString.call（最佳方案）</p>
+<ul>
+<li>调用Object原型上的toString()方法，并且通过call改变this指向。返回的是字符串</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E8%A1%A5%E5%85%85">补充<a class="anchor" href="#%E8%A1%A5%E5%85%85">§</a></h3>
+<ul>
+<li>
+<p>null和undefined区别</p>
+<ul>
+<li>
+<p>null表示&quot;没有对象&quot;，即该处不应该有值。</p>
+<ul>
+<li>
+<p>表达是一个对象, 但是没有存放任何引用</p>
+</li>
+<li>
+<p>可以手动赋值</p>
+<ul>
+<li>一般在准备将一个变量赋值为一个对象之前, 先赋值为null</li>
+<li>或者想要释放一个对象的时候</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>undefined表示&quot;缺少值&quot;，就是此处应该有一个值，但是还没有定义。</p>
+<ul>
+<li>不需要手动的赋值此值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>可以使用typeof 判断一个变量是否 未定义或者未声明</p>
+<ul>
+<li>
+<p>typeof name</p>
+<ul>
+<li>undefined</li>
+</ul>
+</li>
+<li>
+<p>if (name) {  }</p>
+<ul>
+<li>这种判断是否可行?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E5%92%8C%E5%92%8C%E8%AF%B4%E6%98%8E">=和==和===说明<a class="anchor" href="#%E5%92%8C%E5%92%8C%E8%AF%B4%E6%98%8E">§</a></h2>
+<h3 id="">=<a class="anchor" href="#">§</a></h3>
+<ul>
+<li>
+<p>赋值操作</p>
+</li>
+<li>
+<p>表达式的返回值就是赋值的数值</p>
+</li>
+<li>
+<p>对条件表达式写法的影响</p>
+<ul>
+<li>if (值 == 变量) { }</li>
+</ul>
+</li>
+</ul>
+<h3 id="-1">==<a class="anchor" href="#-1">§</a></h3>
+<ul>
+<li>
+<p>基本数据类型之间</p>
+<ul>
+<li>判断两个变量 值 是否相等</li>
+</ul>
+</li>
+<li>
+<p>对象之间</p>
+<ul>
+<li>判断内存地址是否相等</li>
+</ul>
+</li>
+<li>
+<p>基本类型和对象之间</p>
+<ul>
+<li>则会将对象转换为基本数据类型数值进行比对</li>
+</ul>
+</li>
+</ul>
+<h3 id="-2">===<a class="anchor" href="#-2">§</a></h3>
+<ul>
+<li>
+<p>基本数据类型之间</p>
+<ul>
+<li>
+<p>判断两个变量 值 是否相等</p>
+<ul>
+<li>且比对类型</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>对象之间</p>
+<ul>
+<li>判断内存地址是否相等</li>
+</ul>
+</li>
+<li>
+<p>基本类型和对象之间</p>
+<ul>
+<li>
+<p>则会将对象转换为基本数据类型数值进行比对</p>
+<ul>
+<li>且比对类型</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">类型转换<a class="anchor" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">§</a></h2>
+<h4 id="stringtonumber">StringToNumber<a class="anchor" href="#stringtonumber">§</a></h4>
+<ul>
+<li>在不传入第二个参数的情况下，parseInt只支持16进制前缀“0x”，而且会忽略非数字字符，也不支持科学 计数法。parseFloat则直接把原字符串作为十进制来解析，Number	是比	parseInt	和	parseFloat	更好的选择。</li>
+</ul>
+<h4 id="%E8%A3%85%E7%AE%B1%E8%BD%AC%E6%8D%A2">装箱转换<a class="anchor" href="#%E8%A3%85%E7%AE%B1%E8%BD%AC%E6%8D%A2">§</a></h4>
+<p>每一类装箱对象皆有私有的	Class	属性，这些属性可以用	Object.prototype.toString	获取：</p>
+<pre class="language-autoit"><code class="language-autoit">Object<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>Object<span class="token punctuation">)</span>
+</code></pre>
+<p>avaScript	中，没有任何方法可以更改私有的	Class	属性，因此Object.prototype.toString	是可以准确识 别对象对应的基本类型的方法，它比	instanceof	更加准确，call本身会产生装箱操作，所以需要配合	typeof	来区分基本类型还是对象类型</p>
+<h4 id="%E6%8B%86%E7%AE%B1%E8%BD%AC%E6%8D%A2">拆箱转换<a class="anchor" href="#%E6%8B%86%E7%AE%B1%E8%BD%AC%E6%8D%A2">§</a></h4>
+<ul>
+<li>
+<p>对象到	String	和	Number	的转换都遵循“先拆箱再转换”的规则，拆箱转换会尝试调用	valueOf	和	toString	来获得拆箱后的基本类型。到	String	的拆箱转换会优先调用	toString</p>
+<pre class="language-autoit"><code class="language-autoit">var o <span class="token operator">=</span> {
+            valueOf<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+              console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"valueOf"</span><span class="token punctuation">)</span>
+              return {}
+            }<span class="token punctuation">,</span>
+            toString<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> {
+              console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"toString"</span><span class="token punctuation">)</span>
+              return {}
+            }<span class="token punctuation">,</span>
+          }
+          o <span class="token operator">*</span> <span class="token number">2</span> 
+          <span class="token operator">/</span><span class="token operator">/</span>	valueOf				<span class="token operator">/</span><span class="token operator">/</span>	toString				<span class="token operator">/</span><span class="token operator">/</span>	TypeError
+          <span class="token function">String</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span>				
+          <span class="token operator">/</span><span class="token operator">/</span>	toString				<span class="token operator">/</span><span class="token operator">/</span>	valueOf				<span class="token operator">/</span><span class="token operator">/</span>	TypeError
+</code></pre>
+</li>
+<li>
+<p>拆箱转换会尝试调用	valueOf	和	toString	来获得拆箱后的基本类型，</p>
+<pre class="language-autoit"><code class="language-autoit">var o <span class="token operator">=</span> {} <span class="token comment">; </span>
+o<span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>toPrimitive<span class="token punctuation">]</span>	<span class="token operator">=</span>	<span class="token punctuation">(</span><span class="token punctuation">)</span>	<span class="token operator">=</span><span class="token operator">></span>	{console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"toPrimitive"</span><span class="token punctuation">)</span><span class="token comment">;	return	"hello"};  </span>
+o <span class="token operator">==</span> <span class="token string">'hello'</span>  <span class="token operator">/</span><span class="token operator">/</span> <span class="token boolean">true</span>
+o <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'hello'</span> <span class="token operator">/</span><span class="token operator">/</span> <span class="token boolean">false</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="%E5%A4%8D%E6%9D%82%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">复杂(复合)数据类型<a class="anchor" href="#%E5%A4%8D%E6%9D%82%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">§</a></h3>
+<ul>
+<li>
+<p>Object 对象类型</p>
+</li>
+<li>
+<p>Array  数组类型    ==&gt;object</p>
+</li>
+<li>
+<p>Date   日期类型    ==&gt;object</p>
+</li>
+<li>
+<p>Math   类型        ==&gt;object</p>
+</li>
+<li>
+<p>Function 函数      ==&gt;function(并非是object)</p>
+</li>
+<li>
+<p>RegExp   正则表达式</p>
+</li>
+<li>
+<p>String  字符串对象类型</p>
+</li>
+<li>
+<p>Number</p>
+</li>
+<li>
+<p>Boolean</p>
+</li>
+</ul>
+<p>Number、String和Boolean，三个构造器是两用的，当跟	new	搭配时，它们产生对象，当直接调用时，它 们表示强制类型转换。Symbol	函数比较特殊，直接用	new	调用它会抛出错误，但它仍然是	Symbol	对象的构造器。</p>
+<h3 id="%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E5%8C%BA%E5%88%AB">基本类型和复杂类型区别<a class="anchor" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E5%8C%BA%E5%88%AB">§</a></h3>
+<ul>
+<li>
+<p>存储方式不同</p>
+<ul>
+<li>
+<p>堆区和栈区</p>
+<ul>
+<li>
+<p>栈区特点</p>
+<ul>
+<li>
+<p>操作性能高, 速度快</p>
+</li>
+<li>
+<p>存储量小</p>
+</li>
+<li>
+<p>所以:</p>
+<ul>
+<li>一般存储操作频率较高, 生命周期较短, 占用空间较小的数据</li>
+<li>基本数据类型</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>堆区特点</p>
+<ul>
+<li>
+<p>操作性能低, 速度慢</p>
+</li>
+<li>
+<p>存储量大</p>
+</li>
+<li>
+<p>所以</p>
+<ul>
+<li>
+<p>一般存储  操作频率较低, 生命周期比较长, 占用空间比较大的数据</p>
+</li>
+<li>
+<p>复杂数据类型</p>
+<ul>
+<li>对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>图解</p>
+</li>
+</ul>
+</li>
+<li>
+<p>操作方式的不同</p>
+<ul>
+<li>
+<p>划分</p>
+<ul>
+<li>
+<p>值类型  string  number boolean undefined null(*)</p>
+</li>
+<li>
+<p>引用类型</p>
+<ul>
+<li>
+<pre><code>Object类型,以下类型其本质都是object类型，Function ，Array， Date， String，Number，Boolean
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>值&amp;引用</p>
+<ul>
+<li>
+<p>赋值</p>
+<ul>
+<li>值类型赋值</li>
+<li>引用类型赋值</li>
+</ul>
+</li>
+<li>
+<p>传递</p>
+<ul>
+<li>函数中的参数传递</li>
+</ul>
+</li>
+<li>
+<p>技巧</p>
+<ul>
+<li>脑中有图</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E6%95%B0%E7%BB%84">数组<a class="anchor" href="#%E6%95%B0%E7%BB%84">§</a></h4>
+<p>字符串键值如果能强制转换为十进制数字，则会被当作数字索引。</p>
+<pre class="language-autoit"><code class="language-autoit">var a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token comment">; a['8'] = 99; a.length // 9</span>
+</code></pre>
+<h5 id="%E7%B1%BB%E6%95%B0%E7%BB%84">类数组<a class="anchor" href="#%E7%B1%BB%E6%95%B0%E7%BB%84">§</a></h5>
+<p>DOM元素列表，arguments对象，转数组</p>
+<ul>
+<li>
+<p>Array.prototype.slice.call(arguments)</p>
+</li>
+<li>
+<p>ES6中的 Array.from(args)</p>
+</li>
+<li>
+<p>核心</p>
+</li>
+<li>
+<p>注意:</p>
+<ul>
+<li>
+<p>定义的仅仅是语言基础</p>
+<ul>
+<li>语法</li>
+<li>类型</li>
+<li>语句</li>
+<li>关键字</li>
+<li>保留字</li>
+<li>操作符</li>
+<li>对象</li>
+<li>...</li>
+</ul>
+</li>
+<li>
+<p>宿主环境提供了该语言的基本实现和扩展</p>
+<ul>
+<li>比如DOM</li>
+</ul>
+</li>
+<li>
+<p>与Web浏览器没有依赖关系</p>
+<ul>
+<li>浏览器只是ECMAScript实现的宿主环境之一</li>
+</ul>
+</li>
+<li>
+<p>其他宿主环境</p>
+<ul>
+<li>
+<p>Node</p>
+<ul>
+<li>服务器端的JavaScript平台</li>
+</ul>
+</li>
+<li>
+<p>Adobe Flash</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="dom">DOM<a class="anchor" href="#dom">§</a></h3>
+<ul>
+<li>
+<p>文档对象模型</p>
+</li>
+<li>
+<p>功能</p>
+<ul>
+<li>
+<ol>
+<li>把整个页面映射成为一个多层节点结构</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>然后提供了一套对这些节点(内容)增删改查的方法</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>DOM级别</p>
+<ul>
+<li>
+<p>DOM1</p>
+<ul>
+<li>
+<p>DOM Core</p>
+<ul>
+<li>如何映射基于XML的文档结构</li>
+</ul>
+</li>
+<li>
+<p>DOM HTML</p>
+<ul>
+<li>添加了针对HTML的对象和方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>DOM2</p>
+<ul>
+<li>
+<p>扩充了鼠标和用户界面事件, 范围,遍历等细分模块</p>
+</li>
+<li>
+<p>通过对象接口增加了对CSS的支持</p>
+</li>
+<li>
+<p>具体</p>
+<ul>
+<li>
+<p>DOM视图</p>
+<ul>
+<li>定义了跟踪不同文档视图的接口</li>
+</ul>
+</li>
+<li>
+<p>DOM事件</p>
+<ul>
+<li>定义了事件和事件处理的接口</li>
+</ul>
+</li>
+<li>
+<p>DOM样式</p>
+<ul>
+<li>定义了基于CSS, 操作元素样式的接口</li>
+</ul>
+</li>
+<li>
+<p>DOM遍历和范围</p>
+<ul>
+<li>定义了遍历和操作文档树的接口</li>
+<li>新增了验证文档的方法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>DOM3</p>
+<ul>
+<li>引入了以统一方式加载和保存文档的方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>注意</p>
+<ul>
+<li>针对于XML但经过扩展,用于HTML的应用程序编程接口(API)</li>
+<li>不只是针对于JavaScript的, 很多其他语言也实现了DOM</li>
+</ul>
+</li>
+</ul>
+<h3 id="bom">BOM<a class="anchor" href="#bom">§</a></h3>
+<ul>
+<li>
+<p>浏览器对象模型</p>
+</li>
+<li>
+<p>作用</p>
+<ul>
+<li>处理浏览器窗口和框架</li>
+<li>习惯于把针对于浏览器操作的JS扩展也归为BOM</li>
+</ul>
+</li>
+<li>
+<p>具体功能</p>
+<ul>
+<li>弹出新浏览器窗口的功能</li>
+<li>移动,缩放和关闭浏览器窗口的功能</li>
+<li>提供浏览器详细信息的navigator对象</li>
+<li>提供浏览器所加载页面的详细信息的location对象</li>
+<li>提供用户显示器分辨率详细信息的screen对象</li>
+<li>对cookie的支持</li>
+<li>XMLHttpRequest -- ActiveXObject</li>
+</ul>
+</li>
+</ul>
+<h3 id="-3"><a class="anchor" href="#-3">§</a></h3>
+<hr>
+<hr>
+<h2 id="05-ecmascript-%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6">05-ECMAScript-关系运算符<a class="anchor" href="#05-ecmascript-%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6">§</a></h2>
+<h3 id="%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E7%BB%93%E6%9E%9C%E6%98%AF%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B">关系运算符(结果是布尔类型)<a class="anchor" href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E7%BB%93%E6%9E%9C%E6%98%AF%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B">§</a></h3>
+<h3 id="%E5%A4%A7%E4%BA%8E">大于(&gt;)<a class="anchor" href="#%E5%A4%A7%E4%BA%8E">§</a></h3>
+<h3 id="%E5%B0%8F%E4%BA%8E">小于(&lt;)<a class="anchor" href="#%E5%B0%8F%E4%BA%8E">§</a></h3>
+<h3 id="%E5%B0%8F%E4%BA%8E%E7%AD%89%E4%BA%8E-%E5%B0%8F%E4%BA%8E%E6%88%96%E8%80%85%E6%98%AF%E7%AD%89%E4%BA%8E">小于等于(&lt;=) 小于或者是等于<a class="anchor" href="#%E5%B0%8F%E4%BA%8E%E7%AD%89%E4%BA%8E-%E5%B0%8F%E4%BA%8E%E6%88%96%E8%80%85%E6%98%AF%E7%AD%89%E4%BA%8E">§</a></h3>
+<h3 id="%E5%A4%A7%E4%BA%8E%E7%AD%89%E4%BA%8E-%E5%A4%A7%E4%BA%8E%E6%88%96%E8%80%85%E6%98%AF%E7%AD%89%E4%BA%8E">大于等于(&gt;=) 大于或者是等于<a class="anchor" href="#%E5%A4%A7%E4%BA%8E%E7%AD%89%E4%BA%8E-%E5%A4%A7%E4%BA%8E%E6%88%96%E8%80%85%E6%98%AF%E7%AD%89%E4%BA%8E">§</a></h3>
+<h3 id="%E4%B8%8D%E7%AD%89%E4%BA%8E">不等于(!=)<a class="anchor" href="#%E4%B8%8D%E7%AD%89%E4%BA%8E">§</a></h3>
+<h3 id="%E6%B3%A8%E6%84%8F">注意:<a class="anchor" href="#%E6%B3%A8%E6%84%8F">§</a></h3>
+<ul>
+<li>
+<p>基本数据类型之间</p>
+<ul>
+<li>转换成同类型进行值比对</li>
+</ul>
+</li>
+<li>
+<p>对象类型之间</p>
+<ul>
+<li>
+<p>比如数组</p>
+</li>
+<li>
+<blockquote>
+<p>&lt; &gt;= &lt;=</p>
+</blockquote>
+<ul>
+<li>会转换成值进行比对</li>
+</ul>
+</li>
+<li>
+<p>!=</p>
+<ul>
+<li>
+<p>与==相反</p>
+<ul>
+<li>比对的是内存地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>基本数据类型和对象类型之间</p>
+<ul>
+<li>则会将对象转换为基本数据类型数值进行比对</li>
+</ul>
+</li>
+</ul>
+<h2 id="06-ecmascript-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6">06-ECMAScript-逻辑运算符<a class="anchor" href="#06-ecmascript-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6">§</a></h2>
+<h3 id="01-%E9%80%BB%E8%BE%91%E9%9D%9E">01 逻辑非<a class="anchor" href="#01-%E9%80%BB%E8%BE%91%E9%9D%9E">§</a></h3>
+<ul>
+<li>
+<pre><code>符号:!
+</code></pre>
+</li>
+<li>
+<pre><code>操作符: !表达式
+</code></pre>
+</li>
+<li>
+<pre><code>结果:布尔类型的值,要么是true要么是false
+</code></pre>
+</li>
+<li>
+<p>0 '' false null undefined</p>
+<ul>
+<li>取反全为true</li>
+</ul>
+</li>
+</ul>
+<h3 id="02-%E9%80%BB%E8%BE%91%E4%B8%8E">02 逻辑与<a class="anchor" href="#02-%E9%80%BB%E8%BE%91%E4%B8%8E">§</a></h3>
+<ul>
+<li>
+<pre><code>符号:&amp;&amp;
+</code></pre>
+</li>
+<li>
+<pre><code>操作符:表达式1 &amp;&amp; 表达式2
+</code></pre>
+</li>
+</ul>
+<h3 id="03-%E9%80%BB%E8%BE%91%E6%88%96">03 逻辑或<a class="anchor" href="#03-%E9%80%BB%E8%BE%91%E6%88%96">§</a></h3>
+<ul>
+<li>
+<pre><code>符号:||
+</code></pre>
+</li>
+<li>
+<pre><code>操作符:表达式1 || 表达式2
+</code></pre>
+</li>
+</ul>
+<h3 id="%E6%B3%A8%E6%84%8F-1">注意:<a class="anchor" href="#%E6%B3%A8%E6%84%8F-1">§</a></h3>
+<ul>
+<li>
+<ol>
+<li>注意逻辑与和逻辑或的返回值, 并非boolean类型</li>
+</ol>
+<ul>
+<li>
+<p>逻辑与</p>
+<ul>
+<li>
+<pre><code>一假全假
+</code></pre>
+<ul>
+<li>
+<pre><code> 如果表达式1为假,那么就返回表达式1,否则就返回表达式2
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>逻辑或</p>
+<ul>
+<li>
+<pre><code>一真全真
+</code></pre>
+<ul>
+<li>
+<pre><code>    如果表达式1为真,那么就返回表达式1,否则就返回表达式2
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>逻辑与和逻辑或也被称为短路运算符</li>
+</ol>
+<ul>
+<li>
+<p>逻辑与</p>
+<ul>
+<li>
+<p>一假全假</p>
+<ul>
+<li>第一个假的,后面不会再进行执行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>逻辑或</p>
+<ul>
+<li>
+<p>一真全真</p>
+<ul>
+<li>第一个真的, 后面不会再执行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="07-ecmascript-%E5%88%86%E6%94%AF%E5%92%8C%E5%BE%AA%E7%8E%AF">07-ECMAScript-分支和循环<a class="anchor" href="#07-ecmascript-%E5%88%86%E6%94%AF%E5%92%8C%E5%BE%AA%E7%8E%AF">§</a></h2>
+<h3 id="%E6%9D%A1%E4%BB%B6%E7%BB%93%E6%9E%84">条件结构<a class="anchor" href="#%E6%9D%A1%E4%BB%B6%E7%BB%93%E6%9E%84">§</a></h3>
+<ul>
+<li>
+<p>if..else</p>
+</li>
+<li>
+<p>?:</p>
+</li>
+<li>
+<p>switch..case</p>
+</li>
+<li>
+<p>案例</p>
+<ul>
+<li>分数级别</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84">循环结构<a class="anchor" href="#%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84">§</a></h3>
+<ul>
+<li>
+<p>for循环</p>
+</li>
+<li>
+<p>for...in(主要用于遍历对象)</p>
+</li>
+<li>
+<p>while</p>
+</li>
+<li>
+<p>do...while(至少会执行一次)</p>
+</li>
+<li>
+<p>案例</p>
+<ul>
+<li>99乘法表</li>
+<li>阶乘</li>
+</ul>
+</li>
+<li>
+<p>注意:</p>
+<ul>
+<li>break</li>
+<li>continue</li>
+<li>label</li>
+</ul>
+</li>
+</ul>
+<h2 id="08-ecmascript-%E5%87%BD%E6%95%B0">08-ECMAScript-函数<a class="anchor" href="#08-ecmascript-%E5%87%BD%E6%95%B0">§</a></h2>
+<h3 id="1-%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E5%88%9B%E5%BB%BA">1. 函数的几种创建?<a class="anchor" href="#1-%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E5%88%9B%E5%BB%BA">§</a></h3>
+<ul>
+<li>
+<pre><code>01 声明函数
+</code></pre>
+<ul>
+<li>
+<pre><code>function 函数名称 (形参1,形参2)
+</code></pre>
+</li>
+<li>
+<pre><code>{
+</code></pre>
+</li>
+<li>
+<pre><code>    //函数体
+</code></pre>
+</li>
+<li>
+<pre><code>}
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<pre><code>02 函数表达式
+</code></pre>
+<ul>
+<li>
+<p>01 匿名函数</p>
+<ul>
+<li>
+<pre><code>var func01 = function (){
+</code></pre>
+</li>
+<li>
+<pre><code>};
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>02 命名的函数表达式</p>
+<ul>
+<li>var func02 = function func(){</li>
+<li>
+<pre><code>};
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<pre><code>03 使用构造函数创建函数对象
+</code></pre>
+<ul>
+<li>
+<pre><code>var func02 = new Function(&quot;console.log('demo');&quot;);
+</code></pre>
+</li>
+<li>
+<pre><code>func02();
+</code></pre>
+</li>
+<li>
+<p>可以传递N个参数</p>
+<ul>
+<li>会把最后一个参数, 当做函数体;</li>
+<li>其他参数当做函数形参</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7">2. 函数使用技巧<a class="anchor" href="#2-%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7">§</a></h3>
+<ul>
+<li>
+<p>形参和arguments</p>
+<ul>
+<li>该参数是一个类似于数组的结构（可以像数组一样遍历 + 还可以使用下标来访问数据），但是并不是数组。</li>
+<li>
+<pre><code>          01 函数调用的时候，会把实参的值赋值给形参，而且会使用arguments来接收实参
+</code></pre>
+</li>
+<li>
+<pre><code>          02 如果实参的个数超过形参的个数，那么可以通过arguments来获取超出的数据
+</code></pre>
+</li>
+<li>
+<pre><code>          03 如果实参的格式小于形参的个数，那么不足的全部设置为undefined
+</code></pre>
+</li>
+<li>两者之间是关联的关系</li>
+</ul>
+</li>
+<li>
+<p>length属性</p>
+<ul>
+<li>
+<p>函数名.length</p>
+<ul>
+<li>形参的长度（个数）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>name属性</p>
+<ul>
+<li>函数名称</li>
+</ul>
+</li>
+<li>
+<p>函数重载</p>
+<ul>
+<li>
+<p>概念</p>
+<ul>
+<li>函数名相同, 但是根据传递的参数不同可以实现不同的功能</li>
+</ul>
+</li>
+<li>
+<p>例如</p>
+<ul>
+<li>function sum(a, b)</li>
+<li>function sum(a, b, c)</li>
+<li>可以同时存在</li>
+</ul>
+</li>
+<li>
+<p>但是:js没有函数重载!</p>
+<ul>
+<li>但是可以通过arguments个数来模拟重载</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>js模板使用</p>
+</li>
+</ul>
+<h3 id="3-%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E5%8F%AB%E6%B3%95">3. 函数的几种叫法?<a class="anchor" href="#3-%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E5%8F%AB%E6%B3%95">§</a></h3>
+<ul>
+<li>
+<p>函数</p>
+<ul>
+<li>命名函数</li>
+<li>匿名函数</li>
+</ul>
+</li>
+<li>
+<p>闭包</p>
+<ul>
+<li>
+<p>可以在其他函数作用域之外访问其他函数内部变量的函数</p>
+<ul>
+<li>由函数内部返回给外界的函数</li>
+<li>由外界传递到函数内部的函数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>方法</p>
+<ul>
+<li>
+<p>有宿主</p>
+<ul>
+<li>静态方法</li>
+<li>实例方法</li>
+</ul>
+</li>
+<li>
+<p>需要通过宿主来调用</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="09-ecmascript-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AE%E9%A2%98">09-ECMAScript-作用域问题<a class="anchor" href="#09-ecmascript-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AE%E9%A2%98">§</a></h2>
+<h3 id="%E6%A6%82%E5%BF%B5%E6%9F%90%E4%B8%AA%E5%8F%98%E9%87%8F%E6%9C%89%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84%E8%8C%83%E5%9B%B4">概念：某个变量有（起）作用的范围<a class="anchor" href="#%E6%A6%82%E5%BF%B5%E6%9F%90%E4%B8%AA%E5%8F%98%E9%87%8F%E6%9C%89%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84%E8%8C%83%E5%9B%B4">§</a></h3>
+<h3 id="js%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">js中的作用域<a class="anchor" href="#js%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">§</a></h3>
+<ul>
+<li>
+<p>01-script标签构成的全局作用域</p>
+</li>
+<li>
+<p>02-块级作用域</p>
+<ul>
+<li>在其他语言中, 由{}包含的代码块都有自己的作用域</li>
+<li>在其他语言中，有块级作用域，但是在js中没有块级作用域</li>
+</ul>
+</li>
+<li>
+<p>03-在js中函数是唯一一个可以创建作用域的对象</p>
+<ul>
+<li>
+<p>注意:</p>
+<ul>
+<li>如果没有通过var关键字声明变量, 则为全局变量</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE">作用域链<a class="anchor" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE">§</a></h3>
+<ul>
+<li>01 js中函数可以创建作用域</li>
+<li>02 js中的函数中可以声明函数</li>
+<li>03 函数内部的函数中又可以声明函数</li>
+<li>04 以上,会形成一个链式的结构,这个是作用域链</li>
+</ul>
+<h3 id="%E5%8F%98%E9%87%8F%E6%9F%A5%E6%89%BE%E5%8E%9F%E5%88%99">变量查找原则<a class="anchor" href="#%E5%8F%98%E9%87%8F%E6%9F%A5%E6%89%BE%E5%8E%9F%E5%88%99">§</a></h3>
+<ul>
+<li>就近原则</li>
+<li>从内到外</li>
+</ul>
+<h2 id="10-ecmascript-%E5%8F%98%E9%87%8F%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87">10-ECMAScript-变量和函数提升<a class="anchor" href="#10-ecmascript-%E5%8F%98%E9%87%8F%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87">§</a></h2>
+<h3 id="js%E7%9A%84%E6%89%A7%E8%A1%8C">js的执行：<a class="anchor" href="#js%E7%9A%84%E6%89%A7%E8%A1%8C">§</a></h3>
+<ul>
+<li>
+<pre><code>01 预解析阶段  变量和函数的提升（声明）
+</code></pre>
+</li>
+<li>
+<pre><code>02 具体的执行阶段
+</code></pre>
+</li>
+</ul>
+<h3 id="%E8%A7%84%E5%88%99">规则<a class="anchor" href="#%E8%A7%84%E5%88%99">§</a></h3>
+<ul>
+<li>
+<p>0-会把变量的声明提升到当前作用域的最前面</p>
+<ul>
+<li>赋值放在原位置不动</li>
+</ul>
+</li>
+<li>
+<p>1-会把函数声明提升到当前作用域前面</p>
+<ul>
+<li>
+<p>紧接着被提升过的其他声明</p>
+</li>
+<li>
+<p>注意:</p>
+<ul>
+<li>
+<p>函数的声明包含了函数体</p>
+</li>
+<li>
+<p>如果是函数的表达式</p>
+<ul>
+<li>只会把var 变量的名称(函数)提升到当前作用域的最顶端</li>
+</ul>
+</li>
+<li>
+<p>特例写法</p>
+<ul>
+<li>
+<p>if (condition) {
+function a() {alert('1')};
+}else {
+function a() {alert('2')};
+}</p>
+<ul>
+<li>不要这样写!!!</li>
+</ul>
+</li>
+<li>
+<p>使用函数表达式的形式修正</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>2-变量和变量同名的情况:后面的变量会把前面的变量覆盖</p>
+</li>
+<li>
+<p>3-函数和函数同名的情况,后面的会把前面的覆盖</p>
+</li>
+<li>
+<p>4-函数和变量同名的情况:</p>
+<ul>
+<li>变量的声明不会覆盖函数的声明</li>
+</ul>
+</li>
+<li>
+<p>5-变量提升无法脱离所在作用域</p>
+</li>
+</ul>
+<h3 id="%E6%B5%8B%E8%AF%95">测试<a class="anchor" href="#%E6%B5%8B%E8%AF%95">§</a></h3>
+<ul>
+<li>
+<p>测试1</p>
+<pre><code>function foo() {
+    var num = 123;
+    console.log(num);
+}
+
+foo();          
+console.log(num); 
+</code></pre>
+</li>
+<li>
+<p>测试2</p>
+<pre><code>var scope = &quot;global&quot;;
+foo();
+function foo() {
+    console.log(scope);
+    var scope = &quot;local&quot;;
+    console.log(scope);
+}
+console.log(scope);
+</code></pre>
+</li>
+<li>
+<p>测试3</p>
+<pre><code>function f1(){
+    if(&quot;a&quot; in window){
+        var a = 10;
+    }
+    console.log(a);
+}
+f1();
+</code></pre>
+</li>
+<li>
+<p>测试4</p>
+<pre><code>if(&quot;a&quot; in window){
+    var a = 10;
+}
+console.log(a);
+</code></pre>
+</li>
+<li>
+<p>测试5</p>
+<pre><code>var foo = 1;
+function bar() {
+    if(!foo)
+    {
+        var foo = 10;
+    }
+    alert(foo);
+}
+bar();
+</code></pre>
+</li>
+<li>
+<p>绘制作用域图</p>
+<pre><code>var a = 10;
+function f1(){
+    function f2(){
+        var d = &quot;demoD&quot;;
+    }
+}
+
+function f3(){
+    function f4(){
+    }
+    var b = &quot;demoB&quot;;
+    function f5(){
+        var c = &quot;demoC&quot;
+    }
+}
+</code></pre>
+</li>
+</ul>
+<h2 id="11-ecmascript-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86">11-ECMAScript-异常处理<a class="anchor" href="#11-ecmascript-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86">§</a></h2>
+<h3 id="%E5%9C%BA%E6%99%AF">场景<a class="anchor" href="#%E5%9C%BA%E6%99%AF">§</a></h3>
+<ul>
+<li>正常情况下,如果程序出现了错误或者是异常,那么该行代码后面的所有代码都无法得到执行</li>
+<li>但是,有些时候我们需要保证即便程序出现了问题,后面的代码也能够正常执行,这种情况就可以使用异常捕获结构</li>
+</ul>
+<h3 id="%E4%BD%BF%E7%94%A8">使用<a class="anchor" href="#%E4%BD%BF%E7%94%A8">§</a></h3>
+<ul>
+<li>
+<p>抛出异常</p>
+<ul>
+<li>
+<p>throw</p>
+<ul>
+<li>字符串</li>
+<li>对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>捕捉异常</p>
+<ul>
+<li>
+<pre><code>try{
+</code></pre>
+</li>
+<li>
+<pre><code>    //可能出错的代码
+</code></pre>
+</li>
+<li>
+<pre><code>}catch (e){
+</code></pre>
+</li>
+<li>
+<pre><code>    //出错了就执行这个代码块
+</code></pre>
+</li>
+<li>
+<pre><code>}
+</code></pre>
+</li>
+<li>
+<pre><code>finally
+</code></pre>
+</li>
+<li>
+<pre><code>{
+</code></pre>
+</li>
+<li>
+<pre><code>    //不管是否出错,都会执行这里的代码块
+</code></pre>
+</li>
+<li>
+<pre><code>    //一般在前端开发中不会使用,多多用于后端开发Node.js 主要用于在最后释放资源
+</code></pre>
+</li>
+<li>
+<pre><code>}
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="12-dom-%E6%93%8D%E4%BD%9C%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5">12-DOM-操作(增删改查)<a class="anchor" href="#12-dom-%E6%93%8D%E4%BD%9C%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5">§</a></h2>
+<h3 id="%E5%A2%9E%E5%8A%A0">增加<a class="anchor" href="#%E5%A2%9E%E5%8A%A0">§</a></h3>
+<ul>
+<li>
+<p>创建tag</p>
+<ul>
+<li>document.createElement(&quot;div&quot;);</li>
+</ul>
+</li>
+<li>
+<p>添加tag</p>
+<ul>
+<li>appendChild</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E5%88%A0%E9%99%A4">删除<a class="anchor" href="#%E5%88%A0%E9%99%A4">§</a></h3>
+<ul>
+<li>parent.removeChild(child);</li>
+</ul>
+<h3 id="%E4%BF%AE%E6%94%B9">修改<a class="anchor" href="#%E4%BF%AE%E6%94%B9">§</a></h3>
+<ul>
+<li>
+<p>主要只修改内部属性</p>
+<ul>
+<li>innerHTML</li>
+<li>style</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E6%9F%A5%E8%AF%A2">查询<a class="anchor" href="#%E6%9F%A5%E8%AF%A2">§</a></h3>
+<ul>
+<li>根据标签查询</li>
+<li>根据ID查询</li>
+<li>根据class查询</li>
+<li>查询所有</li>
+<li>...</li>
+</ul>
+<h2 id="13-bom-%E6%93%8D%E4%BD%9C">13-BOM-操作<a class="anchor" href="#13-bom-%E6%93%8D%E4%BD%9C">§</a></h2>
+<h3 id="%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B">浏览器对象模型<a class="anchor" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B">§</a></h3>
+<h3 id="%E4%BD%9C%E7%94%A8">作用<a class="anchor" href="#%E4%BD%9C%E7%94%A8">§</a></h3>
+<ul>
+<li>处理浏览器窗口和框架</li>
+<li>习惯于把针对于浏览器操作的JS扩展也归为BOM</li>
+</ul>
+<h3 id="%E5%85%B7%E4%BD%93%E5%8A%9F%E8%83%BD">具体功能<a class="anchor" href="#%E5%85%B7%E4%BD%93%E5%8A%9F%E8%83%BD">§</a></h3>
+<ul>
+<li>弹出新浏览器窗口的功能</li>
+<li>移动,缩放和关闭浏览器窗口的功能</li>
+<li>提供浏览器详细信息的navigator对象</li>
+<li>提供浏览器所加载页面的详细信息的location对象</li>
+<li>提供用户显示器分辨率详细信息的screen对象</li>
+<li>对cookie的支持</li>
+<li>XMLHttpRequest -- ActiveXObject</li>
+</ul>
+<h3 id="%E9%87%8D%E8%A6%81%E5%AF%B9%E8%B1%A1">重要对象<a class="anchor" href="#%E9%87%8D%E8%A6%81%E5%AF%B9%E8%B1%A1">§</a></h3>
+<ul>
+<li>
+<p>window</p>
+<ul>
+<li>
+<p>标识浏览器的一个实例</p>
+</li>
+<li>
+<p>全局作用域</p>
+<ul>
+<li>全局作用域中的变量或者函数都会变成window的属性或者方法</li>
+</ul>
+</li>
+<li>
+<p>窗口位置</p>
+<ul>
+<li>moveTo</li>
+<li>moveBy</li>
+<li>可能被禁用</li>
+</ul>
+</li>
+<li>
+<p>窗口大小</p>
+<ul>
+<li>resizeTo</li>
+<li>resizeBy</li>
+<li>可能被禁用</li>
+</ul>
+</li>
+<li>
+<p>导航和打开窗口</p>
+<ul>
+<li>
+<p>open</p>
+<ul>
+<li>
+<pre><code>参数1: 需要加载的URL
+</code></pre>
+</li>
+<li>
+<pre><code>参数2: 窗口目标
+</code></pre>
+<ul>
+<li>窗口名称</li>
+<li>_self</li>
+<li>_parent</li>
+<li>_top</li>
+<li>_blank</li>
+</ul>
+</li>
+<li>
+<pre><code>参数3: 一个特性字符串(,分割)
+</code></pre>
+<ul>
+<li>
+<p>fullScreen</p>
+<ul>
+<li>yes/no</li>
+</ul>
+</li>
+<li>
+<p>width</p>
+</li>
+<li>
+<p>height</p>
+</li>
+<li>
+<p>left</p>
+</li>
+<li>
+<p>top</p>
+</li>
+<li>
+<p>toolbar</p>
+</li>
+<li>
+<p>status</p>
+</li>
+<li>
+<p>resizable</p>
+</li>
+</ul>
+</li>
+<li>
+<pre><code>参数4: 是否取代浏览器历史集中中当前加载页面的Boolean值
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>间歇调用和超时调用</p>
+<ul>
+<li>setInterval</li>
+<li>setTimeout</li>
+</ul>
+</li>
+<li>
+<p>系统对话框</p>
+<ul>
+<li>
+<p>confirm</p>
+<ul>
+<li>确认框</li>
+</ul>
+</li>
+<li>
+<p>alert</p>
+<ul>
+<li>消息框</li>
+</ul>
+</li>
+<li>
+<p>prompt</p>
+<ul>
+<li>输入框</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>location</p>
+<ul>
+<li>
+<p>提供了与当前窗口中加载的文档有关的信息, 还提供了一些导航功能</p>
+</li>
+<li>
+<p>window.location === document.location</p>
+</li>
+<li>
+<p>常用属性</p>
+<ul>
+<li>
+<p>hash</p>
+</li>
+<li>
+<p>href</p>
+<ul>
+<li><a href="http://www.520it.com:80/person/sz.php?param1=name&amp;param2=age">http://www.520it.com:80/person/sz.php?param1=name&amp;param2=age</a></li>
+</ul>
+</li>
+<li>
+<p>protocol</p>
+<ul>
+<li>http:</li>
+</ul>
+</li>
+<li>
+<p>host</p>
+<ul>
+<li><a href="http://www.520it.com:80">www.520it.com:80</a></li>
+</ul>
+</li>
+<li>
+<p>hostname</p>
+<ul>
+<li><a href="http://www.520it.com">www.520it.com</a></li>
+</ul>
+</li>
+<li>
+<p>port</p>
+<ul>
+<li>80</li>
+</ul>
+</li>
+<li>
+<p>pathname</p>
+<ul>
+<li>/person/</li>
+</ul>
+</li>
+<li>
+<p>search</p>
+<ul>
+<li>?param1=name&amp;param2=age</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>查询字符串参数</p>
+<ul>
+<li>查询串需要我们自己解析</li>
+</ul>
+</li>
+<li>
+<p>位置操作</p>
+<ul>
+<li>
+<p>window.location.assign(url)</p>
+</li>
+<li>
+<p>window.location =url</p>
+</li>
+<li>
+<p>window.location.href =url</p>
+</li>
+<li>
+<p>注意</p>
+<ul>
+<li>
+<p>以上三句代码, 效果等同, 都会重新加载最新url</p>
+</li>
+<li>
+<p>另外, 修改了location的属性, 也会触发重新加载网页</p>
+<ul>
+<li>hash除外</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>navigator</p>
+<ul>
+<li>
+<p>识别客户端信息的事实标准</p>
+<ul>
+<li>
+<p>appCodeName</p>
+<ul>
+<li>浏览器名称</li>
+</ul>
+</li>
+<li>
+<p>appName</p>
+<ul>
+<li>完整的浏览器名称</li>
+</ul>
+</li>
+<li>
+<p>appVersion</p>
+<ul>
+<li>浏览器版本</li>
+</ul>
+</li>
+<li>
+<p>...</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>screen</p>
+<ul>
+<li>
+<p>浏览器窗口的描述信息</p>
+<ul>
+<li>width/height</li>
+<li>top/left</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>history</p>
+<ul>
+<li>
+<p>上网的历史记录</p>
+</li>
+<li>
+<p>go(num)</p>
+<ul>
+<li>前进/后退几页</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="14-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5">14-面向对象-相关概念<a class="anchor" href="#14-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5">§</a></h2>
+<h3 id="01-%E4%BB%80%E4%B9%88%E6%98%AF%E5%AF%B9%E8%B1%A1">01-什么是对象?<a class="anchor" href="#01-%E4%BB%80%E4%B9%88%E6%98%AF%E5%AF%B9%E8%B1%A1">§</a></h3>
+<ul>
+<li>
+<p>万物皆对象</p>
+</li>
+<li>
+<pre><code>对象是具体物体
+</code></pre>
+<ul>
+<li>拥有属性</li>
+<li>拥有行为</li>
+<li>把很多零散的东西, 封装成为一个整体</li>
+</ul>
+</li>
+<li>
+<pre><code>举例: 
+</code></pre>
+<ul>
+<li>
+<p>王二小</p>
+<ul>
+<li>
+<p>属性</p>
+<ul>
+<li>姓名</li>
+<li>年龄</li>
+<li>身高</li>
+<li>体重</li>
+<li>...</li>
+</ul>
+</li>
+<li>
+<p>行为</p>
+<ul>
+<li>走路</li>
+<li>吃饭</li>
+<li>放羊</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>DOM节点</p>
+<ul>
+<li>
+<p>属性</p>
+<ul>
+<li>innerHTML</li>
+<li>innerTEXT</li>
+<li>style</li>
+<li>...</li>
+</ul>
+</li>
+<li>
+<p>行为</p>
+<ul>
+<li>removeChild(child);</li>
+<li>appendChild()</li>
+<li>...</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="02-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B">02-面向对象-面向过程<a class="anchor" href="#02-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B">§</a></h3>
+<ul>
+<li>
+<pre><code>都是一种解决问题的思路(思想)
+</code></pre>
+</li>
+<li>
+<pre><code>面向过程
+</code></pre>
+<ul>
+<li>在解决问题的时候,关注的是解决问题需要的一个接着一个的过程(步骤)</li>
+</ul>
+</li>
+<li>
+<pre><code>面向对象
+</code></pre>
+<ul>
+<li>在解决问题的时候,关注的是解决问题所需要的对象.</li>
+</ul>
+</li>
+<li>
+<p>对比</p>
+<ul>
+<li>
+<p>面向对象和面向过程都是解决问题的一种方式(思想)</p>
+<ul>
+<li>面向对象本身是对面向过程的封装.</li>
+</ul>
+</li>
+<li>
+<p>面向对象编程最重要的什么?</p>
+<ul>
+<li>
+<p>找到对象, 确定对象属性和行为</p>
+</li>
+<li>
+<p>小案例</p>
+<ul>
+<li>
+<p>做好饭之后洗碗</p>
+<ul>
+<li>
+<p>面向过程</p>
+<ul>
+<li>
+<p>你</p>
+<ul>
+<li>洗菜</li>
+<li>点火倒油</li>
+<li>放菜,材料</li>
+<li>翻炒</li>
+<li>盛出</li>
+<li>放水</li>
+<li>放碗</li>
+<li>倒洗洁精</li>
+<li>开始刷</li>
+<li>擦干水</li>
+<li>摆放好</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>面向对象</p>
+<ul>
+<li>
+<p>你</p>
+<ul>
+<li>
+<p>对象</p>
+<ul>
+<li>
+<p>技能1: 做饭</p>
+<ul>
+<li>洗菜</li>
+<li>点火倒油</li>
+<li>放菜,材料</li>
+<li>翻炒</li>
+<li>盛出</li>
+</ul>
+</li>
+<li>
+<p>技能2:洗碗</p>
+<ul>
+<li>放水</li>
+<li>放碗</li>
+<li>倒洗洁精</li>
+<li>开始刷</li>
+<li>擦干水</li>
+<li>摆放好</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>你</p>
+<ul>
+<li>
+<p>对象</p>
+<ul>
+<li>
+<p>技能1: 做饭</p>
+<ul>
+<li>
+<p>放菜,材料</p>
+</li>
+<li>
+<p>自动炒菜机</p>
+<ul>
+<li>搅拌</li>
+<li>翻炒</li>
+<li>监测火候</li>
+</ul>
+</li>
+<li>
+<p>盛出</p>
+</li>
+</ul>
+</li>
+<li>
+<p>技能2:洗碗</p>
+<ul>
+<li>
+<p>放水/放碗</p>
+</li>
+<li>
+<p>自动洗碗机</p>
+<ul>
+<li>倒洗洁精</li>
+<li>开始刷</li>
+<li>擦干水</li>
+</ul>
+</li>
+<li>
+<p>摆放好</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>面向对象的好处</p>
+<ul>
+<li>
+<pre><code>01 更方便
+</code></pre>
+</li>
+<li>
+<pre><code>02 复用性会更好
+</code></pre>
+</li>
+<li>
+<pre><code>03 高内聚和低耦合
+</code></pre>
+</li>
+<li>
+<pre><code>04 冗余(重复的东西)--&gt;封装(提取相同的部分作为函数体,抽取不同的部分作为参数)
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="15-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F">15-面向对象-创建对象的方式<a class="anchor" href="#15-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F">§</a></h2>
+<h3 id="%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E6%96%B9%E5%BC%8F%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">字面量的方式创建对象<a class="anchor" href="#%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E6%96%B9%E5%BC%8F%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">§</a></h3>
+<ul>
+<li>问题:使用内置构造函数的方式和字面量的方式来创建对象差不多,都存在以下问题:</li>
+<li>
+<pre><code>	01 创建的对象无法复用,复用性差
+</code></pre>
+</li>
+<li>
+<pre><code>	02 如果需要创建多个同类型的对象,如(书籍)则需要写大量重复的代码,代码的冗余度高
+</code></pre>
+</li>
+</ul>
+<h3 id="%E5%86%85%E7%BD%AE%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">内置构造函数的方式来创建对象<a class="anchor" href="#%E5%86%85%E7%BD%AE%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">§</a></h3>
+<ul>
+<li>问题:使用内置构造函数的方式和字面量的方式来创建对象差不多,都存在以下问题:</li>
+<li>
+<pre><code>	01 创建的对象无法复用,复用性差
+</code></pre>
+</li>
+<li>
+<pre><code>	02 如果需要创建多个同类型的对象,如(书籍)则需要写大量重复的代码,代码的冗余度高
+</code></pre>
+</li>
+</ul>
+<h3 id="%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">简单工厂函数的方式来创建对象<a class="anchor" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">§</a></h3>
+<ul>
+<li>
+<p>简单工厂模式</p>
+<ul>
+<li>
+<p>工厂里面有一些产品的模板, 只需要, 给工厂提供原材料; 工厂按照固定的加工方式, 就可以返回给外界同一类型的产品</p>
+</li>
+<li>
+<p>问题:</p>
+<ul>
+<li>无法判定类型</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">自定义构造函数的方式来创建对象<a class="anchor" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">§</a></h3>
+<ul>
+<li>
+<p>01-自定义构造函数和简单工厂函数的对比</p>
+<ul>
+<li>
+<pre><code>① 函数的首字母大写(用于区别构造函数和普通函数)
+</code></pre>
+</li>
+<li>
+<pre><code>② 创建对象的过程是由new关键字实现
+</code></pre>
+</li>
+<li>
+<pre><code>③ 在构造函数内部会自动的创建新对象,并赋值给this指针
+</code></pre>
+</li>
+<li>
+<pre><code>④ 自动返回创建出来的对象
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>02-构造函数的执行过程:</p>
+<ul>
+<li>
+<pre><code>① 使用new关键字创建对象
+</code></pre>
+<ul>
+<li>外界</li>
+</ul>
+</li>
+<li>
+<pre><code>② 把新创建出来的对象赋值给this
+</code></pre>
+</li>
+<li>
+<pre><code>③ 在构造函数内部,使用this为新创建出来的对象设置属性和方法
+</code></pre>
+</li>
+<li>
+<pre><code>④ 默认返回新创建的对象(普通函数如果不显示的return则默认返回undefined)。
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>03-构造函数的返回值说明:</p>
+<ul>
+<li>
+<pre><code>01 如果在构造函数中没有显示的return,则默认返回的是新创建出来的对象
+</code></pre>
+</li>
+<li>
+<pre><code>02 如果在构造函数中显示的return,则依照具体的情况处理
+</code></pre>
+<ul>
+<li>
+<pre><code>   [01] return 的是对象,则直接返回该对象,取而代之本该默认返回的新对象
+</code></pre>
+</li>
+<li>
+<pre><code>   [02] return 的是null或基本数据类型值,则返回新创建的对象
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>总结</p>
+<ul>
+<li>类型匹配才接受-&gt; 对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="16-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8">16-对象的创建-简单使用<a class="anchor" href="#16-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8">§</a></h2>
+<h3 id="%E5%AF%B9%E8%B1%A1%E5%9C%A8js%E4%B8%AD%E7%9A%84%E4%BD%93%E7%8E%B0">对象在js中的体现<a class="anchor" href="#%E5%AF%B9%E8%B1%A1%E5%9C%A8js%E4%B8%AD%E7%9A%84%E4%BD%93%E7%8E%B0">§</a></h3>
+<ul>
+<li>键-值对的集合(key-value)</li>
+<li>属性:在对象内部声明的变量</li>
+<li>方法:在对象内部赋值在属性上的函数</li>
+</ul>
+<h3 id="%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA">对象的创建<a class="anchor" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA">§</a></h3>
+<ul>
+<li>
+<pre><code>01 字面量
+</code></pre>
+<ul>
+<li>var person = {name:&quot;sz&quot;, age: 18, run: function () {alert('跑');}};</li>
+</ul>
+</li>
+<li>
+<pre><code>02 使用内置构造函数来创建
+</code></pre>
+<ul>
+<li>var obj = new Object();</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%93%8D%E4%BD%9C">对象的操作<a class="anchor" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%93%8D%E4%BD%9C">§</a></h3>
+<ul>
+<li>
+<pre><code>js对象支持动态特性:增加属性(方法) | 删除属性(方法) |修改属性(方法) |查询
+</code></pre>
+</li>
+<li>
+<p>操作对象的属性和方法可以使用两套方式:</p>
+<ul>
+<li>
+<pre><code>01 点语法
+</code></pre>
+</li>
+<li>
+<pre><code>02 中括号[]
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5">操作实践<a class="anchor" href="#%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5">§</a></h3>
+<ul>
+<li>
+<p>创建对象</p>
+</li>
+<li>
+<p>添加属性</p>
+<ul>
+<li>
+<p><a href="http://obj.name">obj.name</a> = 'sz';</p>
+</li>
+<li>
+<p>系统会自动识别, 如果没有name属性, 则动态添加</p>
+<ul>
+<li>如果有, 则修改</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>查询</p>
+<ul>
+<li>
+<p>一般查询</p>
+<ul>
+<li>console.log(<a href="http://obj.name">obj.name</a>);</li>
+<li>console.log(obj['name']);</li>
+</ul>
+</li>
+<li>
+<p>遍历查询</p>
+<ul>
+<li>
+<p>in 关键字</p>
+<ul>
+<li>
+<ol>
+<li>可以判断对象中是否包含某个属性</li>
+</ol>
+<ul>
+<li>pro in obj</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>可以遍历对象键值对</li>
+</ol>
+<ul>
+<li>for (var key in obj)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>注意</p>
+<ul>
+<li>
+<p>属性的访问形式</p>
+<ul>
+<li>[]</li>
+<li>不能用.</li>
+</ul>
+</li>
+<li>
+<p>in 在数组中的使用</p>
+<ul>
+<li>
+<ol>
+<li>可以判断对象中是否包含某个属性</li>
+</ol>
+<ul>
+<li>pro in obj</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>可以遍历对象键值对</li>
+</ol>
+<ul>
+<li>for (key in arr)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>修改属性</p>
+<ul>
+<li>
+<p><a href="http://obj.name">obj.name</a> = 'sz';</p>
+</li>
+<li>
+<p>和添加属性的操作完全一样</p>
+</li>
+<li>
+<p>系统会自动识别, 如果没有name属性, 则动态添加</p>
+<ul>
+<li>如果有, 则修改</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>删除</p>
+<ul>
+<li>
+<p>delete关键字</p>
+<ul>
+<li>
+<pre><code>(1) 删除对象中的属性
+</code></pre>
+</li>
+<li>
+<pre><code>(2) 删除没有使用var关键字声明的全局变量
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>注意:</p>
+<ul>
+<li>
+<pre><code>    (1)返回值 布尔类型的值(我们可以通过该值来判断是否删除成功)
+</code></pre>
+</li>
+<li>
+<pre><code>    (2)使用var关键字声明的变量无法被删除
+</code></pre>
+<ul>
+<li>省略var关键字声明的变量, 相当于动态的给window增加一个属性</li>
+<li>window.xxxx = 100;</li>
+<li>这种方式,可以手动删除</li>
+</ul>
+</li>
+<li>
+<pre><code>    (3)删除对象中不存在的属性没有任何变化,但是返回值为true
+</code></pre>
+</li>
+<li>
+<pre><code>    (4)不能删除window下面的全局变量(使用var声明),但是可以删除直接定义在window上面的属性
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="17-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%B0%8F%E6%A1%88%E4%BE%8B">17-面向对象小案例<a class="anchor" href="#17-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%B0%8F%E6%A1%88%E4%BE%8B">§</a></h2>
+<h3 id="%E8%AE%A1%E7%AE%97%E5%99%A8%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97">计算器加减乘除运算<a class="anchor" href="#%E8%AE%A1%E7%AE%97%E5%99%A8%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97">§</a></h3>
+<h3 id="%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B">面向过程<a class="anchor" href="#%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B">§</a></h3>
+<h3 id="%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">面向对象<a class="anchor" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">§</a></h3>
+<h3 id="%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8">链式调用<a class="anchor" href="#%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8">§</a></h3></article><div class="prev_next"><a class="prev button" href="/HTTP/internet-hardware.html">«  <!-- -->网络硬件</a><a class="next button" href="/js/Object.html">基础<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#javascript%E7%9A%84%E7%BB%84%E6%88%90">JavaScript的组成</a></li><li><a href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">数据类型</a><ol><li><a href="#%E5%9F%BA%E6%9C%AC%E7%AE%80%E5%8D%95%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">基本(简单)数据类型</a></li></ol></li><li><a href="#%E7%B1%BB%E5%9E%8B%E8%8E%B7%E5%8F%96%E5%92%8C%E5%88%A4%E6%96%AD">类型获取和判断</a><ol><li><a href="#%E8%8E%B7%E5%8F%96%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">获取判断数据类型</a></li><li><a href="#%E8%A1%A5%E5%85%85">补充</a></li></ol></li><li><a href="#%E5%92%8C%E5%92%8C%E8%AF%B4%E6%98%8E">=和==和===说明</a><ol><li><a href="#">=</a></li><li><a href="#-1">==</a></li><li><a href="#-2">===</a></li></ol></li><li><a href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">类型转换</a><ol><li><a href="#%E5%A4%8D%E6%9D%82%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">复杂(复合)数据类型</a></li><li><a href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%A4%8D%E6%9D%82%E7%B1%BB%E5%9E%8B%E5%8C%BA%E5%88%AB">基本类型和复杂类型区别</a><ol></ol></li><li><a href="#dom">DOM</a></li><li><a href="#bom">BOM</a></li><li><a href="#-3"></a></li></ol></li><li><a href="#05-ecmascript-%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6">05-ECMAScript-关系运算符</a><ol><li><a href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6%E7%BB%93%E6%9E%9C%E6%98%AF%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B">关系运算符(结果是布尔类型)</a></li><li><a href="#%E5%A4%A7%E4%BA%8E">大于(&gt;)</a></li><li><a href="#%E5%B0%8F%E4%BA%8E">小于(&lt;)</a></li><li><a href="#%E5%B0%8F%E4%BA%8E%E7%AD%89%E4%BA%8E-%E5%B0%8F%E4%BA%8E%E6%88%96%E8%80%85%E6%98%AF%E7%AD%89%E4%BA%8E">小于等于(&lt;=) 小于或者是等于</a></li><li><a href="#%E5%A4%A7%E4%BA%8E%E7%AD%89%E4%BA%8E-%E5%A4%A7%E4%BA%8E%E6%88%96%E8%80%85%E6%98%AF%E7%AD%89%E4%BA%8E">大于等于(&gt;=) 大于或者是等于</a></li><li><a href="#%E4%B8%8D%E7%AD%89%E4%BA%8E">不等于(!=)</a></li><li><a href="#%E6%B3%A8%E6%84%8F">注意:</a></li></ol></li><li><a href="#06-ecmascript-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6">06-ECMAScript-逻辑运算符</a><ol><li><a href="#01-%E9%80%BB%E8%BE%91%E9%9D%9E">01 逻辑非</a></li><li><a href="#02-%E9%80%BB%E8%BE%91%E4%B8%8E">02 逻辑与</a></li><li><a href="#03-%E9%80%BB%E8%BE%91%E6%88%96">03 逻辑或</a></li><li><a href="#%E6%B3%A8%E6%84%8F-1">注意:</a></li></ol></li><li><a href="#07-ecmascript-%E5%88%86%E6%94%AF%E5%92%8C%E5%BE%AA%E7%8E%AF">07-ECMAScript-分支和循环</a><ol><li><a href="#%E6%9D%A1%E4%BB%B6%E7%BB%93%E6%9E%84">条件结构</a></li><li><a href="#%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84">循环结构</a></li></ol></li><li><a href="#08-ecmascript-%E5%87%BD%E6%95%B0">08-ECMAScript-函数</a><ol><li><a href="#1-%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E5%88%9B%E5%BB%BA">1. 函数的几种创建?</a></li><li><a href="#2-%E5%87%BD%E6%95%B0%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7">2. 函数使用技巧</a></li><li><a href="#3-%E5%87%BD%E6%95%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E5%8F%AB%E6%B3%95">3. 函数的几种叫法?</a></li></ol></li><li><a href="#09-ecmascript-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AE%E9%A2%98">09-ECMAScript-作用域问题</a><ol><li><a href="#%E6%A6%82%E5%BF%B5%E6%9F%90%E4%B8%AA%E5%8F%98%E9%87%8F%E6%9C%89%E8%B5%B7%E4%BD%9C%E7%94%A8%E7%9A%84%E8%8C%83%E5%9B%B4">概念：某个变量有（起）作用的范围</a></li><li><a href="#js%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F">js中的作用域</a></li><li><a href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE">作用域链</a></li><li><a href="#%E5%8F%98%E9%87%8F%E6%9F%A5%E6%89%BE%E5%8E%9F%E5%88%99">变量查找原则</a></li></ol></li><li><a href="#10-ecmascript-%E5%8F%98%E9%87%8F%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87">10-ECMAScript-变量和函数提升</a><ol><li><a href="#js%E7%9A%84%E6%89%A7%E8%A1%8C">js的执行：</a></li><li><a href="#%E8%A7%84%E5%88%99">规则</a></li><li><a href="#%E6%B5%8B%E8%AF%95">测试</a></li></ol></li><li><a href="#11-ecmascript-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86">11-ECMAScript-异常处理</a><ol><li><a href="#%E5%9C%BA%E6%99%AF">场景</a></li><li><a href="#%E4%BD%BF%E7%94%A8">使用</a></li></ol></li><li><a href="#12-dom-%E6%93%8D%E4%BD%9C%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5">12-DOM-操作(增删改查)</a><ol><li><a href="#%E5%A2%9E%E5%8A%A0">增加</a></li><li><a href="#%E5%88%A0%E9%99%A4">删除</a></li><li><a href="#%E4%BF%AE%E6%94%B9">修改</a></li><li><a href="#%E6%9F%A5%E8%AF%A2">查询</a></li></ol></li><li><a href="#13-bom-%E6%93%8D%E4%BD%9C">13-BOM-操作</a><ol><li><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B">浏览器对象模型</a></li><li><a href="#%E4%BD%9C%E7%94%A8">作用</a></li><li><a href="#%E5%85%B7%E4%BD%93%E5%8A%9F%E8%83%BD">具体功能</a></li><li><a href="#%E9%87%8D%E8%A6%81%E5%AF%B9%E8%B1%A1">重要对象</a></li></ol></li><li><a href="#14-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5">14-面向对象-相关概念</a><ol><li><a href="#01-%E4%BB%80%E4%B9%88%E6%98%AF%E5%AF%B9%E8%B1%A1">01-什么是对象?</a></li><li><a href="#02-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B">02-面向对象-面向过程</a></li></ol></li><li><a href="#15-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E5%BC%8F">15-面向对象-创建对象的方式</a><ol><li><a href="#%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84%E6%96%B9%E5%BC%8F%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">字面量的方式创建对象</a></li><li><a href="#%E5%86%85%E7%BD%AE%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">内置构造函数的方式来创建对象</a></li><li><a href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">简单工厂函数的方式来创建对象</a></li><li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">自定义构造函数的方式来创建对象</a></li></ol></li><li><a href="#16-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8">16-对象的创建-简单使用</a><ol><li><a href="#%E5%AF%B9%E8%B1%A1%E5%9C%A8js%E4%B8%AD%E7%9A%84%E4%BD%93%E7%8E%B0">对象在js中的体现</a></li><li><a href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA">对象的创建</a></li><li><a href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%93%8D%E4%BD%9C">对象的操作</a></li><li><a href="#%E6%93%8D%E4%BD%9C%E5%AE%9E%E8%B7%B5">操作实践</a></li></ol></li><li><a href="#17-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%B0%8F%E6%A1%88%E4%BE%8B">17-面向对象小案例</a><ol><li><a href="#%E8%AE%A1%E7%AE%97%E5%99%A8%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97">计算器加减乘除运算</a></li><li><a href="#%E9%9D%A2%E5%90%91%E8%BF%87%E7%A8%8B">面向过程</a></li><li><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">面向对象</a></li><li><a href="#%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8">链式调用</a></li></ol></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

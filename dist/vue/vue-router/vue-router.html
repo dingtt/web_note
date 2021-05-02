@@ -1,0 +1,122 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="前端笔记"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">Vue路由 · Ding前端笔记</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Ding前端笔记</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Ding前端笔记</a></h1></li><li style="flex-grow:1"></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/index.html" class="nav_link">Hello world</a></li><li class="unfold"><a href="/WebAPI/README.md" class="nav_link">WebAPI/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"></ol></li><li class="unfold"><a href="/HTTP/index.html" class="nav_link">HTTP协议与浏览器<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/HTTP/browser.html" class="nav_link">浏览器</a></li><li class=""><a href="/HTTP/HTTP.html" class="nav_link">HTTP协议请求方法和状态码</a></li><li class=""><a href="/HTTP/internet-hardware.html" class="nav_link">网络硬件</a></li></ol></li><li class="unfold"><a href="/js/todo.md" class="nav_link">js/todo.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/js/basics.html" class="nav_link">JavaScript基础</a></li><li class=""><a href="/js/Object.html" class="nav_link">基础</a></li><li class=""><a href="/js/context.html" class="nav_link">执行上下文</a></li><li class=""><a href="/js/closure.html" class="nav_link">闭包和面向对象</a></li><li class=""><a href="/js/regex.html" class="nav_link">正则</a></li><li class=""><a href="/js/algo.html" class="nav_link">算法</a></li><li class=""><a href="/js/design-patterns.html" class="nav_link">JS设计模式</a></li></ol></li><li class="unfold"><a href="/TS/index.html" class="nav_link">TS<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/TS/basics.html" class="nav_link">TS基础</a></li><li class=""><a href="/TS/enum.html" class="nav_link">TS枚举 类型 接口 泛型</a></li></ol></li><li class="unfold"><a href="/vue/index.html" class="nav_link">Vue<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/vue/vue-skills.html" class="nav_link">Vue开发技巧</a></li><li class=""><a href="/vue/vue-communication.html" class="nav_link">Vue组件通信</a></li><li class=""><a href="/vue/vue-router/vue-router.html" class="nav_link active">Vue路由</a></li></ol></li><li class=""><a href="/react/lifecycle.html" class="nav_link">React的生命周期</a></li><li class="unfold"><a href="/webpack/index.html" class="nav_link">Webpack<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/webpack/webpack-use.html" class="nav_link">webpack的使用</a></li><li class=""><a href="/webpack/webpack-principle.html" class="nav_link">Webpack打包原理解析</a></li><li class=""><a href="/webpack/webpack-dev-config.html" class="nav_link">生产环境配置</a></li><li class=""><a href="/webpack/webpack-custom-loader.html" class="nav_link">实现自己的loader</a></li><li class=""><a href="/webpack/webpack-custom-plugin.html" class="nav_link">实现自己的plugin</a></li><li class=""><a href="/webpack/webpack-split-chunks.html" class="nav_link">webpack代码分片</a></li><li class=""><a href="/webpack/webpack-dev-server-hmr.html" class="nav_link">webpack-dev-server 与 HMR</a></li></ol></li><li class=""><a href="/web-monitor/web-monitor.html" class="nav_link">前端监控简介</a></li><li class=""><a href="/git/git.html" class="nav_link">Git使用</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>Vue路由</h1>
+<p>响应路由参数的变化</p>
+<pre class="language-autoit"><code class="language-autoit">watch<span class="token punctuation">:</span> {
+    <span class="token string">'$route'</span> <span class="token punctuation">(</span><span class="token keyword">to</span><span class="token punctuation">,</span> from<span class="token punctuation">)</span> {
+      <span class="token operator">/</span><span class="token operator">/</span> 对路由变化作出响应<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    }
+  }
+</code></pre>
+<p>vue2.2 beforeRouteUpdate 导航守卫</p>
+<pre class="language-autoit"><code class="language-autoit"> beforeRouteUpdate <span class="token punctuation">(</span><span class="token keyword">to</span><span class="token punctuation">,</span> from<span class="token punctuation">,</span> <span class="token keyword">next</span><span class="token punctuation">)</span> {
+    <span class="token operator">/</span><span class="token operator">/</span> react <span class="token keyword">to</span> route changes<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token operator">/</span><span class="token operator">/</span> don't forget <span class="token keyword">to</span> call <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  }
+</code></pre>
+<h3 id="%E6%8D%95%E8%8E%B7%E6%89%80%E6%9C%89%E8%B7%AF%E7%94%B1%E6%88%96-404-not-found-%E8%B7%AF%E7%94%B1">捕获所有路由或 404 Not found 路由<a class="anchor" href="#%E6%8D%95%E8%8E%B7%E6%89%80%E6%9C%89%E8%B7%AF%E7%94%B1%E6%88%96-404-not-found-%E8%B7%AF%E7%94%B1">§</a></h3>
+<p>常规参数只会匹配被 <code>/</code> 分隔的 URL 片段中的字符。如果想匹配<strong>任意路径</strong>，我们可以使用通配符 (<code>*</code>)：</p>
+<pre class="language-autoit"><code class="language-autoit">{
+  <span class="token operator">/</span><span class="token operator">/</span> 会匹配所有路径
+  path<span class="token punctuation">:</span> <span class="token string">'*'</span>
+}
+{
+  <span class="token operator">/</span><span class="token operator">/</span> 会匹配以 `<span class="token operator">/</span>user<span class="token operator">-</span>` 开头的任意路径
+  path<span class="token punctuation">:</span> <span class="token string">'/user-*'</span>
+}
+</code></pre>
+<p><em>通配符</em>的路由应该放在最后</p>
+<p>当使用一个<em>通配符</em>时，<code>$route.params</code> 内会自动添加一个名为 <code>pathMatch</code> 参数。它包含了 URL 通过<em>通配符</em>被匹配的部分</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> 给出一个路由 { path<span class="token punctuation">:</span> <span class="token string">'/user-*'</span> }
+this<span class="token punctuation">.</span><span class="token variable">$router</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'/user-admin'</span><span class="token punctuation">)</span>
+this<span class="token punctuation">.</span><span class="token variable">$route</span><span class="token punctuation">.</span>params<span class="token punctuation">.</span>pathMatch <span class="token operator">/</span><span class="token operator">/</span> <span class="token string">'admin'</span>
+<span class="token operator">/</span><span class="token operator">/</span> 给出一个路由 { path<span class="token punctuation">:</span> <span class="token string">'*'</span> }
+this<span class="token punctuation">.</span><span class="token variable">$router</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'/non-existing'</span><span class="token punctuation">)</span>
+this<span class="token punctuation">.</span><span class="token variable">$route</span><span class="token punctuation">.</span>params<span class="token punctuation">.</span>pathMatch <span class="token operator">/</span><span class="token operator">/</span> <span class="token string">'/non-existing'</span>
+</code></pre>
+<h4 id="%E9%AB%98%E7%B4%9A%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%BC%8F">高級匹配模式<a class="anchor" href="#%E9%AB%98%E7%B4%9A%E5%8C%B9%E9%85%8D%E6%A8%A1%E5%BC%8F">§</a></h4>
+<p><a href="https://github.com/pillarjs/path-to-regexp/tree/v1.7.0">path-to-regexp</a></p>
+<h4 id="%E5%8C%B9%E9%85%8D%E4%BC%98%E5%85%88%E7%BA%A7">匹配优先级<a class="anchor" href="#%E5%8C%B9%E9%85%8D%E4%BC%98%E5%85%88%E7%BA%A7">§</a></h4>
+<p>谁先定义的，谁的优先级就最高。</p>
+<h2 id="%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1">嵌套路由<a class="anchor" href="#%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1">§</a></h2>
+<p>children的路径匹配成功，将会把自身的component，渲染到父级的component的router-view中</p>
+<p><strong>以 <code>/</code> 开头的嵌套路径会被当作根路径。 这让你充分的使用嵌套组件而无须设置嵌套的路径。</strong></p>
+<h2 id="%E7%BC%96%E7%A8%8B%E5%BC%8F%E5%AF%BC%E8%88%AA">编程式导航<a class="anchor" href="#%E7%BC%96%E7%A8%8B%E5%BC%8F%E5%AF%BC%E8%88%AA">§</a></h2>
+<h2 id="routerpushlocation-oncomplete-onabort"><code>router.push(location, onComplete?, onAbort?)</code><a class="anchor" href="#routerpushlocation-oncomplete-onabort">§</a></h2>
+<p><code>router.push</code> 或 <code>router.replace</code> 中提供 <code>onComplete</code> 和 <code>onAbort</code> 回调作为第二个和第三个参数。这些回调将会在导航成功完成 (在所有的异步钩子被解析之后) 或终止 (导航到相同的路由、或在当前导航完成之前导航到另一个不同的路由) 的时候进行相应的调用。在 3.1.0+，可以省略第二个和第三个参数，此时如果支持 Promise，<code>router.push</code> 或 <code>router.replace</code> 将返回一个 Promise。</p>
+<p><strong>注意</strong>： 如果目的地和当前路由相同，只有参数发生了改变 (比如从一个用户资料到另一个 <code>/users/1</code> -&gt; <code>/users/2</code>)，你需要使用 <a href="https://router.vuejs.org/zh/guide/essentials/dynamic-matching.html#%E5%93%8D%E5%BA%94%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E7%9A%84%E5%8F%98%E5%8C%96"><code>beforeRouteUpdate</code></a> 来响应这个变化 (比如抓取用户信息)。</p>
+<p><strong><code>this.$router.push</code></strong></p>
+<router-link :to="...">
+<p><strong>如果提供了 <code>path</code>，<code>params</code> 会被忽略****需要提供路由的 <code>name</code> 或手写完整的带有参数的 <code>path</code></strong></p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> userId <span class="token operator">=</span> <span class="token string">'123'</span>
+router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>{ name<span class="token punctuation">:</span> <span class="token string">'user'</span><span class="token punctuation">,</span> params<span class="token punctuation">:</span> { userId }}<span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token operator">/</span>user<span class="token operator">/</span><span class="token number">123</span>
+router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>{ path<span class="token punctuation">:</span> `<span class="token operator">/</span>user<span class="token operator">/</span>${userId}` }<span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token operator">/</span>user<span class="token operator">/</span><span class="token number">123</span>
+<span class="token operator">/</span><span class="token operator">/</span> 这里的 params 不生效
+router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>{ path<span class="token punctuation">:</span> <span class="token string">'/user'</span><span class="token punctuation">,</span> params<span class="token punctuation">:</span> { userId }}<span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token operator">/</span>user
+</code></pre>
+<h2 id="routerreplacelocation-oncomplete-onabort"><code>router.replace(location, onComplete?, onAbort?)</code><a class="anchor" href="#routerreplacelocation-oncomplete-onabort">§</a></h2>
+<p>不会向 history 添加新记录</p>
+<h2 id="routergon"><code>router.go(n)</code><a class="anchor" href="#routergon">§</a></h2>
+<p>等同于 history.forward() history.back() ，如果 history 记录不够用，那就默默地失败呗</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/History"><code>window.history.pushState</code>、 <code>window.history.replaceState</code> 和 <code>window.history.go</code></a></p>
+<h3 id="%E5%91%BD%E5%90%8D%E8%B7%AF%E7%94%B1">命名路由<a class="anchor" href="#%E5%91%BD%E5%90%8D%E8%B7%AF%E7%94%B1">§</a></h3>
+<h3 id="%E5%91%BD%E5%90%8D%E8%A7%86%E5%9B%BE">命名视图<a class="anchor" href="#%E5%91%BD%E5%90%8D%E8%A7%86%E5%9B%BE">§</a></h3>
+<p>同时 (同级) 展示多个视图，而不是嵌套展示。如果 <code>router-view</code> 没有设置名字，那么默认为 <code>default</code>。</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">&lt;</span>router<span class="token operator">-</span>view class<span class="token operator">=</span><span class="token string">"view one"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>view<span class="token operator">></span>
+<span class="token operator">&lt;</span>router<span class="token operator">-</span>view class<span class="token operator">=</span><span class="token string">"view two"</span> name<span class="token operator">=</span><span class="token string">"a"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>view<span class="token operator">></span>
+<span class="token operator">&lt;</span>router<span class="token operator">-</span>view class<span class="token operator">=</span><span class="token string">"view three"</span> name<span class="token operator">=</span><span class="token string">"b"</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>view<span class="token operator">></span>
+</code></pre>
+<p>同个路由，多个视图就需要多个组件</p>
+<pre class="language-autoit"><code class="language-autoit"> components<span class="token punctuation">:</span> {
+        <span class="token keyword">default</span><span class="token punctuation">:</span> Foo<span class="token punctuation">,</span>
+        a<span class="token punctuation">:</span> Bar<span class="token punctuation">,</span>
+        b<span class="token punctuation">:</span> Baz
+      }
+</code></pre>
+<h4 id="%E5%B5%8C%E5%A5%97%E5%91%BD%E5%90%8D%E8%A7%86%E5%9B%BE">嵌套命名视图<a class="anchor" href="#%E5%B5%8C%E5%A5%97%E5%91%BD%E5%90%8D%E8%A7%86%E5%9B%BE">§</a></h4>
+<p>使用命名视图创建嵌套视图的复杂布局，需要用到命名的嵌套 <code>router-view</code> 视图组件。</p>
+<h2 id="%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E5%88%AB%E5%90%8D">重定向和别名<a class="anchor" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E5%88%AB%E5%90%8D">§</a></h2>
+<h3 id="%E9%87%8D%E5%AE%9A%E5%90%91">重定向<a class="anchor" href="#%E9%87%8D%E5%AE%9A%E5%90%91">§</a></h3>
+<p>重定向目标接收path，name，动态函数（方法接收 目标路由 作为参数，可进行判断）return 重定向的 字符串路径/路径对象</p>
+<p><a href="https://router.vuejs.org/zh/guide/advanced/navigation-guards.html">导航守卫</a>并没有应用在跳转路由上，而仅仅应用在其目标上</p>
+<h4 id="%E5%88%AB%E5%90%8D">别名<a class="anchor" href="#%E5%88%AB%E5%90%8D">§</a></h4>
+<p>a的别名b，访问b显示b，实际内容是a</p>
+<pre class="language-autoit"><code class="language-autoit">{ path<span class="token punctuation">:</span> <span class="token string">'/a'</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> A<span class="token punctuation">,</span> alias<span class="token punctuation">:</span> <span class="token string">'/b'</span> }
+</code></pre>
+<h2 id="%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%8F%82">路由组件传参<a class="anchor" href="#%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%8F%82">§</a></h2>
+<p>使用 <code>props</code> 将组件和路由解耦：<strong>取代与 <code>$route</code> 的耦合</strong></p>
+<pre class="language-autoit"><code class="language-autoit"> routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    { path<span class="token punctuation">:</span> <span class="token string">'/user/:id'</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> User<span class="token punctuation">,</span> props<span class="token punctuation">:</span> <span class="token boolean">true</span> }<span class="token punctuation">,</span>
+
+    <span class="token operator">/</span><span class="token operator">/</span> 对于包含命名视图的路由，你必须分别为每个命名视图添加 `props` 选项：
+    {
+      path<span class="token punctuation">:</span> <span class="token string">'/user/:id'</span><span class="token punctuation">,</span>
+      components<span class="token punctuation">:</span> { <span class="token keyword">default</span><span class="token punctuation">:</span> User<span class="token punctuation">,</span> sidebar<span class="token punctuation">:</span> Sidebar }<span class="token punctuation">,</span>
+      props<span class="token punctuation">:</span> { <span class="token keyword">default</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> sidebar<span class="token punctuation">:</span> <span class="token boolean">false</span> }
+    }
+  <span class="token punctuation">]</span>
+</code></pre>
+<h4 id="%E5%B8%83%E5%B0%94%E6%A8%A1%E5%BC%8F">布尔模式<a class="anchor" href="#%E5%B8%83%E5%B0%94%E6%A8%A1%E5%BC%8F">§</a></h4>
+<p>如果 <code>props</code> 被设置为 <code>true</code>，<code>route.params</code> 将会被设置为组件属性</p>
+<h4 id="%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%BC%8F">对象模式<a class="anchor" href="#%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%BC%8F">§</a></h4>
+<p>如果 <code>props</code> 是一个对象，它会被按原样设置为组件属性。当 <code>props</code> 是静态的时候有用。</p>
+<h4 id="%E5%87%BD%E6%95%B0%E6%A8%A1%E5%BC%8F">函数模式<a class="anchor" href="#%E5%87%BD%E6%95%B0%E6%A8%A1%E5%BC%8F">§</a></h4>
+<p>创建一个函数返回 <code>props</code>。这样你便可以将参数转换成另一种类型，将静态值与基于路由的值结合等等。</p>
+<pre class="language-js"><code class="language-js"> <span class="token punctuation">{</span> path<span class="token operator">:</span> <span class="token string">'/search'</span><span class="token punctuation">,</span> component<span class="token operator">:</span> <span class="token maybe-class-name">SearchUser</span><span class="token punctuation">,</span> <span class="token function-variable function">props</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">route</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span> query<span class="token operator">:</span> route<span class="token punctuation">.</span><span class="token property-access">query</span><span class="token punctuation">.</span><span class="token property-access">q</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+</code></pre>
+<p>鉴权：</p>
+<p>静态路由</p>
+<p>无需登录路由   meta:{auth :false}</p>
+<p>需要登录路由 beforeEach</p>
+<p>1动态路由数据源 + rule ，配合后台数据过滤</p>
+<p>2 动态路由数据源 ，配合后台路由权限，过滤，merge props</p>
+<p>3 后台配置路由并输出路由权限（前后协作）  有个名词（用户 角色|用户组  权限 ，菜单权限，路由权限）</p></article><div class="prev_next"><a class="prev button" href="/vue/vue-communication.html">«  <!-- -->Vue组件通信</a><a class="next button" href="/react/lifecycle.html">React的生命周期<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#%E6%8D%95%E8%8E%B7%E6%89%80%E6%9C%89%E8%B7%AF%E7%94%B1%E6%88%96-404-not-found-%E8%B7%AF%E7%94%B1">捕获所有路由或 404 Not found 路由</a><ol></ol></li><li><a href="#%E5%B5%8C%E5%A5%97%E8%B7%AF%E7%94%B1">嵌套路由</a></li><li><a href="#%E7%BC%96%E7%A8%8B%E5%BC%8F%E5%AF%BC%E8%88%AA">编程式导航</a></li><li><a href="#routerpushlocation-oncomplete-onabort">router.push(location, onComplete?, onAbort?)</a></li><li><a href="#routerreplacelocation-oncomplete-onabort">router.replace(location, onComplete?, onAbort?)</a></li><li><a href="#routergon">router.go(n)</a><ol><li><a href="#%E5%91%BD%E5%90%8D%E8%B7%AF%E7%94%B1">命名路由</a></li><li><a href="#%E5%91%BD%E5%90%8D%E8%A7%86%E5%9B%BE">命名视图</a><ol></ol></li></ol></li><li><a href="#%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E5%88%AB%E5%90%8D">重定向和别名</a><ol><li><a href="#%E9%87%8D%E5%AE%9A%E5%90%91">重定向</a><ol></ol></li></ol></li><li><a href="#%E8%B7%AF%E7%94%B1%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%8F%82">路由组件传参</a><ol></ol></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

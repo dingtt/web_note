@@ -1,0 +1,190 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="前端笔记"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">浏览器 · Ding前端笔记</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Ding前端笔记</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Ding前端笔记</a></h1></li><li style="flex-grow:1"></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/index.html" class="nav_link">Hello world</a></li><li class="unfold"><a href="/WebAPI/README.md" class="nav_link">WebAPI/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"></ol></li><li class="unfold"><a href="/HTTP/index.html" class="nav_link">HTTP协议与浏览器<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/HTTP/browser.html" class="nav_link active">浏览器</a></li><li class=""><a href="/HTTP/HTTP.html" class="nav_link">HTTP协议请求方法和状态码</a></li><li class=""><a href="/HTTP/internet-hardware.html" class="nav_link">网络硬件</a></li></ol></li><li class="unfold"><a href="/js/todo.md" class="nav_link">js/todo.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/js/basics.html" class="nav_link">JavaScript基础</a></li><li class=""><a href="/js/Object.html" class="nav_link">基础</a></li><li class=""><a href="/js/context.html" class="nav_link">执行上下文</a></li><li class=""><a href="/js/closure.html" class="nav_link">闭包和面向对象</a></li><li class=""><a href="/js/regex.html" class="nav_link">正则</a></li><li class=""><a href="/js/algo.html" class="nav_link">算法</a></li><li class=""><a href="/js/design-patterns.html" class="nav_link">JS设计模式</a></li></ol></li><li class="unfold"><a href="/TS/index.html" class="nav_link">TS<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/TS/basics.html" class="nav_link">TS基础</a></li><li class=""><a href="/TS/enum.html" class="nav_link">TS枚举 类型 接口 泛型</a></li></ol></li><li class="unfold"><a href="/vue/index.html" class="nav_link">Vue<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/vue/vue-skills.html" class="nav_link">Vue开发技巧</a></li><li class=""><a href="/vue/vue-communication.html" class="nav_link">Vue组件通信</a></li><li class=""><a href="/vue/vue-router/vue-router.html" class="nav_link">Vue路由</a></li></ol></li><li class=""><a href="/react/lifecycle.html" class="nav_link">React的生命周期</a></li><li class="unfold"><a href="/webpack/index.html" class="nav_link">Webpack<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/webpack/webpack-use.html" class="nav_link">webpack的使用</a></li><li class=""><a href="/webpack/webpack-principle.html" class="nav_link">Webpack打包原理解析</a></li><li class=""><a href="/webpack/webpack-dev-config.html" class="nav_link">生产环境配置</a></li><li class=""><a href="/webpack/webpack-custom-loader.html" class="nav_link">实现自己的loader</a></li><li class=""><a href="/webpack/webpack-custom-plugin.html" class="nav_link">实现自己的plugin</a></li><li class=""><a href="/webpack/webpack-split-chunks.html" class="nav_link">webpack代码分片</a></li><li class=""><a href="/webpack/webpack-dev-server-hmr.html" class="nav_link">webpack-dev-server 与 HMR</a></li></ol></li><li class=""><a href="/web-monitor/web-monitor.html" class="nav_link">前端监控简介</a></li><li class=""><a href="/git/git.html" class="nav_link">Git使用</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>浏览器</h1>
+<h3 id="%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B">进程和线程<a class="anchor" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B">§</a></h3>
+<h5 id="%E8%BF%9B%E7%A8%8B">进程<a class="anchor" href="#%E8%BF%9B%E7%A8%8B">§</a></h5>
+<p>​	程序的一次执行,  它占有一片独有的内存空间</p>
+<h5 id="%E7%BA%BF%E7%A8%8B">线程<a class="anchor" href="#%E7%BA%BF%E7%A8%8B">§</a></h5>
+<p>​	CPU的基本调度单位, 是程序执行的一个完整流程</p>
+<h5 id="%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%85%B3%E7%B3%BB">进程与线程的关系<a class="anchor" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%85%B3%E7%B3%BB">§</a></h5>
+<p>​	一个进程中一般至少有一个运行的线程: 主线程
+​	一个进程中也可以同时运行多个线程, 这时程序就是多线程运行的
+​	一个进程内的数据可以供其中的多个线程直接共享
+​	多个进程之间的数据是不能直接共享的</p>
+<h5 id="%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E6%98%AF%E5%8D%95%E8%BF%9B%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E8%BF%9B%E7%A8%8B">浏览器运行是单进程还是多进程?<a class="anchor" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E6%98%AF%E5%8D%95%E8%BF%9B%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E8%BF%9B%E7%A8%8B">§</a></h5>
+<p>​	老版的大多数是单进程
+​	新版的大多数是多进程
+​	任务管理器 ---&gt;进程</p>
+<h5 id="%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B">浏览器运行是单线程还是多线程?<a class="anchor" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%90%E8%A1%8C%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E8%BF%98%E6%98%AF%E5%A4%9A%E7%BA%BF%E7%A8%8B">§</a></h5>
+<p>​	都是多线程运行的</p>
+<p>浏览器（多进程）包含了<strong>Browser进程</strong>（浏览器的主进程）、<strong>第三方插件进程</strong>和<strong>GPU进程</strong>（浏览器渲染进程），其中<strong>GPU进程</strong>（多线程）和Web前端密切相关，包含以下线程：</p>
+<ul>
+<li><strong>GUI渲染线程</strong></li>
+<li><strong>JS引擎线程</strong></li>
+<li><strong>事件触发线程</strong>（和EventLoop密切相关）</li>
+<li><strong>定时触发器线程</strong></li>
+<li><strong>异步HTTP请求线程</strong></li>
+</ul>
+<blockquote>
+<p><strong>GUI渲染线程</strong>和<strong>JS引擎线程</strong>是互斥的，为了防止DOM渲染的不一致性，其中一个线程执行时另一个线程会被挂起。</p>
+</blockquote>
+<p>这些线程中，和Vue的<code>nextTick</code>息息相关的是<strong>JS引擎线程</strong>和<strong>事件触发线程</strong></p>
+<p>（<strong>宏任务</strong> &gt; 渲染 &gt; <strong>宏任务</strong> &gt; ...）</p>
+<p><strong>微任务</strong>是在当前<strong>宏任务</strong>执行结束之后立即执行的任务（在当前 <strong>宏任务</strong>执行之后，UI渲染之前执行的任务）。</p>
+<p><strong>微任务</strong>的响应速度相比<code>setTimeout</code>（下一个<strong>宏任务</strong>）会更快，因为无需等待UI渲染。</p>
+<h3 id="js%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84">js是单线程的<a class="anchor" href="#js%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84">§</a></h3>
+<ol>
+<li>
+<h5 id="%E9%AA%8C%E8%AF%811">验证1<a class="anchor" href="#%E9%AA%8C%E8%AF%811">§</a></h5>
+<p>定时器并非定时执行
+原理
+setTimeout()的回调函数是在主线程执行的
+定时器回调函数只有在运行栈中的代码全部执行完后才有可能执行
+代码</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">var</span> btn <span class="token operator">=</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">getElementById</span><span class="token punctuation">(</span><span class="token string">'btn'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> timerId <span class="token operator">=</span> <span class="token keyword null nil">null</span><span class="token punctuation">;</span>
+ btn<span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 0. 清除定时器</span>
+  <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 1. 获取当前的时间</span>
+  <span class="token keyword">var</span> cTime <span class="token operator">=</span> <span class="token known-class-name class-name">Date</span><span class="token punctuation">.</span><span class="token method function property-access">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'------之前-----'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 2. 开启定时器</span>
+ timerId <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token known-class-name class-name">Date</span><span class="token punctuation">.</span><span class="token method function property-access">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> cTime<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'ms后执行'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'------之后-----'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+</li>
+</ol>
+<p>// 3. 耗时的任务
+for(var i = 0; i &lt; 1000000000; i++){</p>
+<pre><code>  }
+}
+```
+</code></pre>
+<p>​	
+​	
+2. 代码划分
+初始化代码
+回调代码
+3. js引擎执行代码的基本流程
+先执行初始化代码: 包含一些特别的代码
+设置定时器
+绑定监听
+网络(ajax)
+后面在某个时刻才可能执行回调代码(异步)
+4. 验证2
+// 1. 定时器1
+setTimeout(function () {
+console.log('------2m');
+}, 2000);
+// 2. 定时器2
+setTimeout(function () {
+console.log('------1m');
+}, 1000);
+// 3. 函数
+function func() {
+console.log('--------func()');
+}
+func();
+// 4. 弹窗
+alert('阻断');
+// 5. 后续操作
+console.log('---------弹窗之后操作1-----');
+console.log('---------弹窗之后操作2-----');
+5. 为什么js要用单线程, 而不用多线程?
+JavaScript的单线程，与它的用途有关。
+作为浏览器脚本语言，JavaScript的主要用途是与用户互动，以及操作DOM。
+这决定了它只能是单线程，否则会带来很复杂的同步问题，比如一边增加dom，一边删除dom
+图示
+6. <strong>「JS阻塞DOM解析」</strong>，也就会阻塞页面
+7. 如果 JavaScript 文件中没有操作 DOM 相关代码，就可以将该 JavaScript 脚本设置为异步加载，通过 async 或 defer 来标记代码</p>
+<h4 id="defer-%E5%92%8C-async"><strong>defer 和 async</strong><a class="anchor" href="#defer-%E5%92%8C-async">§</a></h4>
+<ul>
+<li>两者都是异步去加载外部JS文件，不会阻塞DOM解析</li>
+<li>Async是在外部JS加载完成后，浏览器空闲时，Load事件触发前执行,可能会在DOMContentLoaded之前或之后执行。标记为async的脚本并不保证按照指定他们的先后顺序执行，下载完成，立马执行。（此时才发生阻塞）。</li>
+<li>defer是在JS加载完成后，整个文档解析完成后，触发 <code>DOMContentLoaded</code> 事件前执行。</li>
+</ul>
+<h3 id="css">CSS<a class="anchor" href="#css">§</a></h3>
+<ul>
+<li><code>CSS</code>不会阻塞<code>DOM</code>解析，但会阻塞<code>DOM</code>渲染。</li>
+<li><code>CSS</code>会阻塞JS执行，并不会阻塞JS文件下载</li>
+<li>DOM 和 CSSOM通常是并行构建的，所以**「CSS 加载不会阻塞 DOM 的解析」**  renderObject  layerObject</li>
+</ul>
+<h4 id="requestanimationframe">requestAnimationFrame<a class="anchor" href="#requestanimationframe">§</a></h4>
+<h3 id="%E5%90%84%E7%A7%8D%E9%AB%98%E5%BA%A6">各种高度<a class="anchor" href="#%E5%90%84%E7%A7%8D%E9%AB%98%E5%BA%A6">§</a></h3>
+<pre class="language-autoit"><code class="language-autoit">页可见区域宽： document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>clientWidth<span class="token comment">;</span>
+网页可见区域高： document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>clientHeight<span class="token comment">;</span>
+网页可见区域宽： document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>offsetWidth <span class="token punctuation">(</span>包括边线的宽<span class="token punctuation">)</span><span class="token comment">;</span>
+网页可见区域高： document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>offsetHeight <span class="token punctuation">(</span>包括边线的宽<span class="token punctuation">)</span><span class="token comment">;</span>
+网页正文全文宽： document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>scrollWidth<span class="token comment">;</span>
+网页正文全文高： document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>scrollHeight<span class="token comment">;</span>
+网页被卷去的高： document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>scrollTop<span class="token comment">;</span>
+网页被卷去的左： document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>scrollLeft<span class="token comment">;</span>
+网页正文部分上： window<span class="token punctuation">.</span>screenTop<span class="token comment">;</span>
+网页正文部分左： window<span class="token punctuation">.</span>screenLeft<span class="token comment">;</span>
+屏幕分辨率的高： window<span class="token punctuation">.</span>screen<span class="token punctuation">.</span>height<span class="token comment">;</span>
+屏幕分辨率的宽： window<span class="token punctuation">.</span>screen<span class="token punctuation">.</span>width<span class="token comment">;</span>
+屏幕可用工作区高度： window<span class="token punctuation">.</span>screen<span class="token punctuation">.</span>availHeight<span class="token comment">;</span>
+
+</code></pre>
+<p><strong>图片懒加载可视区域计算</strong></p>
+<ul>
+<li>clientHeight-scrollTop-offsetTop</li>
+<li>element.getBoundingClientRect()</li>
+</ul>
+<h3 id="%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8">浏览器内核<a class="anchor" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8">§</a></h3>
+<p>简介
+支持浏览器运行的最核心的程序
+Chrome, Safari: webkit
+firefox: Gecko
+IE: Trident
+360,搜狗等国内浏览器: Trident + webkit
+内核模块组成
+html,css文档解析模块
+负责页面文本的解析
+dom/css模块
+负责dom/css在内存中的相关处理
+布局和渲染模块
+负责页面的布局和效果的绘制
+定时器模块
+负责定时器的管理
+网络请求模块
+负责服务器请求(常规/Ajax)
+事件响应模块
+负责事件的管理
+......</p>
+<h3 id="%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%A8%A1%E5%9E%8B">事件循环模型<a class="anchor" href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%A8%A1%E5%9E%8B">§</a></h3>
+<ol>
+<li>
+<p>图示</p>
+<p><img src="C:%5CUsers%5Cding%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200625134628783.png" alt="image-20200625134628783"></p>
+</li>
+<li>
+<p>了解
+模型的组成
+事件管理模块
+回调队列
+代码分类
+初始化执行代码(同步代码)
+包含绑定dom事件监听, 设置定时器, 发送ajax请求的代码
+回调执行代码(异步代码)
+处理回调逻辑
+模型的运转流程
+执行初始化代码, 将事件回调函数交给对应模块管理
+当事件发生时, 管理模块会将回调函数及其数据添加到回调列队中
+只有当初始化代码执行完后(可能要一定时间), 才会遍历读取回调队列中的回调函数执行</p>
+</li>
+</ol>
+<p><strong>浏览器完成一个宏任务，在下一个宏任务执行开始前，会对页面进行重新渲染。</strong></p>
+<p><strong>如果存在微任务，浏览器会清空微任务之后再重新渲染。</strong></p></article><div class="prev_next"><a class="prev button" href="/HTTP/index.html">«  <!-- -->HTTP协议与浏览器</a><a class="next button" href="/HTTP/HTTP.html">HTTP协议请求方法和状态码<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B">进程和线程</a><ol></ol></li><li><a href="#js%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84">js是单线程的</a><ol></ol></li><li><a href="#css">CSS</a><ol></ol></li><li><a href="#%E5%90%84%E7%A7%8D%E9%AB%98%E5%BA%A6">各种高度</a></li><li><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8">浏览器内核</a></li><li><a href="#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%A8%A1%E5%9E%8B">事件循环模型</a></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

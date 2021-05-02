@@ -765,3 +765,43 @@ function getMaxLength(){
 
 ```
 
+对象寻址
+
+```js
+// 方法一
+var obj = {
+    a:{
+        b:{
+            c:1
+        }
+    }
+}
+ 
+var str = 'a.b.c';
+
+const find = (obj,str) => {
+    const arr = str.split('.')
+    let result = obj[arr[0]]
+    for(let k of arr.slice(1)){
+        if(!result) break
+        result = result[k] 
+    }
+    return result
+}
+console.log(find(obj,str))
+
+// 方法二  parsePath
+function parsePath(exp){
+    const segments = exp.split('.')
+    return function(obj){
+        for(let i = 0; i < segments.length; i++){
+            if(!obj) return
+            obj = obj[segments[i]]
+        }
+        return obj
+    }
+}
+console.log(parsePath(str)(obj))
+
+```
+

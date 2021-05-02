@@ -1,0 +1,87 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="前端笔记"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">Webpack打包原理解析 · Ding前端笔记</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Ding前端笔记</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Ding前端笔记</a></h1></li><li style="flex-grow:1"></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/index.html" class="nav_link">Hello world</a></li><li class="unfold"><a href="/WebAPI/README.md" class="nav_link">WebAPI/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"></ol></li><li class="unfold"><a href="/HTTP/index.html" class="nav_link">HTTP协议与浏览器<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/HTTP/browser.html" class="nav_link">浏览器</a></li><li class=""><a href="/HTTP/HTTP.html" class="nav_link">HTTP协议请求方法和状态码</a></li><li class=""><a href="/HTTP/internet-hardware.html" class="nav_link">网络硬件</a></li></ol></li><li class="unfold"><a href="/js/todo.md" class="nav_link">js/todo.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/js/basics.html" class="nav_link">JavaScript基础</a></li><li class=""><a href="/js/Object.html" class="nav_link">基础</a></li><li class=""><a href="/js/context.html" class="nav_link">执行上下文</a></li><li class=""><a href="/js/closure.html" class="nav_link">闭包和面向对象</a></li><li class=""><a href="/js/regex.html" class="nav_link">正则</a></li><li class=""><a href="/js/algo.html" class="nav_link">算法</a></li><li class=""><a href="/js/design-patterns.html" class="nav_link">JS设计模式</a></li></ol></li><li class="unfold"><a href="/TS/index.html" class="nav_link">TS<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/TS/basics.html" class="nav_link">TS基础</a></li><li class=""><a href="/TS/enum.html" class="nav_link">TS枚举 类型 接口 泛型</a></li></ol></li><li class="unfold"><a href="/vue/index.html" class="nav_link">Vue<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/vue/vue-skills.html" class="nav_link">Vue开发技巧</a></li><li class=""><a href="/vue/vue-communication.html" class="nav_link">Vue组件通信</a></li><li class=""><a href="/vue/vue-router/vue-router.html" class="nav_link">Vue路由</a></li></ol></li><li class=""><a href="/react/lifecycle.html" class="nav_link">React的生命周期</a></li><li class="unfold"><a href="/webpack/index.html" class="nav_link">Webpack<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/webpack/webpack-use.html" class="nav_link">webpack的使用</a></li><li class=""><a href="/webpack/webpack-principle.html" class="nav_link active">Webpack打包原理解析</a></li><li class=""><a href="/webpack/webpack-dev-config.html" class="nav_link">生产环境配置</a></li><li class=""><a href="/webpack/webpack-custom-loader.html" class="nav_link">实现自己的loader</a></li><li class=""><a href="/webpack/webpack-custom-plugin.html" class="nav_link">实现自己的plugin</a></li><li class=""><a href="/webpack/webpack-split-chunks.html" class="nav_link">webpack代码分片</a></li><li class=""><a href="/webpack/webpack-dev-server-hmr.html" class="nav_link">webpack-dev-server 与 HMR</a></li></ol></li><li class=""><a href="/web-monitor/web-monitor.html" class="nav_link">前端监控简介</a></li><li class=""><a href="/git/git.html" class="nav_link">Git使用</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>Webpack打包原理解析</h1>
+<h2 id="bundler%E7%9A%84%E5%9F%BA%E7%A1%80%E6%B5%81%E7%A8%8B">bundler的基础流程<a class="anchor" href="#bundler%E7%9A%84%E5%9F%BA%E7%A1%80%E6%B5%81%E7%A8%8B">§</a></h2>
+<p>bundler从一个构建入口出发，解析模块，分析出模块的依赖关系。然后将依赖的代码模块组合在一起。</p>
+<p>递归解析，直至没有更多的依赖模块，最终形成一颗模块依赖树。</p>
+<p>分析出依赖关系后，由于依赖代码东得执行有先后顺序，以及会引用模块内部不同的内容，不能简单的拼接在一起。</p>
+<p>将每一个模块包装成一个JS Function，提供一个引用依赖模块的方法，<em>webpack_require</em>，来替换require</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> 分别将各个依赖模块的代码用 modules 的方式组织起来打包成一个文件
+<span class="token operator">/</span><span class="token operator">/</span> entry<span class="token punctuation">.</span>js
+modules<span class="token punctuation">[</span><span class="token string">'./entry.js'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> {
+  <span class="token keyword">const</span> { bar } <span class="token operator">=</span> <span class="token function">__webpack__require__</span><span class="token punctuation">(</span><span class="token string">'./bar.js'</span><span class="token punctuation">)</span>
+}
+
+<span class="token operator">/</span><span class="token operator">/</span> bar<span class="token punctuation">.</span>js
+modules<span class="token punctuation">[</span><span class="token string">'./bar.js'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> {
+  <span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token function">__webpack__require__</span><span class="token punctuation">(</span><span class="token string">'./foo.js'</span><span class="token punctuation">)</span>
+}<span class="token comment">;</span>
+
+<span class="token operator">/</span><span class="token operator">/</span> foo<span class="token punctuation">.</span>js
+modules<span class="token punctuation">[</span><span class="token string">'./foo.js'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> {
+  <span class="token operator">/</span><span class="token operator">/</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+}
+
+<span class="token operator">/</span><span class="token operator">/</span> 已经执行的代码模块结果会保存在这里
+<span class="token keyword">const</span> installedModules <span class="token operator">=</span> {}
+
+function <span class="token function">__webpack__require__</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> {
+  <span class="token operator">/</span><span class="token operator">/</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
+  <span class="token operator">/</span><span class="token operator">/</span> 如果 installedModules 中有就直接获取
+  <span class="token operator">/</span><span class="token operator">/</span> 没有的话从 modules 中获取 function 然后执行，将结果缓存在 installedModules 中然后返回结果
+}
+
+</code></pre>
+<pre class="language-autoit"><code class="language-autoit"><span class="token punctuation">(</span>function <span class="token punctuation">(</span>modules<span class="token punctuation">)</span> {
+  var installedModules <span class="token operator">=</span> {}<span class="token comment">;</span>
+
+  function <span class="token function">__webpack_require__</span><span class="token punctuation">(</span>moduleId<span class="token punctuation">)</span> {
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>installedModules<span class="token punctuation">[</span>moduleId<span class="token punctuation">]</span><span class="token punctuation">)</span> {
+      return installedModules<span class="token punctuation">[</span>moduleId<span class="token punctuation">]</span><span class="token punctuation">.</span>exports<span class="token comment">;</span>
+    }
+    var module <span class="token operator">=</span> <span class="token punctuation">(</span>installedModules<span class="token punctuation">[</span>moduleId<span class="token punctuation">]</span> <span class="token operator">=</span> {
+      i<span class="token punctuation">:</span> moduleId<span class="token punctuation">,</span>
+      l<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      exports<span class="token punctuation">:</span> {}
+    }<span class="token punctuation">)</span><span class="token comment">;</span>
+    modules<span class="token punctuation">[</span>moduleId<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>module<span class="token punctuation">.</span>exports<span class="token punctuation">,</span> module<span class="token punctuation">,</span> module<span class="token punctuation">.</span>exports<span class="token punctuation">,</span> __webpack_require__<span class="token punctuation">)</span><span class="token comment">;</span>
+    module<span class="token punctuation">.</span>l <span class="token operator">=</span> <span class="token boolean">true</span><span class="token comment">;</span>
+    return module<span class="token punctuation">.</span>exports<span class="token comment">;</span>
+  }
+  return <span class="token function">__webpack_require__</span><span class="token punctuation">(</span><span class="token punctuation">(</span>__webpack_require__<span class="token punctuation">.</span>s <span class="token operator">=</span> <span class="token string">"./index.js"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">;</span>
+}<span class="token punctuation">)</span><span class="token punctuation">(</span>{
+  <span class="token string">"./index.js"</span><span class="token punctuation">:</span> function <span class="token punctuation">(</span>module<span class="token punctuation">,</span> exports<span class="token punctuation">)</span> {
+    <span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">'// import a from "./a";\n\nconsole.log("hello word");\n\n\n//# sourceURL=<a class="token url-link" href="webpack:///./index.js?'">webpack:///./index.js?'</a></span><span class="token punctuation">)</span><span class="token comment">;</span>
+  }
+}<span class="token punctuation">)</span><span class="token comment">;</span>
+</code></pre>
+<p>webpack的结构</p>
+<p>webpack 需要强大的扩展性，尤其是插件实现这一块，webpack 利用了 <a href="https://github.com/webpack/tapable">tapable</a> 这个库。</p>
+<p>webpack 基于 tapable 定义了主要构建流程后，使用 tapable 这个库添加了各种各样的钩子方法来将 webpack 扩展至功能十分丰富，同时对外提供了相对强大的扩展性，即 plugin 的机制。</p>
+<ul>
+<li>Compiler，webpack 的运行入口，实例化时定义 webpack 构建主要流程，同时创建构建时使用的核心对象 compilation</li>
+<li>Compilation，由 Compiler 实例化，存储构建过程中各流程使用到的数据，用于控制这些数据的变化</li>
+<li>Chunk，即用于表示 chunk 的类，对于构建时需要的 chunk 对象由 Compilation 创建后保存管理</li>
+<li>Module，用于表示代码模块的类，衍生出很多子类用于处理不同的情况，关于代码模块的所有信息都会存在 Module 实例中，例如 <code>dependencies</code> 记录代码模块的依赖等</li>
+<li>Parser，其中相对复杂的一个部分，基于 <a href="https://github.com/acornjs/acorn">acorn</a> 来分析 AST 语法树，解析出代码模块的依赖</li>
+<li>Dependency，解析时用于保存代码模块对应的依赖使用的对象</li>
+<li>Template，生成最终代码要使用到的代码模板，像上述提到的胶水代码就是用对应的 Template 来生成</li>
+</ul>
+<blockquote>
+<p><strong>compiler</strong> 对象代表了完整的 webpack 环境配置。这个对象在启动 webpack 时被一次性建立，并配置好所有可操作的设置，包括 options，loader 和 plugin。当在 webpack 环境中应用一个插件时，插件将收到此 compiler 对象的引用。可以使用它来访问 webpack 的主环境。</p>
+<p><strong>compilation</strong> 对象代表了一次资源版本构建。当运行 webpack 开发环境中间件时，每当检测到一个文件变化，就会创建一个新的 compilation，从而生成一组新的编译资源。一个 compilation 对象表现了当前的模块资源、编译生成资源、变化的文件、以及被跟踪依赖的状态信息。compilation 对象也提供了很多关键步骤的回调，以供插件做自定义处理时选择使用。</p>
+</blockquote>
+<pre class="language-autoit"><code class="language-autoit"><span class="token keyword">const</span> parser <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@babel/parser'</span><span class="token punctuation">)</span><span class="token comment">; </span>
+<span class="token keyword">const</span> traverse <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@babel/traverse'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">default</span><span class="token comment">; </span>
+<span class="token keyword">const</span> babel <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'@babel/core'</span><span class="token punctuation">)</span><span class="token comment">;</span>
+
+</code></pre></article><div class="prev_next"><a class="prev button" href="/webpack/webpack-use.html">«  <!-- -->webpack的使用</a><a class="next button" href="/webpack/webpack-dev-config.html">生产环境配置<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#bundler%E7%9A%84%E5%9F%BA%E7%A1%80%E6%B5%81%E7%A8%8B">bundler的基础流程</a></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

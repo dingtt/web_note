@@ -1,0 +1,163 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="前端笔记"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">React的生命周期 · Ding前端笔记</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Ding前端笔记</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Ding前端笔记</a></h1></li><li style="flex-grow:1"></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/index.html" class="nav_link">Hello world</a></li><li class="unfold"><a href="/WebAPI/README.md" class="nav_link">WebAPI/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"></ol></li><li class="unfold"><a href="/HTTP/index.html" class="nav_link">HTTP协议与浏览器<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/HTTP/browser.html" class="nav_link">浏览器</a></li><li class=""><a href="/HTTP/HTTP.html" class="nav_link">HTTP协议请求方法和状态码</a></li><li class=""><a href="/HTTP/internet-hardware.html" class="nav_link">网络硬件</a></li></ol></li><li class="unfold"><a href="/js/todo.md" class="nav_link">js/todo.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/js/basics.html" class="nav_link">JavaScript基础</a></li><li class=""><a href="/js/Object.html" class="nav_link">基础</a></li><li class=""><a href="/js/context.html" class="nav_link">执行上下文</a></li><li class=""><a href="/js/closure.html" class="nav_link">闭包和面向对象</a></li><li class=""><a href="/js/regex.html" class="nav_link">正则</a></li><li class=""><a href="/js/algo.html" class="nav_link">算法</a></li><li class=""><a href="/js/design-patterns.html" class="nav_link">JS设计模式</a></li></ol></li><li class="unfold"><a href="/TS/index.html" class="nav_link">TS<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/TS/basics.html" class="nav_link">TS基础</a></li><li class=""><a href="/TS/enum.html" class="nav_link">TS枚举 类型 接口 泛型</a></li></ol></li><li class="unfold"><a href="/vue/index.html" class="nav_link">Vue<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/vue/vue-skills.html" class="nav_link">Vue开发技巧</a></li><li class=""><a href="/vue/vue-communication.html" class="nav_link">Vue组件通信</a></li><li class=""><a href="/vue/vue-router/vue-router.html" class="nav_link">Vue路由</a></li></ol></li><li class=""><a href="/react/lifecycle.html" class="nav_link active">React的生命周期</a></li><li class="unfold"><a href="/webpack/index.html" class="nav_link">Webpack<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/webpack/webpack-use.html" class="nav_link">webpack的使用</a></li><li class=""><a href="/webpack/webpack-principle.html" class="nav_link">Webpack打包原理解析</a></li><li class=""><a href="/webpack/webpack-dev-config.html" class="nav_link">生产环境配置</a></li><li class=""><a href="/webpack/webpack-custom-loader.html" class="nav_link">实现自己的loader</a></li><li class=""><a href="/webpack/webpack-custom-plugin.html" class="nav_link">实现自己的plugin</a></li><li class=""><a href="/webpack/webpack-split-chunks.html" class="nav_link">webpack代码分片</a></li><li class=""><a href="/webpack/webpack-dev-server-hmr.html" class="nav_link">webpack-dev-server 与 HMR</a></li></ol></li><li class=""><a href="/web-monitor/web-monitor.html" class="nav_link">前端监控简介</a></li><li class=""><a href="/git/git.html" class="nav_link">Git使用</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>React的生命周期</h1>
+<h2 id="react-v160%E5%89%8D%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">React v16.0前的生命周期<a class="anchor" href="#react-v160%E5%89%8D%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">§</a></h2>
+<h3 id="%E5%88%9D%E5%A7%8B%E5%8C%96initialization%E9%98%B6%E6%AE%B5">初始化（initialization）阶段<a class="anchor" href="#%E5%88%9D%E5%A7%8B%E5%8C%96initialization%E9%98%B6%E6%AE%B5">§</a></h3>
+<p>代码中类的构造方法 （ <code>constructor()</code>）,类继承了react COmponent 这个基类，才能有render()，生命周期等方法， 函数组件不能使用这些方法</p>
+<p><code>super(props)</code>用来调用基类的构造方法 <code>constructor()</code>，也将父组件的props注入给子组件，供子组件读取，子组件中的props只读不可变，state可变。 类的<code>constructor()</code>用来做一些组件的初始化工作，如定义 this.state的初始内容</p>
+<h3 id="%E7%BB%84%E4%BB%B6%E7%9A%84%E6%8C%82%E8%BD%BDmount%E9%98%B6%E6%AE%B5">组件的挂载Mount阶段<a class="anchor" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%8C%82%E8%BD%BDmount%E9%98%B6%E6%AE%B5">§</a></h3>
+<ul>
+<li>
+<h5 id="componentwillmount">componentWillMount<a class="anchor" href="#componentwillmount">§</a></h5>
+</li>
+</ul>
+<p>组件挂载前，只会调用一次，在此中调用this.state 不会引起组件重新渲染</p>
+<ul>
+<li>
+<h5 id="render">render<a class="anchor" href="#render">§</a></h5>
+</li>
+</ul>
+<p>根据组件的props和state，return一个React元素（描述组件，既UI），不负责组件的实际渲染工作，之后由React自身根据此元素取渲染出页面DOM，render是串函数，（Pure function 函数的返回结果只依赖于它的参数，函数的执行过程没有副作用，不能在里面执行this.setState，会有改变组件状态的副作用）</p>
+<ul>
+<li>
+<h5 id="componentdidmount">componentDidMount<a class="anchor" href="#componentdidmount">§</a></h5>
+</li>
+</ul>
+<p>组件挂载到DOM后调用，并且只调用一次</p>
+<h3 id="%E7%BB%84%E4%BB%B6%E7%9A%84%E6%9B%B4%E6%96%B0%E9%98%B6%E6%AE%B5">组件的更新阶段<a class="anchor" href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%9B%B4%E6%96%B0%E9%98%B6%E6%AE%B5">§</a></h3>
+<p>setState引起的state更新或父组件重新render引起的props更新，更新后的state和props之前的相比无论是否变化，都将引起自组件的重新渲染。</p>
+<p>此阶段分为 componentWillReceiveProps , shouldComponentUpdate , componentWillUpdate，render ,componenDidUpdate</p>
+<ol>
+<li>
+<p>componentWillReceiveProps(nextProps)</p>
+<p>此方法只调用与props引起的组件更新过程中，可根据nextProps和this.props查明是否改变，以及如果改变了要执行啥，比如根据新的props调用this.setState 触发当前组件的更新</p>
+<p><em>优化在componentWillReceiveProps中将props转化为自己的state</em></p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Child</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span><span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">state</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+            num <span class="token operator">:</span> props<span class="token punctuation">.</span><span class="token property-access">num</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">componentWillReceiveProps</span><span class="token punctuation">(</span><span class="token parameter">nextProps</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//父组件重传props会调用这个方法</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token method function property-access">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            num <span class="token operator">:</span> nextProps<span class="token punctuation">.</span><span class="token property-access">num</span>   <span class="token comment">//如果nextProps变化了，会触发setState重新render,如此props不会再触发子组件更新</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword control-flow">return</span> <span class="token operator">&lt;</span>div<span class="token operator">></span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">state</span><span class="token punctuation">.</span><span class="token property-access">num</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li>
+<p>shouldComponentUpdate(nextProps/nextState)</p>
+<p>返回true当前组件继续执行更新过程，返回false则当前组件停止更新，减少不必要的渲染，优化性能。</p>
+<p>在render前，this.state依然指向更新前的state</p>
+<p><em>优化</em></p>
+<ol>
+<li>父组件render引起的，参数nextProps是父组件传的新props，子组件将直接重新渲染，无论props是否有变化，优化方案：</li>
+</ol>
+<p>父组件重新render</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Child</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span><span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">state</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+            num <span class="token operator">:</span> props<span class="token punctuation">.</span><span class="token property-access">num</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">shouldComponentUpdate</span><span class="token punctuation">(</span><span class="token parameter">nextProps</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment">//无论props是否变化，都会触发</span>
+        <span class="token keyword control-flow">if</span><span class="token punctuation">(</span>nextProps<span class="token punctuation">.</span><span class="token property-access">num</span> <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">props</span><span class="token punctuation">.</span><span class="token property-access">num</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword control-flow">return</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword control-flow">return</span> <span class="token operator">&lt;</span>div<span class="token operator">></span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">state</span><span class="token punctuation">.</span><span class="token property-access">num</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">}</span>
+    
+<span class="token punctuation">}</span>
+</code></pre>
+<ol>
+<li>
+<p>组件本身调用setState ，无论state有没有变化，可通过shouldComponentUpdate方法优化</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">Child</span> <span class="token keyword">extends</span> <span class="token class-name">COmpoonent</span><span class="token punctuation">{</span>
+    <span class="token function">consrtuctor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">state</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+            num <span class="token operator">:</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">shouldComponentUpdate</span><span class="token punctuation">(</span><span class="token parameter">nextState</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">//应该使用这个方法，不然state是否有更新都将会导致数组的重新渲染</span>
+        <span class="token keyword control-flow">if</span><span class="token punctuation">(</span>nextState<span class="token punctuation">.</span><span class="token property-access">num</span> <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">state</span><span class="token punctuation">.</span><span class="token property-access">num</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword control-flow">return</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function-variable function">handldeClick</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> num <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">state</span><span class="token punctuation">.</span><span class="token property-access">num</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">setState</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+            num <span class="token operator">:</span> num
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword control-flow">return</span> <span class="token operator">&lt;</span>div onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">handleClick</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">></span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">state</span><span class="token punctuation">.</span><span class="token property-access">num</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h5 id="componentwillupdate">componentWillUpdate<a class="anchor" href="#componentwillupdate">§</a></h5>
+<p>可在render前执行一定的操作</p>
+<h5 id="render-1">render<a class="anchor" href="#render-1">§</a></h5>
+<h5 id="componentdidupdateprevpropsprestate">componentDidUpdate(prevProps,preState)<a class="anchor" href="#componentdidupdateprevpropsprestate">§</a></h5>
+<p>此方法在组件更新后被调用，可以操作组件更新的DOM，preProps和preState是组件更新前的props和state</p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="react-v164%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">React v16.4的生命周期<a class="anchor" href="#react-v164%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">§</a></h4>
+<h5 id="getderivedstatefromporops">getDerivedStateFromPorops<a class="anchor" href="#getderivedstatefromporops">§</a></h5>
+<p>v16.3只在创建更新时触发，v16.4之后无论什么引起的updating，都会调用</p>
+<p>static getDerivedStateFromProps(props,state) 在组件创建时和更新时的render方法之前，它应该返回一个对象来更新状态，或者返回null不更新任何内容</p>
+<h5 id="getsnapshotbeforeupdate">getSnapshotBeforeUpdate<a class="anchor" href="#getsnapshotbeforeupdate">§</a></h5>
+<p>getSnapshotBeforeUpdate 被调用与render之后，可以读取但无法使用DOM的时候，它使组件可以在更改之前从DOM捕获一些信息，(例如滚动位置)，此生命周期的任何值都讲作为参数传递给componentDidUpdate()</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">class</span> <span class="token class-name">ScrollingList</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">listRef</span> <span class="token operator">=</span> <span class="token maybe-class-name">React</span><span class="token punctuation">.</span><span class="token method function property-access">createRef</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token function">getSnapshotBeforeUpdate</span><span class="token punctuation">(</span><span class="token parameter">preProps<span class="token punctuation">,</span>preState</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">//是否需要添加新的 item 到列表</span>
+        <span class="token comment">//捕捉滚动位置，以便可以稍候调整滚动</span>
+        <span class="token keyword control-flow">if</span><span class="token punctuation">(</span>preProps<span class="token punctuation">.</span><span class="token property-access">list</span><span class="token punctuation">.</span><span class="token property-access">length</span> <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">props</span><span class="token punctuation">,</span>length<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">const</span> list <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">listRef</span><span class="token punctuation">.</span><span class="token property-access">current</span>
+            <span class="token keyword control-flow">return</span> list<span class="token punctuation">.</span><span class="token property-access">scrollHeight</span> <span class="token operator">-</span> list<span class="token punctuation">.</span><span class="token property-access">scrollTop</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword control-flow">return</span> <span class="token keyword null nil">null</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token function">componentDidUpdate</span><span class="token punctuation">(</span><span class="token parameter">preProps<span class="token punctuation">,</span>preState<span class="token punctuation">,</span>snapshot</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment">//如果有snapshot值，已经添加了新的 items</span>
+        <span class="token comment">//调整滚动以至于这些新的items 不会将旧的items推出视图</span>
+        <span class="token comment">//这里的 snapshotshi getSnapshotUpdate 方法的返回值</span>
+        <span class="token keyword control-flow">if</span><span class="token punctuation">(</span>snapshot <span class="token operator">!=</span> <span class="token keyword null nil">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">const</span> list <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">listRef</span><span class="token punctuation">.</span><span class="token property-access">current</span>
+            list<span class="token punctuation">.</span><span class="token property-access">scrollTop</span> <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token property-access">scrollHeight</span> <span class="token operator">-</span> snapshot
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword control-flow">return</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>div ref<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token property-access">listRef</span><span class="token punctuation">}</span><span class="token operator">></span><span class="token punctuation">{</span><span class="token comment">/* ... contents...*/</span><span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></article><div class="prev_next"><a class="prev button" href="/vue/vue-router/vue-router.html">«  <!-- -->Vue路由</a><a class="next button" href="/webpack/index.html">Webpack<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#react-v160%E5%89%8D%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">React v16.0前的生命周期</a><ol><li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96initialization%E9%98%B6%E6%AE%B5">初始化（initialization）阶段</a></li><li><a href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%8C%82%E8%BD%BDmount%E9%98%B6%E6%AE%B5">组件的挂载Mount阶段</a><ol></ol></li><li><a href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E6%9B%B4%E6%96%B0%E9%98%B6%E6%AE%B5">组件的更新阶段</a><ol></ol></li></ol></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

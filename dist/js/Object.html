@@ -1,0 +1,170 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="前端笔记"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">基础 · Ding前端笔记</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Ding前端笔记</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Ding前端笔记</a></h1></li><li style="flex-grow:1"></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/index.html" class="nav_link">Hello world</a></li><li class="unfold"><a href="/WebAPI/README.md" class="nav_link">WebAPI/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"></ol></li><li class="unfold"><a href="/HTTP/index.html" class="nav_link">HTTP协议与浏览器<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/HTTP/browser.html" class="nav_link">浏览器</a></li><li class=""><a href="/HTTP/HTTP.html" class="nav_link">HTTP协议请求方法和状态码</a></li><li class=""><a href="/HTTP/internet-hardware.html" class="nav_link">网络硬件</a></li></ol></li><li class="unfold"><a href="/js/todo.md" class="nav_link">js/todo.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/js/basics.html" class="nav_link">JavaScript基础</a></li><li class=""><a href="/js/Object.html" class="nav_link active">基础</a></li><li class=""><a href="/js/context.html" class="nav_link">执行上下文</a></li><li class=""><a href="/js/closure.html" class="nav_link">闭包和面向对象</a></li><li class=""><a href="/js/regex.html" class="nav_link">正则</a></li><li class=""><a href="/js/algo.html" class="nav_link">算法</a></li><li class=""><a href="/js/design-patterns.html" class="nav_link">JS设计模式</a></li></ol></li><li class="unfold"><a href="/TS/index.html" class="nav_link">TS<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/TS/basics.html" class="nav_link">TS基础</a></li><li class=""><a href="/TS/enum.html" class="nav_link">TS枚举 类型 接口 泛型</a></li></ol></li><li class="unfold"><a href="/vue/index.html" class="nav_link">Vue<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/vue/vue-skills.html" class="nav_link">Vue开发技巧</a></li><li class=""><a href="/vue/vue-communication.html" class="nav_link">Vue组件通信</a></li><li class=""><a href="/vue/vue-router/vue-router.html" class="nav_link">Vue路由</a></li></ol></li><li class=""><a href="/react/lifecycle.html" class="nav_link">React的生命周期</a></li><li class="unfold"><a href="/webpack/index.html" class="nav_link">Webpack<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/webpack/webpack-use.html" class="nav_link">webpack的使用</a></li><li class=""><a href="/webpack/webpack-principle.html" class="nav_link">Webpack打包原理解析</a></li><li class=""><a href="/webpack/webpack-dev-config.html" class="nav_link">生产环境配置</a></li><li class=""><a href="/webpack/webpack-custom-loader.html" class="nav_link">实现自己的loader</a></li><li class=""><a href="/webpack/webpack-custom-plugin.html" class="nav_link">实现自己的plugin</a></li><li class=""><a href="/webpack/webpack-split-chunks.html" class="nav_link">webpack代码分片</a></li><li class=""><a href="/webpack/webpack-dev-server-hmr.html" class="nav_link">webpack-dev-server 与 HMR</a></li></ol></li><li class=""><a href="/web-monitor/web-monitor.html" class="nav_link">前端监控简介</a></li><li class=""><a href="/git/git.html" class="nav_link">Git使用</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>基础</h1>
+<h2 id="javascript%E5%AF%B9%E8%B1%A1">JavaScript对象<a class="anchor" href="#javascript%E5%AF%B9%E8%B1%A1">§</a></h2>
+<h3 id="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">基础知识<a class="anchor" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">§</a></h3>
+<p>即使完全相同的两个对象，也并非同一个对象，因为对象是引用类型。</p>
+<h3 id="%E5%AF%B9%E8%B1%A1%E5%88%86%E7%B1%BB">对象分类<a class="anchor" href="#%E5%AF%B9%E8%B1%A1%E5%88%86%E7%B1%BB">§</a></h3>
+<ul>
+<li>
+<p>宿主对象（host	Objects）：由JavaScript宿主环境提供的对象，它们的行为完全由宿主环境决定。</p>
+</li>
+<li>
+<p>内置对象（Built-in	Objects）：由JavaScript语言提供的对象。</p>
+<ul>
+<li>固有对象（Intrinsic	Objects	）：由标准规定，随着JavaScript运行时创建而自动创建的对象实例。</li>
+<li>原生对象（Native	Objects）：可以由用户通过Array、RegExp等内置构造器或者特殊语法创建的对 象。</li>
+<li>普通对象（Ordinary	Objects）：由{}语法、Object构造器或者class关键字定义类创建的对象，它能够 被原型继承。</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E5%AE%BF%E4%B8%BB%E5%AF%B9%E8%B1%A1">宿主对象<a class="anchor" href="#%E5%AE%BF%E4%B8%BB%E5%AF%B9%E8%B1%A1">§</a></h4>
+<p>浏览器环境中的全局对象window，属性一部分雷子JavaScript，一部分来自浏览器环境。也分区固有和用户可创建两种。</p>
+<h4 id="%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1">内置对象<a class="anchor" href="#%E5%86%85%E7%BD%AE%E5%AF%B9%E8%B1%A1">§</a></h4>
+<h5 id="%E5%9B%BA%E6%9C%89%E5%AF%B9%E8%B1%A1">固有对象<a class="anchor" href="#%E5%9B%BA%E6%9C%89%E5%AF%B9%E8%B1%A1">§</a></h5>
+<p>固有对象是由标准规定，随着JavaScript运行时创建而自动创建的对象实例。固有对象在JS代码执行前就已经存在。</p>
+<h6 id="%E4%B8%89%E4%B8%AA%E5%80%BC">三个值<a class="anchor" href="#%E4%B8%89%E4%B8%AA%E5%80%BC">§</a></h6>
+<p>Infinity、NaN、undefined</p>
+<h6 id="%E4%B9%9D%E4%B8%AA%E5%87%BD%E6%95%B0"><strong>九个函数</strong><a class="anchor" href="#%E4%B9%9D%E4%B8%AA%E5%87%BD%E6%95%B0">§</a></h6>
+<p>eval
+isFinite
+isNaN
+parseFloat
+parseInt
+decodeURI
+decodeURIComponent
+encodeURI
+encodeURIComponen</p>
+<h6 id="%E6%9E%84%E9%80%A0%E5%99%A8"><strong>构造器</strong><a class="anchor" href="#%E6%9E%84%E9%80%A0%E5%99%A8">§</a></h6>
+<p>Array、Date、RegExp、Promise、Proxy、Map、WeakMap、Set、WeapSet、Function、Boolean、 String、Number、Symbol、Object、Error、EvalError、RangeError、ReferenceError、SyntaxError、TypeError URIError、ArrayBuffer、SharedArrayBuffer、DataView、Typed	Array、Float32Array、Float64Array、 Int8Array、Int16Array、Int32Array、UInt8Array、UInt16Array、UInt32Array、UInt8ClampedArray</p>
+<h6 id="%E5%9B%9B%E4%B8%AA%E7%94%A8%E4%BA%8E%E5%BD%93%E4%BD%9C%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E5%AF%B9%E8%B1%A1">四个用于当作命名空间的对象<a class="anchor" href="#%E5%9B%9B%E4%B8%AA%E7%94%A8%E4%BA%8E%E5%BD%93%E4%BD%9C%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E5%AF%B9%E8%B1%A1">§</a></h6>
+<p>Atomics
+JSON
+Math
+Reflect</p>
+<h5 id="%E5%8E%9F%E7%94%9F%E5%AF%B9%E8%B1%A1">原生对象<a class="anchor" href="#%E5%8E%9F%E7%94%9F%E5%AF%B9%E8%B1%A1">§</a></h5>
+<p>能够通过语言本身的构造器创建的对象称为原生对象，在JavaScript标准中，提供了30 多个构造器</p>
+<div class="table_wrapper"><table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>基础功能和数据结构</th>
+<th>错误类型</th>
+<th>二进制操作</th>
+<th>带类型的数组</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boolean</td>
+<td>Array</td>
+<td>Error</td>
+<td>ArrayBuffer</td>
+<td>Float32Array</td>
+</tr>
+<tr>
+<td>String</td>
+<td>Date</td>
+<td>EvalError</td>
+<td>SharedArrayBuffer</td>
+<td>Float64Array</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>RegExp</td>
+<td>RangeError</td>
+<td>DataView</td>
+<td>Int8Array</td>
+</tr>
+<tr>
+<td>Symbol</td>
+<td>Promise</td>
+<td>ReferenceError</td>
+<td></td>
+<td>Int16Array</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>Proxy</td>
+<td>SyntaxError</td>
+<td></td>
+<td>Int32Array</td>
+</tr>
+<tr>
+<td></td>
+<td>Map</td>
+<td>TypeError</td>
+<td></td>
+<td>UInt8Array</td>
+</tr>
+<tr>
+<td></td>
+<td>WeakMap</td>
+<td>URLError</td>
+<td></td>
+<td>UInt16Array</td>
+</tr>
+<tr>
+<td></td>
+<td>Set</td>
+<td></td>
+<td></td>
+<td>UInt32Array</td>
+</tr>
+<tr>
+<td></td>
+<td>WeakSet</td>
+<td></td>
+<td></td>
+<td>UInt8ClampedArray</td>
+</tr>
+<tr>
+<td></td>
+<td>Function</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h5 id="%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%9E%84%E9%80%A0%E5%99%A8%E5%AF%B9%E8%B1%A1">函数对象和构造器对象<a class="anchor" href="#%E5%87%BD%E6%95%B0%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%9E%84%E9%80%A0%E5%99%A8%E5%AF%B9%E8%B1%A1">§</a></h5>
+<p>用对象来模拟函数和构造器</p>
+<p>函数对象的定义是：具有[[call]]私有字段的对象，构造器对象的定义是：具有私有字段[[construct]]的对 象。</p>
+<p>任何对象只需要实现[[call]]，它就是一个函数对象，可以去作为函数被调用。而如果它能 实现[[construct]]，它就是一个构造器对象，可以作为构造器被调用。</p>
+<blockquote>
+<p>[[call]]私有字段必须是一个引擎中定义的函数，需要接受this值和调用参数，并且会产生域的 切换</p>
+</blockquote>
+<p>对于宿主和内置对象来说，它们实现[[call]]（作为函数被调用）和[[construct]]（作为构造器被调用）不总 是一致的。比如内置对象	Date	在作为构造器调用时产生新的对象，作为函数时，则产生字符串。</p>
+<p>而浏览器宿主环境中，提供的Image构造器，则根本不允许被作为函数调用。</p>
+<p>基本类型（String、Number、Boolean），它们的构造器被当作函数调用，则产生类型转换的效果。</p>
+<p>如基本类型（String、Number、Boolean），它们的构造器被当作函数调用，则产生类型转换的效果。</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token function">new</span><span class="token punctuation">(</span> a <span class="token operator">=</span><span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">)</span> <span class="token operator">/</span><span class="token operator">/</span> error
+</code></pre>
+<p>如基本类型（String、Number、Boolean），它们的构造器被当作函数调用，则产生类型转换的效果。</p>
+<p>对于用户使用	function	语法或者Function构造器创建的对象来说，[[call]]和[[construct]]行为总是相似的。</p>
+<pre class="language-autoit"><code class="language-autoit">function <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>{
+  return <span class="token number">1</span>
+}
+var v1 <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+var v2 <span class="token operator">=</span> new <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>构造器实例化，[[contruct]]的执行过程</p>
+<ol>
+<li>以Object.protope为原型创建一个对象</li>
+<li>以新对象为this，执行函数的[[call]]</li>
+<li>如果[[call]]的返回值是对象，那么返回这个对象，否则返回第一步的对象</li>
+</ol>
+<h4 id="%E7%89%B9%E6%AE%8A%E8%A1%8C%E4%B8%BA%E7%9A%84%E5%AF%B9%E8%B1%A1">特殊行为的对象<a class="anchor" href="#%E7%89%B9%E6%AE%8A%E8%A1%8C%E4%B8%BA%E7%9A%84%E5%AF%B9%E8%B1%A1">§</a></h4>
+<p>Array：Array的length属性根据最大的下标自动发生变化。
+Object.prototype：作为所有正常对象的默认原型，不能再给它设置原型了。
+String：为了支持下标运算，String的正整数属性访问会去字符串里查找。
+Arguments：arguments的非负整数型下标属性跟对应的变量联动。</p></article><div class="prev_next"><a class="prev button" href="/js/basics.html">«  <!-- -->JavaScript基础</a><a class="next button" href="/js/context.html">执行上下文<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#javascript%E5%AF%B9%E8%B1%A1">JavaScript对象</a><ol><li><a href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">基础知识</a></li><li><a href="#%E5%AF%B9%E8%B1%A1%E5%88%86%E7%B1%BB">对象分类</a><ol></ol></li></ol></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

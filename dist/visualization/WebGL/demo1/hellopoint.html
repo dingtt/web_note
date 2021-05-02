@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="webgl" width="300" height="300"></canvas>
+  <script>
+   const VERTEX_SHADER_SOURCE = 
+     `void main(){
+        gl_Position = vec4(0.0, 0.0, 0.0, 1.0);
+        gl_PointSize = 10;
+     }`
+const FRAGMENT_SHADER_SOURCE = `void main(){
+    gl_FragmentColor = vec4(1.0, 0.0, 0.0, 1.0);
+}`
+function main (){
+  const canvas = document.getElementById('webgl')
+  const gl = canvas.getContext('webgl')
+  if(!gl){
+    console.log('do nor support webgl')
+  }
+  if(!initShader(gl, VERTEX_SHADER_SOURCE, FRAGMENT_SHADER_SOURCE)){
+    console.log('do not support Initialize shaders')
+    return
+  }
+}
+window.onload = () =>{
+  main()
+}
+    
+  </script>
+</body>
+</html>

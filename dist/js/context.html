@@ -1,0 +1,93 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="前端笔记"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">执行上下文 · Ding前端笔记</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Ding前端笔记</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Ding前端笔记</a></h1></li><li style="flex-grow:1"></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/index.html" class="nav_link">Hello world</a></li><li class="unfold"><a href="/WebAPI/README.md" class="nav_link">WebAPI/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"></ol></li><li class="unfold"><a href="/HTTP/index.html" class="nav_link">HTTP协议与浏览器<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/HTTP/browser.html" class="nav_link">浏览器</a></li><li class=""><a href="/HTTP/HTTP.html" class="nav_link">HTTP协议请求方法和状态码</a></li><li class=""><a href="/HTTP/internet-hardware.html" class="nav_link">网络硬件</a></li></ol></li><li class="unfold"><a href="/js/todo.md" class="nav_link">js/todo.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/js/basics.html" class="nav_link">JavaScript基础</a></li><li class=""><a href="/js/Object.html" class="nav_link">基础</a></li><li class=""><a href="/js/context.html" class="nav_link active">执行上下文</a></li><li class=""><a href="/js/closure.html" class="nav_link">闭包和面向对象</a></li><li class=""><a href="/js/regex.html" class="nav_link">正则</a></li><li class=""><a href="/js/algo.html" class="nav_link">算法</a></li><li class=""><a href="/js/design-patterns.html" class="nav_link">JS设计模式</a></li></ol></li><li class="unfold"><a href="/TS/index.html" class="nav_link">TS<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/TS/basics.html" class="nav_link">TS基础</a></li><li class=""><a href="/TS/enum.html" class="nav_link">TS枚举 类型 接口 泛型</a></li></ol></li><li class="unfold"><a href="/vue/index.html" class="nav_link">Vue<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/vue/vue-skills.html" class="nav_link">Vue开发技巧</a></li><li class=""><a href="/vue/vue-communication.html" class="nav_link">Vue组件通信</a></li><li class=""><a href="/vue/vue-router/vue-router.html" class="nav_link">Vue路由</a></li></ol></li><li class=""><a href="/react/lifecycle.html" class="nav_link">React的生命周期</a></li><li class="unfold"><a href="/webpack/index.html" class="nav_link">Webpack<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/webpack/webpack-use.html" class="nav_link">webpack的使用</a></li><li class=""><a href="/webpack/webpack-principle.html" class="nav_link">Webpack打包原理解析</a></li><li class=""><a href="/webpack/webpack-dev-config.html" class="nav_link">生产环境配置</a></li><li class=""><a href="/webpack/webpack-custom-loader.html" class="nav_link">实现自己的loader</a></li><li class=""><a href="/webpack/webpack-custom-plugin.html" class="nav_link">实现自己的plugin</a></li><li class=""><a href="/webpack/webpack-split-chunks.html" class="nav_link">webpack代码分片</a></li><li class=""><a href="/webpack/webpack-dev-server-hmr.html" class="nav_link">webpack-dev-server 与 HMR</a></li></ol></li><li class=""><a href="/web-monitor/web-monitor.html" class="nav_link">前端监控简介</a></li><li class=""><a href="/git/git.html" class="nav_link">Git使用</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>执行上下文</h1>
+<p>执行上下文时执行JavaScript代码的环境的抽象概念</p>
+<h3 id="%E7%B1%BB%E5%9E%8B">类型<a class="anchor" href="#%E7%B1%BB%E5%9E%8B">§</a></h3>
+<p>全局执行上下文：</p>
+<p>执行创建window对象，设置this</p>
+<p>函数执行上下文</p>
+<p>调用函数时创建，可以有多个。</p>
+<h3 id="%E8%B0%83%E7%94%A8%E6%A0%88">调用栈<a class="anchor" href="#%E8%B0%83%E7%94%A8%E6%A0%88">§</a></h3>
+<p>即执行栈，后进先出，用来存储代码运行时创建的所有执行上下文。</p>
+<p>创建全局执行上下文入栈；创建函数执行上下文入栈，函数执行完出栈。</p>
+<h3 id="%E5%88%9B%E5%BB%BA%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87">创建执行上下文<a class="anchor" href="#%E5%88%9B%E5%BB%BA%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87">§</a></h3>
+<p>this值的决定，（全局，引用对象调用，）</p>
+<p>AO activetion Object 活动对象，对应函数的执行阶段</p>
+<ul>
+<li>
+<p>函数的局部变量</p>
+</li>
+<li>
+<p>函数的所有命名参数</p>
+</li>
+<li>
+<p>函数的参数集合</p>
+</li>
+<li>
+<p>函数的this指向</p>
+<div class="table_wrapper"><table>
+<thead>
+<tr>
+<th>全局词法环境</th>
+<th>对象环境记录器</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>外部引用</td>
+<td>null</td>
+</tr>
+<tr>
+<td>函数词法环境</td>
+<td>声明式环境记录器</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+<h4 id="%E5%88%9B%E5%BB%BA%E8%AF%8D%E6%B3%95%E7%8E%AF%E5%A2%83">创建词法环境<a class="anchor" href="#%E5%88%9B%E5%BB%BA%E8%AF%8D%E6%B3%95%E7%8E%AF%E5%A2%83">§</a></h4>
+<p>词法环境是一种持有标识符和变量映射的接口，标识符指变量名，变量的实际对象或原始数据的引用。</p>
+<p><strong>两个组件</strong></p>
+<ol>
+<li><strong>环境记录器</strong>是存储变量和函数声明的实际位置。</li>
+<li><strong>外部环境的引用</strong>意味着它可以访问其父级词法环境（作用域）</li>
+</ol>
+<p><strong>两种类型</strong></p>
+<p><strong>全局词法环境</strong>，全局环境的外部引用为null，环境记录器是对象环境记录器，用来定义出现在全局上下文中的<strong>变量和函数</strong>的关系。</p>
+<p><strong>函数词法环境</strong></p>
+<p>函数内部用户定义的变量，存储在声明式环境记录器，<strong>存储变量/函数/参数</strong>。声明式环境记录器，包含了arguments对象杰恩传递给函数的参数的length。</p>
+<p>对象</p>
+<h4 id="%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E7%8E%AF%E5%A2%83">创建变量环境<a class="anchor" href="#%E5%88%9B%E5%BB%BA%E5%8F%98%E9%87%8F%E7%8E%AF%E5%A2%83">§</a></h4>
+<p>变量环境同样是一个词法环境，其环境记录器持有<strong>变量声明语句</strong>在执行上下文中创建的绑定关系。</p>
+<p>在 ES6 中，<strong>词法环境</strong>组件和<strong>变量环境</strong>的一个不同就是前者被用来存储函数声明和变量（<code>let</code> 和 <code>const</code>）绑定，而后者只用来存储 <code>var</code> 变量绑定。</p>
+<h2 id="%E5%B9%BF%E4%B9%89%E7%9A%84%E9%97%AD%E5%8C%85js%E7%B2%BE%E7%B2%B9">广义的闭包——JS精粹<a class="anchor" href="#%E5%B9%BF%E4%B9%89%E7%9A%84%E9%97%AD%E5%8C%85js%E7%B2%BE%E7%B2%B9">§</a></h2>
+<p>函数是可以实例化的，既可以被静态的声明，实例化，也可以被动态的创建。脚本和模块</p>
+<p>函数在语法上的声明，与执行期的实例，以及实例的多次执行，都是一对多的关系。</p>
+<p>JS中用闭包来代指一个函数实例在运行期的作用域。也就是说，闭包是记录函数实例在运行期间的“可访问标识符”的结构。</p>
+<p>对于函数声明来说叫做实例化，对应函数表达式来说叫做 创建函数的实例。</p>
+<p>闭包内的初始信息就是函数代码体中的那些声明，更复杂的信息还包括“运行中的函数实例”的引用、坏境，以及由包含upvalue在内的作用域链等。</p>
+<p>在运行过程中，子函数闭包可以访问upvalue；同一个函数中所有的子函数，访问一份相同值的upvalue。</p>
+<p>arguments.callee</p>
+<ul>
+<li>函数实例可以拥有多个闭包</li>
+<li>函数实例于闭包的生命周期是分别管理的</li>
+<li>函数被调用时总是初始化一个闭包；而上次调用中的闭包是否销毁，取决于该闭包中是否有被（其他闭包）引用的变量/数据。</li>
+</ul>
+<p>函数开始执行时， js会创建一个执行环境（上下文），并将其可用标识符列表指向函数实例中的作用域，从而完成作用域到闭包的概念上的映射。闭包在根本上是运行环境中对作用域的一个引用。</p></article><div class="prev_next"><a class="prev button" href="/js/Object.html">«  <!-- -->基础</a><a class="next button" href="/js/closure.html">闭包和面向对象<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#%E7%B1%BB%E5%9E%8B">类型</a></li><li><a href="#%E8%B0%83%E7%94%A8%E6%A0%88">调用栈</a></li><li><a href="#%E5%88%9B%E5%BB%BA%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87">创建执行上下文</a><ol></ol></li><li><a href="#%E5%B9%BF%E4%B9%89%E7%9A%84%E9%97%AD%E5%8C%85js%E7%B2%BE%E7%B2%B9">广义的闭包——JS精粹</a></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

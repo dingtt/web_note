@@ -1,0 +1,164 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="前端笔记"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">不同模块的标准及区别 · Ding前端笔记</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Ding前端笔记</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Ding前端笔记</a></h1></li><li style="flex-grow:1"></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/index.html" class="nav_link">Hello world</a></li><li class="unfold"><a href="/WebAPI/README.md" class="nav_link">WebAPI/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"></ol></li><li class="unfold"><a href="/HTTP/index.html" class="nav_link">HTTP协议与浏览器<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/HTTP/browser.html" class="nav_link">浏览器</a></li><li class=""><a href="/HTTP/HTTP.html" class="nav_link">HTTP协议请求方法和状态码</a></li><li class=""><a href="/HTTP/internet-hardware.html" class="nav_link">网络硬件</a></li></ol></li><li class="unfold"><a href="/js/todo.md" class="nav_link">js/todo.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/js/basics.html" class="nav_link">JavaScript基础</a></li><li class=""><a href="/js/Object.html" class="nav_link">基础</a></li><li class=""><a href="/js/context.html" class="nav_link">执行上下文</a></li><li class=""><a href="/js/closure.html" class="nav_link">闭包和面向对象</a></li><li class=""><a href="/js/regex.html" class="nav_link">正则</a></li><li class=""><a href="/js/algo.html" class="nav_link">算法</a></li><li class=""><a href="/js/design-patterns.html" class="nav_link">JS设计模式</a></li></ol></li><li class="unfold"><a href="/TS/index.html" class="nav_link">TS<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/TS/basics.html" class="nav_link">TS基础</a></li><li class=""><a href="/TS/enum.html" class="nav_link">TS枚举 类型 接口 泛型</a></li></ol></li><li class="unfold"><a href="/vue/index.html" class="nav_link">Vue<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/vue/vue-skills.html" class="nav_link">Vue开发技巧</a></li><li class=""><a href="/vue/vue-communication.html" class="nav_link">Vue组件通信</a></li><li class=""><a href="/vue/vue-router/vue-router.html" class="nav_link">Vue路由</a></li></ol></li><li class=""><a href="/react/lifecycle.html" class="nav_link">React的生命周期</a></li><li class="unfold"><a href="/webpack/index.html" class="nav_link">Webpack<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/webpack/webpack-use.html" class="nav_link">webpack的使用</a></li><li class=""><a href="/webpack/webpack-principle.html" class="nav_link">Webpack打包原理解析</a></li><li class=""><a href="/webpack/webpack-dev-config.html" class="nav_link">生产环境配置</a></li><li class=""><a href="/webpack/webpack-custom-loader.html" class="nav_link">实现自己的loader</a></li><li class=""><a href="/webpack/webpack-custom-plugin.html" class="nav_link">实现自己的plugin</a></li><li class=""><a href="/webpack/webpack-split-chunks.html" class="nav_link">webpack代码分片</a></li><li class=""><a href="/webpack/webpack-dev-server-hmr.html" class="nav_link">webpack-dev-server 与 HMR</a></li></ol></li><li class=""><a href="/web-monitor/web-monitor.html" class="nav_link">前端监控简介</a></li><li class=""><a href="/git/git.html" class="nav_link">Git使用</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>不同模块的标准及区别</h1>
+<h2 id="%E6%97%A9%E6%9C%9F%E6%96%B9%E6%A1%88">早期方案<a class="anchor" href="#%E6%97%A9%E6%9C%9F%E6%96%B9%E6%A1%88">§</a></h2>
+<h4 id="%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4">命名空间<a class="anchor" href="#%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4">§</a></h4>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> module1 <span class="token operator">=</span> <span class="token punctuation">{</span>
+  foo<span class="token operator">:</span><span class="token string">'bar'</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">fnl</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 调用 module1.fn1()</span>
+<span class="token comment">// 缺点:可任意修改赋值</span>
+</code></pre>
+<h4 id="%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%E9%97%AD%E5%8C%85">立即执行函数+闭包<a class="anchor" href="#%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0%E9%97%AD%E5%8C%85">§</a></h4>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> module1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token string">'bar'</span>
+  <span class="token keyword">var</span> <span class="token function-variable function">fnl</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token keyword control-flow">return</span> <span class="token punctuation">{</span>
+   fn1<span class="token operator">:</span>fn1
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// 只能访问暴露出来的方法</span>
+
+<span class="token comment">// 升级版 调用模块module暴露给window</span>
+<span class="token keyword">const</span> module1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token string">'bar'</span>
+  <span class="token keyword">var</span> <span class="token function-variable function">fnl</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token dom variable">window</span><span class="token punctuation">.</span><span class="token property-access">module</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+    fn1
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token dom variable">window</span><span class="token punctuation">)</span>
+</code></pre>
+<h3 id="commonjs">CommonJS<a class="anchor" href="#commonjs">§</a></h3>
+<p>Node.js的实现采取了CommonJS标准的一部分，并在其基础上进行了一些调整。</p>
+<h4 id="%E6%A8%A1%E5%9D%97">模块<a class="anchor" href="#%E6%A8%A1%E5%9D%97">§</a></h4>
+<p>CommonJS中规定了每个文件是一个模块，会形成一个属于模块自身的作用域，所有的变量及函数只有自己可以访问，对外是不可见。</p>
+<ul>
+<li>文件即模块，独立作用域。</li>
+<li>模块可以被多次引用加载，第一次加载之后会被缓存。</li>
+<li>加载某个模块，就是引入模块的module.exports属性</li>
+<li>module.export属性输出的是值的拷贝</li>
+<li>模块按照代码引入的顺序进行加载</li>
+<li></li>
+</ul>
+<p>导入 require('')</p>
+<p>导出  module.exports{}</p>
+<p>CommonJS在浏览器端的实现，模块内部都会有一个module对象，用于存放当前模块的信息，可以理解为</p>
+<pre class="language-autoit"><code class="language-autoit">var module <span class="token operator">=</span> {<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>}
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> {<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>}
+</code></pre>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">/</span><span class="token operator">/</span> 借助立即执行函数，对module和module<span class="token punctuation">.</span>exports对象进行赋值
+<span class="token punctuation">(</span><span class="token function">function</span><span class="token punctuation">(</span>module<span class="token punctuation">,</span> exports<span class="token punctuation">)</span>{
+  <span class="token operator">/</span><span class="token operator">/</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+}<span class="token punctuation">)</span><span class="token punctuation">(</span>module<span class="token punctuation">,</span> module<span class="token punctuation">.</span>exports<span class="token punctuation">)</span>
+</code></pre>
+<p><em>不可以直接为exports赋值，exports = {} 是错误的，不恰当的使用module.exports 和exports 也会导致错误</em></p>
+<p>导出语句不代表模块的末尾</p>
+<h5 id="%E5%AF%BC%E5%85%A5">导入<a class="anchor" href="#%E5%AF%BC%E5%85%A5">§</a></h5>
+<p>导入使用require</p>
+<p>require的模块第一次被加载，先执行该模块，然后导出内容。 module.loaded 默认为false，第一次执行设为true</p>
+<p>require的模块被加载过，这时该模块的代码不会再执行，而是直接导出上次执行的结果。（module.loaded为true）</p>
+<p>require可以接收表达式，可以动态地指定模块加载路径。(对于ES6原生模块名只能是字符串字面量)</p>
+<h4 id="amd%E8%A7%84%E8%8C%83">AMD规范<a class="anchor" href="#amd%E8%A7%84%E8%8C%83">§</a></h4>
+<p>require.js，define和require是require.js在全局注入的函数，通过define方法，将代码定义为模块，将依赖注入依赖队列；通过require方法，完成script标签的创建去请求响应的模块，实现代码的模块加载。</p>
+<h4 id="umd%E8%A7%84%E8%8C%83">UMD规范<a class="anchor" href="#umd%E8%A7%84%E8%8C%83">§</a></h4>
+<p>判当前模块遵循AMD规范，还是CMD规范</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token punctuation">(</span><span class="token function">fucntion</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> factory<span class="token punctuation">)</span>{
+  <span class="token function">if</span><span class="token punctuation">(</span>typeof define <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'function'</span> <span class="token operator">&amp;</span><span class="token operator">&amp;</span> define<span class="token punctuation">.</span>amd<span class="token punctuation">)</span>{
+    <span class="token operator">/</span><span class="token operator">/</span> AMD规范
+    	<span class="token function">define</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>factory<span class="token punctuation">)</span>
+  }<span class="token keyword">else</span> <span class="token function">if</span><span class="token punctuation">(</span>typeof module <span class="token operator">==</span><span class="token operator">=</span> <span class="token string">'object'</span> <span class="token operator">&amp;</span><span class="token operator">&amp;</span> module<span class="token punctuation">.</span>exports<span class="token punctuation">)</span>{
+    <span class="token operator">/</span><span class="token operator">/</span> 类Node环境
+    module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token function">factory</span><span class="token punctuation">(</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  }<span class="token keyword">else</span>{
+    <span class="token operator">/</span><span class="token operator">/</span> 浏览器
+    root<span class="token punctuation">.</span>returnExports <span class="token operator">=</span> <span class="token function">factory</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span>b<span class="token punctuation">)</span>
+  }
+}<span class="token punctuation">)</span><span class="token punctuation">(</span>this<span class="token punctuation">,</span> <span class="token function">function</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>{
+  <span class="token operator">/</span><span class="token operator">/</span> 返回值作为暴露的内容
+  return {}
+}<span class="token punctuation">)</span>
+</code></pre>
+<h3 id="es-6">ES 6<a class="anchor" href="#es-6">§</a></h3>
+<p>编译时就确定模块之间的依赖关系。</p>
+<p>es6 也是每个文件当作一个模块，每个模块拥有独立的作用域，导入导出使用import和export。</p>
+<p>ES6 不管开头是否有 <code>use strict</code>都会采用严格模式</p>
+<h5 id="%E5%AF%BC%E5%87%BA">导出<a class="anchor" href="#%E5%AF%BC%E5%87%BA">§</a></h5>
+<ul>
+<li>
+<p>ES6模块输出的是值的引用</p>
+</li>
+<li>
+<p>命名导出，可以通过as关键字对变量进行重命名</p>
+</li>
+<li>
+<p>导出变量的类型受到严格限制</p>
+</li>
+</ul>
+<p>默认导出，模块的默认导出只能有一个。（建议减少使用默认到处，会导出整体对象结果，不利于tree shaking，导出结果可随意命名）</p>
+<h5 id="%E5%AF%BC%E5%85%A5-1">导入<a class="anchor" href="#%E5%AF%BC%E5%85%A5-1">§</a></h5>
+<ul>
+<li>
+<p>只能在文件顶部引入依赖</p>
+</li>
+<li>
+<p>导入的变量是只读的，变量不允许被重新绑定，不可以更改，可以通过 as 关键字重命名，</p>
+</li>
+<li>
+<p>引入的模块名只能是字符串常量，即不可用动态确定依赖。</p>
+</li>
+</ul>
+<p>导入多个变量是可以用 * ，import * as <myModule>可以把导入的变量作为属性值添加到<my Module>对象中，从而减少对当前作用域的影响</p>
+<p>复合写法，导入之后立即导出，只支持被导入模块通过命名模式导出，默认导出没有对应的复合形式。</p>
+<pre class="language-autoit"><code class="language-autoit">export { name<span class="token punctuation">,</span> add} from <span class="token string">'./calc.js'</span>
+</code></pre>
+<p>在浏览器中直接使用ES模块化</p>
+<pre class="language-autoit"><code class="language-autoit"><span class="token operator">&lt;</span>script<span class="token operator">></span>
+  
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+</code></pre>
+<h3 id="commonjs-%E4%B8%8E-es6-%E7%9A%84%E5%8C%BA%E5%88%AB">CommonJS 与 ES6 的区别<a class="anchor" href="#commonjs-%E4%B8%8E-es6-%E7%9A%84%E5%8C%BA%E5%88%AB">§</a></h3>
+<h4 id="%E9%9D%99%E6%80%81%E4%B8%8E%E5%8A%A8%E6%80%81">静态与动态<a class="anchor" href="#%E9%9D%99%E6%80%81%E4%B8%8E%E5%8A%A8%E6%80%81">§</a></h4>
+<p>动态指模块依赖关系的建立在代码运行阶段。而静态指模块依赖关系的建立在代码编译阶段。</p>
+<p>require的模块路径支持动态指定，可以传入表达式，在执行前并没有办法确定明确的依赖关系，模块的导入导出发生在代码运行阶段。</p>
+<p>ES6的导入导出都是声明式的，导入导出语句必须位于模块作用域的顶层（不能放到if中）</p>
+<p>ES6的静态模块结构，有利于完成死代码检测，模块变量类型的检查，编译器的优化。</p>
+<h4 id="%E5%80%BC%E6%8B%B7%E8%B4%9D%E4%B8%8E%E5%8A%A8%E6%80%81%E6%98%A0%E5%B0%84">值拷贝与动态映射<a class="anchor" href="#%E5%80%BC%E6%8B%B7%E8%B4%9D%E4%B8%8E%E5%8A%A8%E6%80%81%E6%98%A0%E5%B0%84">§</a></h4>
+<p>CommonJS获取的是一份导出值的拷贝，不会影响原有模块中的变量的值；ES6中则是值的动态映射，并且这个映射是只读的。</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// foo.js </span>
+<span class="token keyword">const</span> bar <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./bar.js'</span><span class="token punctuation">)</span>  <span class="token comment">// 1</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'vlaue of bar:'</span><span class="token punctuation">,</span> bar<span class="token punctuation">)</span> <span class="token comment">// 5</span>
+module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> <span class="token string">'This is foo.js'</span> <span class="token comment">// 6</span>
+<span class="token comment">// bar.js</span>
+<span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./foo.js'</span><span class="token punctuation">)</span>  <span class="token comment">// 2</span>
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'vlaue of foo:'</span><span class="token punctuation">,</span> foo<span class="token punctuation">)</span> <span class="token comment">// 3</span>
+module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> <span class="token string">'This is bar.js'</span> <span class="token comment">// 4</span>
+<span class="token comment">// index.js</span>
+<span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./foo.js'</span><span class="token punctuation">)</span>
+<span class="token comment">// 输出结果</span>
+value <span class="token keyword">of</span> foo<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+value <span class="token keyword">of</span> bar<span class="token operator">:</span> <span class="token maybe-class-name">This</span> is bar<span class="token punctuation">.</span><span class="token property-access">js</span>
+</code></pre>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// foo.js </span>
+<span class="token keyword module">import</span> <span class="token imports">bar</span> <span class="token keyword module">from</span> <span class="token string">'./bar.js'</span>  
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'vlaue of bar:'</span><span class="token punctuation">,</span> bar<span class="token punctuation">)</span> 
+<span class="token keyword module">export</span> <span class="token keyword module">default</span>  <span class="token string">'This is foo.js'</span>
+<span class="token comment">// bar.js</span>
+<span class="token keyword module">import</span> <span class="token imports">foo</span> <span class="token keyword module">from</span> <span class="token string">'./foo.js'</span> 
+<span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">'vlaue of foo:'</span><span class="token punctuation">,</span> foo<span class="token punctuation">)</span> 
+<span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token operator">=</span> <span class="token string">'This is bar.js'</span> 
+<span class="token comment">// index.js</span>
+<span class="token keyword module">import</span> <span class="token keyword module">from</span> <span class="token string">'./foo.js'</span>
+<span class="token comment">// 输出结果</span>
+value <span class="token keyword">of</span> foo<span class="token operator">:</span> <span class="token keyword nil">undefined</span>
+value <span class="token keyword">of</span> bar<span class="token operator">:</span> <span class="token maybe-class-name">This</span> is bar<span class="token punctuation">.</span><span class="token property-access">js</span>
+</code></pre></article></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#%E6%97%A9%E6%9C%9F%E6%96%B9%E6%A1%88">早期方案</a><ol><li><a href="#commonjs">CommonJS</a><ol></ol></li><li><a href="#es-6">ES 6</a><ol></ol></li><li><a href="#commonjs-%E4%B8%8E-es6-%E7%9A%84%E5%8C%BA%E5%88%AB">CommonJS 与 ES6 的区别</a><ol></ol></li></ol></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

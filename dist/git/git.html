@@ -1,0 +1,87 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="前端笔记"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">Git使用 · Ding前端笔记</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Ding前端笔记</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Ding前端笔记</a></h1></li><li style="flex-grow:1"></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/index.html" class="nav_link">Hello world</a></li><li class="unfold"><a href="/WebAPI/README.md" class="nav_link">WebAPI/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"></ol></li><li class="unfold"><a href="/HTTP/index.html" class="nav_link">HTTP协议与浏览器<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/HTTP/browser.html" class="nav_link">浏览器</a></li><li class=""><a href="/HTTP/HTTP.html" class="nav_link">HTTP协议请求方法和状态码</a></li><li class=""><a href="/HTTP/internet-hardware.html" class="nav_link">网络硬件</a></li></ol></li><li class="unfold"><a href="/js/todo.md" class="nav_link">js/todo.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/js/basics.html" class="nav_link">JavaScript基础</a></li><li class=""><a href="/js/Object.html" class="nav_link">基础</a></li><li class=""><a href="/js/context.html" class="nav_link">执行上下文</a></li><li class=""><a href="/js/closure.html" class="nav_link">闭包和面向对象</a></li><li class=""><a href="/js/regex.html" class="nav_link">正则</a></li><li class=""><a href="/js/algo.html" class="nav_link">算法</a></li><li class=""><a href="/js/design-patterns.html" class="nav_link">JS设计模式</a></li></ol></li><li class="unfold"><a href="/TS/index.html" class="nav_link">TS<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/TS/basics.html" class="nav_link">TS基础</a></li><li class=""><a href="/TS/enum.html" class="nav_link">TS枚举 类型 接口 泛型</a></li></ol></li><li class="unfold"><a href="/vue/index.html" class="nav_link">Vue<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/vue/vue-skills.html" class="nav_link">Vue开发技巧</a></li><li class=""><a href="/vue/vue-communication.html" class="nav_link">Vue组件通信</a></li><li class=""><a href="/vue/vue-router/vue-router.html" class="nav_link">Vue路由</a></li></ol></li><li class=""><a href="/react/lifecycle.html" class="nav_link">React的生命周期</a></li><li class="unfold"><a href="/webpack/index.html" class="nav_link">Webpack<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/webpack/webpack-use.html" class="nav_link">webpack的使用</a></li><li class=""><a href="/webpack/webpack-principle.html" class="nav_link">Webpack打包原理解析</a></li><li class=""><a href="/webpack/webpack-dev-config.html" class="nav_link">生产环境配置</a></li><li class=""><a href="/webpack/webpack-custom-loader.html" class="nav_link">实现自己的loader</a></li><li class=""><a href="/webpack/webpack-custom-plugin.html" class="nav_link">实现自己的plugin</a></li><li class=""><a href="/webpack/webpack-split-chunks.html" class="nav_link">webpack代码分片</a></li><li class=""><a href="/webpack/webpack-dev-server-hmr.html" class="nav_link">webpack-dev-server 与 HMR</a></li></ol></li><li class=""><a href="/web-monitor/web-monitor.html" class="nav_link">前端监控简介</a></li><li class=""><a href="/git/git.html" class="nav_link active">Git使用</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>Git使用</h1>
+<h3 id="%E6%81%A2%E5%A4%8D%E6%9C%AC%E5%9C%B0%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6">恢复本地删除文件<a class="anchor" href="#%E6%81%A2%E5%A4%8D%E6%9C%AC%E5%9C%B0%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6">§</a></h3>
+<p>语法：git checkout &lt;filename/dirname&gt;    示例： git checkout file.js</p>
+<h2 id="%E5%88%86%E6%94%AF">分支<a class="anchor" href="#%E5%88%86%E6%94%AF">§</a></h2>
+<ul>
+<li>
+<h5 id="%E5%85%B3%E8%81%94%E5%88%86%E6%94%AF">关联分支<a class="anchor" href="#%E5%85%B3%E8%81%94%E5%88%86%E6%94%AF">§</a></h5>
+</li>
+</ul>
+<p>语法：git branch --set-upstream-to=<branchname> <branchname></p>
+<p>实例：git branch  --set-upstream-to=origin/master master</p>
+<ul>
+<li>
+<h5 id="%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF">删除远程分支<a class="anchor" href="#%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF">§</a></h5>
+</li>
+</ul>
+<p>git push origin  --delete  <branchname>   实例： git push origin --delete  fearute/test</p>
+<ul>
+<li>
+<h5 id="%E5%88%A0%E9%99%A4%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E5%85%B3%E8%81%94">删除本地分支关联<a class="anchor" href="#%E5%88%A0%E9%99%A4%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E5%85%B3%E8%81%94">§</a></h5>
+</li>
+</ul>
+<p>git branch --unset-upstream <branchname>  实例： git branch -unset-upstream featrue/test1</p>
+<ul>
+<li>
+<h5 id="%E6%9F%A5%E7%9C%8B%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E4%B8%8E%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%85%B3%E8%81%94">查看本地分支与远程分支关联<a class="anchor" href="#%E6%9F%A5%E7%9C%8B%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E4%B8%8E%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF%E5%85%B3%E8%81%94">§</a></h5>
+<p>git branch -vv</p>
+</li>
+</ul>
+<h3 id="%E4%BF%AE%E6%94%B9%E6%8F%90%E4%BA%A4%E6%97%B6%E7%9A%84%E5%A4%87%E6%B3%A8%E5%86%85%E5%AE%B9-">修改提交时的备注内容 ？？？<a class="anchor" href="#%E4%BF%AE%E6%94%B9%E6%8F%90%E4%BA%A4%E6%97%B6%E7%9A%84%E5%A4%87%E6%B3%A8%E5%86%85%E5%AE%B9-">§</a></h3>
+<p>修改最近一次提交的comment，git commit --amend ，此命令会修改提交时的commit-id，既会覆盖原来的commitid</p>
+<p>git log --pretty=oneline  查看内容  在同一行内查看内容</p>
+<h3 id="%E4%BF%AE%E6%94%B9%E5%88%86%E6%94%AF%E5%90%8D%E5%AE%9E%E7%8E%B0%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5">修改分支名，实现无缝连接<a class="anchor" href="#%E4%BF%AE%E6%94%B9%E5%88%86%E6%94%AF%E5%90%8D%E5%AE%9E%E7%8E%B0%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5">§</a></h3>
+<p>语法 git branch -m <oldbranch> <newbranch></p>
+<p>实例： git branch -m featrue/test1 featrue/test2</p>
+<h3 id="%E6%92%A4%E5%9B%9E%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4">撤回文件提交<a class="anchor" href="#%E6%92%A4%E5%9B%9E%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4">§</a></h3>
+<ul>
+<li>
+<p>需求变更导致的撤销</p>
+<p>进行了某些改动，之前的提交已经不合适，撤回改动后重新提交，以增加每一次提交的连续性和单次提交的完整性</p>
+<p>语法： git reset --soft [&lt;<commit-id>/HEAD~n&gt;]  命令： git reset --soft HEAD~1</p>
+<p>结果：暂存区的文件内荣未发生任何变化，与撤销未提交时的文档变更记录一致</p>
+<p>只是撤销了commit，文件扔在工作区存在</p>
+<p>本地不想删除不能删除，又不能提交的，添加到gitignore</p>
+</li>
+<li>
+<p>代码重构原因导致的撤销</p>
+<p>本地需要某些优化，对于单次上传的文件需要有不同的处理需要，为使提交去更易于阅读和便于区分</p>
+<p>语法：git reset --mixd [&lt;<commit-id>/HEAD~1&gt;] 命令：git reset --mixd HEAD~1</p>
+<p>结果：修改和删除的文件未添加到暂存区，新增的文件未追踪，同样未添加到暂存区，</p>
+<p>已变更的文件都未添加到怎存区，说明撤销了add和commit</p>
+</li>
+<li>
+<p>个人疏忽导致的错误提交</p>
+<p>不应该被提交的内容，需要进行撤销</p>
+<p>语法： git reset --hard [&lt;<commit-id>/HEAD~1&gt;] 命令：git reset --hard HEAD~1</p>
+<p>结果：原本追踪的修改和删除的文件内容未发生变更，新增文件未追踪，工作区文件内容仍然保留。撤销了commit和add的操作，同时撤销的本地已追踪内容的修改，未追踪的内容不会被改变，文件的修改都会被撤销掉，--hard模式下需要谨慎操作。</p>
+</li>
+</ul>
+<h3 id="%E5%BC%BA%E5%88%B6%E8%A6%86%E7%9B%96%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6">强制覆盖本地文件<a class="anchor" href="#%E5%BC%BA%E5%88%B6%E8%A6%86%E7%9B%96%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6">§</a></h3>
+<h3 id="%E6%92%A4%E9%94%80%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E7%9A%84%E5%90%88%E5%B9%B6">撤销本地分支的合并<a class="anchor" href="#%E6%92%A4%E9%94%80%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E7%9A%84%E5%90%88%E5%B9%B6">§</a></h3>
+<p>撤销合并 语法：git revert <commit-id> 命令:  git revert  8dsh8w</p>
+<p>revert执行之后会在原本的提交记录中新增一条提交记录</p>
+<p>reset如上“本地文件撤销”例子所述，会删掉原本已有的提交记录，在合并分支中，会删除原本合并分支的记录。revert则有不同，会保留原本合并分支的记录，在其上新增一条提交记录，便于之后有需要仍能够回溯苏revert之前的状态。</p>
+<p>reset能够毁尸灭迹，revert则会将合并分支和撤回记录一并显示咋远提交记录上。</p>
+<p>从代码撤销之后仍需要合并的角度来讲，revert能够实现多分支合并之后，仍然能够只撤销本合并分支的内容，reset则需要使用git reflog 命令reset到第一个没有出错的内容的commit-id，然后再逐个进行合并，（前提是这些分支的合并是有顺序要求的）</p>
+<p>换而言之，需要合并多个分支，如果合并的某个分支在操作过程中修改了内容，revert能够实现仍然合并修改之前的所有分支，reset则只能合并某一个修改之前的分支。</p>
+<h3 id="%E6%81%A2%E5%A4%8D%E8%AF%AF%E5%88%A0%E9%99%A4%E7%9A%84%E5%88%86%E6%94%AF">恢复误删除的分支<a class="anchor" href="#%E6%81%A2%E5%A4%8D%E8%AF%AF%E5%88%A0%E9%99%A4%E7%9A%84%E5%88%86%E6%94%AF">§</a></h3>
+<p>本地分支被拉出之后，由于误操作删除了，并且本地的分支没有被同步到远程分支，此时想要恢复本地的分支。git reflog 命令可查看该仓库下的所有历史记录。<img src="D:%5Cwwwroot%5Cweb_learn%5Cgit%5C1" alt="7(1).png"></p>
+<p>语法： git checkout -b <branch-name> <commit-id> 命令：git checkout -b featrue/delete HEAD@{2}</p>
+<p>命令执行完后，分支恢复到HEAD@{2}，使用 git reset --hard HEAD@{1} 即可实现硬性覆盖本地工作区内容的目的</p>
+<p>git reflog 命令获取到的内容为本地仓库所有发生过的变更，可谓恢复利器，即可向前追溯，亦可向后调整。</p>
+<h3 id="%E4%B8%8D%E7%A1%AE%E5%AE%9A%E5%93%AA%E4%B8%AA%E5%88%86%E6%94%AF%E6%9C%89%E8%87%AA%E5%B7%B1%E6%8F%90%E4%BA%A4%E7%9A%84commit">不确定哪个分支有自己提交的commit<a class="anchor" href="#%E4%B8%8D%E7%A1%AE%E5%AE%9A%E5%93%AA%E4%B8%AA%E5%88%86%E6%94%AF%E6%9C%89%E8%87%AA%E5%B7%B1%E6%8F%90%E4%BA%A4%E7%9A%84commit">§</a></h3>
+<p>需要首先确定有问题的commit-id，然后查看本地所有的分支 git</p>
+<p>语法 git branch --contains <commit-id>  命令:git branch --contains u8fej2</p>
+<h3 id=""><a class="anchor" href="#">§</a></h3></article><div class="prev_next"><a class="prev button" href="/web-monitor/web-monitor.html">«  <!-- -->前端监控简介</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#%E6%81%A2%E5%A4%8D%E6%9C%AC%E5%9C%B0%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6">恢复本地删除文件</a></li><li><a href="#%E5%88%86%E6%94%AF">分支</a><ol><li><a href="#%E4%BF%AE%E6%94%B9%E6%8F%90%E4%BA%A4%E6%97%B6%E7%9A%84%E5%A4%87%E6%B3%A8%E5%86%85%E5%AE%B9-">修改提交时的备注内容 ？？？</a></li><li><a href="#%E4%BF%AE%E6%94%B9%E5%88%86%E6%94%AF%E5%90%8D%E5%AE%9E%E7%8E%B0%E6%97%A0%E7%BC%9D%E8%BF%9E%E6%8E%A5">修改分支名，实现无缝连接</a></li><li><a href="#%E6%92%A4%E5%9B%9E%E6%96%87%E4%BB%B6%E6%8F%90%E4%BA%A4">撤回文件提交</a></li><li><a href="#%E5%BC%BA%E5%88%B6%E8%A6%86%E7%9B%96%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6">强制覆盖本地文件</a></li><li><a href="#%E6%92%A4%E9%94%80%E6%9C%AC%E5%9C%B0%E5%88%86%E6%94%AF%E7%9A%84%E5%90%88%E5%B9%B6">撤销本地分支的合并</a></li><li><a href="#%E6%81%A2%E5%A4%8D%E8%AF%AF%E5%88%A0%E9%99%A4%E7%9A%84%E5%88%86%E6%94%AF">恢复误删除的分支</a></li><li><a href="#%E4%B8%8D%E7%A1%AE%E5%AE%9A%E5%93%AA%E4%B8%AA%E5%88%86%E6%94%AF%E6%9C%89%E8%87%AA%E5%B7%B1%E6%8F%90%E4%BA%A4%E7%9A%84commit">不确定哪个分支有自己提交的commit</a></li><li><a href="#"></a></li></ol></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>

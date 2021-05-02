@@ -1,0 +1,460 @@
+<!doctype html><html class="" data-reactroot=""><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous"/>
+<meta data-react-helmet="true" charset="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="description" content="前端笔记"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1"/>
+<title data-react-helmet="true">HTTP协议请求方法和状态码 · Ding前端笔记</title>
+<link data-react-helmet="true" rel="stylesheet" href="/assets/index.css"/><link data-react-helmet="true" id="prismTheme" rel="stylesheet" href="/assets/prism.css"/>
+<script data-react-helmet="true" >
+    const shouldSetIsDark = document.cookie.includes('is_dark=1') ? true : document.cookie.includes('is_dark=0') ? false : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (shouldSetIsDark) {
+      document.documentElement.classList.add('is_dark');
+      document.getElementById('prismTheme').href = "/assets/prism_tomorrow.css";
+    }
+  </script>
+</head><body><header><h1 class="hide_on_mobile"><a href="/">Ding前端笔记</a></h1><nav><ul><li class="show_on_mobile flex_center"><a class="czs-menu-l" href="#" style="background-image:url(&quot;/assets/czs-menu-l.svg&quot;)"></a></li><li class="show_on_mobile"><h1 class="mobile_title"><a href="/">Ding前端笔记</a></h1></li><li style="flex-grow:1"></li><li class="toggle_dark flex_center"><span class="czs-sun" style="background-image:url(&quot;/assets/czs-sun.svg&quot;)"></span><span class="czs-sun-l" style="background-image:url(&quot;/assets/czs-sun-l.svg&quot;)"></span><span class="czs-moon" style="background-image:url(&quot;/assets/czs-moon.svg&quot;)"></span><span class="czs-moon-l" style="background-image:url(&quot;/assets/czs-moon-l.svg&quot;)"></span></li></ul></nav></header><aside class="sidebar"><ol class="list_style_none"><li class=""><a href="/index.html" class="nav_link">Hello world</a></li><li class="unfold"><a href="/WebAPI/README.md" class="nav_link">WebAPI/README.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"></ol></li><li class="unfold"><a href="/HTTP/index.html" class="nav_link">HTTP协议与浏览器<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/HTTP/browser.html" class="nav_link">浏览器</a></li><li class=""><a href="/HTTP/HTTP.html" class="nav_link active">HTTP协议请求方法和状态码</a></li><li class=""><a href="/HTTP/internet-hardware.html" class="nav_link">网络硬件</a></li></ol></li><li class="unfold"><a href="/js/todo.md" class="nav_link">js/todo.md<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/js/basics.html" class="nav_link">JavaScript基础</a></li><li class=""><a href="/js/Object.html" class="nav_link">基础</a></li><li class=""><a href="/js/context.html" class="nav_link">执行上下文</a></li><li class=""><a href="/js/closure.html" class="nav_link">闭包和面向对象</a></li><li class=""><a href="/js/regex.html" class="nav_link">正则</a></li><li class=""><a href="/js/algo.html" class="nav_link">算法</a></li><li class=""><a href="/js/design-patterns.html" class="nav_link">JS设计模式</a></li></ol></li><li class="unfold"><a href="/TS/index.html" class="nav_link">TS<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/TS/basics.html" class="nav_link">TS基础</a></li><li class=""><a href="/TS/enum.html" class="nav_link">TS枚举 类型 接口 泛型</a></li></ol></li><li class="unfold"><a href="/vue/index.html" class="nav_link">Vue<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/vue/vue-skills.html" class="nav_link">Vue开发技巧</a></li><li class=""><a href="/vue/vue-communication.html" class="nav_link">Vue组件通信</a></li><li class=""><a href="/vue/vue-router/vue-router.html" class="nav_link">Vue路由</a></li></ol></li><li class=""><a href="/react/lifecycle.html" class="nav_link">React的生命周期</a></li><li class="unfold"><a href="/webpack/index.html" class="nav_link">Webpack<span class="czs-angle-up-l" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></span><span class="czs-angle-down-l" style="background-image:url(&quot;/assets/czs-angle-down-l.svg&quot;)"></span></a><ol class="list_style_none" style="height:auto"><li class=""><a href="/webpack/webpack-use.html" class="nav_link">webpack的使用</a></li><li class=""><a href="/webpack/webpack-principle.html" class="nav_link">Webpack打包原理解析</a></li><li class=""><a href="/webpack/webpack-dev-config.html" class="nav_link">生产环境配置</a></li><li class=""><a href="/webpack/webpack-custom-loader.html" class="nav_link">实现自己的loader</a></li><li class=""><a href="/webpack/webpack-custom-plugin.html" class="nav_link">实现自己的plugin</a></li><li class=""><a href="/webpack/webpack-split-chunks.html" class="nav_link">webpack代码分片</a></li><li class=""><a href="/webpack/webpack-dev-server-hmr.html" class="nav_link">webpack-dev-server 与 HMR</a></li></ol></li><li class=""><a href="/web-monitor/web-monitor.html" class="nav_link">前端监控简介</a></li><li class=""><a href="/git/git.html" class="nav_link">Git使用</a></li></ol></aside><section class="main"><div class="main_article"><article><h1>HTTP协议请求方法和状态码</h1>
+<p>HTTP是一个无状态的协议，简单的可以理解为即使同一个客户端连续两次发送请求给服务器，服务器也无法识别这个同一个客户端发的请求。为了解决 HTTP 无状态导致的问题（HTTP1.x），后来出现了 Cookie。</p>
+<p>请求部分，第一行被称作 request line，它分为三个部分，HTTP Method，也就是请求的“方法”，请求
+的路径和请求的协议和版本。</p>
+<p>响应部分，第一行被称作 response line，它也分为三个部分，协议和版本、状态码和状态文本 。</p>
+<h2 id="%E5%B8%B8%E8%A7%81%E7%9A%84http%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95">常见的HTTP请求方法<a class="anchor" href="#%E5%B8%B8%E8%A7%81%E7%9A%84http%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95">§</a></h2>
+<div class="table_wrapper"><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>请求指定页面的信息并返回实体主体，如果是文件，返回文件内容；如果是CGI程序，返回该程序的输出数据。</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td>类似于GET，返回的响应中没有具体的内容，只有消息头，用于获取文件最好更新时间等属性信息。</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>向指定的资源提交数据进行处理请求，数据包含在请求体中</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>从客户端向服务端传递数据取代指定的文档内容，如果文件不存在则创建该文件。</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>请求服务器删除指定的内容</td>
+</tr>
+<tr>
+<td>OPTIONS</td>
+<td>用于通知或查询通信选项</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>将服务器收到的请求行和头部直接返回给客户端，用于再使用代理的环境中检查改写请求的情况。</td>
+</tr>
+<tr>
+<td>CONNECT</td>
+<td>使用代理传输加密消息时使用的方法</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="http11%E6%94%AF%E6%8C%81%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">HTTP1.1支持的状态码<a class="anchor" href="#http11%E6%94%AF%E6%8C%81%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">§</a></h2>
+<div class="table_wrapper"><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>已定义范围</th>
+<th>分类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1XX</td>
+<td>100~101</td>
+<td>信息提示，请求已被接收成功，继续处理</td>
+</tr>
+<tr>
+<td>2XX</td>
+<td>200~206</td>
+<td>成功，标识请求已被成功接收、理解接受</td>
+</tr>
+<tr>
+<td>3XX</td>
+<td>300~305</td>
+<td>重定向，要完成的请求，必须进行进一步的处理</td>
+</tr>
+<tr>
+<td>4XX</td>
+<td>400~415</td>
+<td>客户端错误，请求有语法错误或请求无法实现</td>
+</tr>
+<tr>
+<td>5XX</td>
+<td>500~505</td>
+<td>服务器错误，服务器未能实现合法的请求</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">常见的状态码<a class="anchor" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">§</a></h2>
+<div class="table_wrapper"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content 返回的响应中只有一个状态行和一些响应头，没有响应的Body。常用于：了解资源情况，查看对象是否存在，通过Header查看资源是否被修改</td>
+</tr>
+<tr>
+<td>206</td>
+<td>仅限GET方法，代表服务器已经成功处理了部分GET请求。配合请求头中的Range和响应头中的Content—Range，常用于断电续传，流媒体技术，如视频HLS</td>
+</tr>
+<tr>
+<td>301/302</td>
+<td>请求的URL已已移走，Response中应该包含一个Location URL，说明资源限制所处的位置。301永久重定向，旧的资源已经被永久移除了，例如更换了域名，设置旧域名301；302临时重定向，旧的资源还在，仍然可以访问，例如未登录，跳转到登录页面。</td>
+</tr>
+<tr>
+<td>304</td>
+<td>Not Modified 未修改。客户端本地已有缓存版本，并且通过request告诉了服务端，当服务端通过时间或者tag，发现没有更新的适合，就会返回一个不含body的304状态。</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized未授权错误</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden 服务器拒绝请求，无权限。</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found 未找到，资源不存在</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error 服务器内部错误，无法对请求提供服务</td>
+</tr>
+<tr>
+<td>503</td>
+<td>服务器暂时不可用，维护或过载等。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="http%E8%AF%B7%E6%B1%82header">HTTP请求Header<a class="anchor" href="#http%E8%AF%B7%E6%B1%82header">§</a></h2>
+<p><strong>通用头</strong></p>
+<div class="table_wrapper"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>释义</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Date</td>
+<td>日期</td>
+<td></td>
+</tr>
+<tr>
+<td>Pragma</td>
+<td>HTTP1.0 控制缓存的时效性</td>
+<td></td>
+</tr>
+<tr>
+<td>Cache-Control</td>
+<td>控制缓存的时效性</td>
+<td></td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>连接方式，如果是keep-alive，并且服务端支持，则会复用连接</td>
+<td></td>
+</tr>
+<tr>
+<td>Transfer-Encodeing</td>
+<td>消息主体的编码格式</td>
+<td></td>
+</tr>
+<tr>
+<td>Via</td>
+<td>记录途中经过的代理和网关</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>请求头</strong></p>
+<div class="table_wrapper"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authorization</td>
+<td></td>
+</tr>
+<tr>
+<td>From</td>
+<td></td>
+</tr>
+<tr>
+<td>If-Modified-Since</td>
+<td>上传访问时的更改时间</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td>来源</td>
+</tr>
+<tr>
+<td>User-agent</td>
+<td>客户端标识</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>浏览器端接受的格式</td>
+</tr>
+<tr>
+<td>Accept-Charset</td>
+<td></td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>浏览器端接受的编码方式</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>浏览器端接受的语言，用于服务端判断多语言</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>域名</td>
+</tr>
+<tr>
+<td>If-Match</td>
+<td></td>
+</tr>
+<tr>
+<td>If-None-Match</td>
+<td>上次访问时使用的E-Tag</td>
+</tr>
+<tr>
+<td>If-Unmodified-Since</td>
+<td></td>
+</tr>
+<tr>
+<td>Range</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>响应头</strong></p>
+<div class="table_wrapper"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>取值</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Location</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Server</td>
+<td></td>
+<td>服务端语言</td>
+</tr>
+<tr>
+<td>WWW-Authenticate</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Accept-Ranges</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Access-Control-allow-origins</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Set-Cookie</td>
+<td>Set-Cookie: id=aad3fWa; Expires=Wed, 21 May 2020 07:28:00 GMT;Max-Age=604800; Secure HTTPOnly SameSite</td>
+<td>Expires 属性缺省时，值为 Session时，表示是会话性 Cookie，值保存在客户端内存中，并在用户关闭浏览器时失效；Max-Age用于设置在 Cookie 失效之前需要经过的秒数;Expires 和 Max-Age 都存在，Max-Age 优先级更高；Domain 指定了 Cookie 可以送达的主机名；Path=/docs<code>，</code>/docs/Web/；Domain 和 Path 标识共同定义了 Cookie 的作用域：即 Cookie 应该发送给哪些 URL；SameSite 属性可以让 Cookie 在跨站请求时（src href get post iframe）不会被发送</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>实体头</strong></p>
+<div class="table_wrapper"><table>
+<thead>
+<tr>
+<th>Allow</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Encoding</td>
+<td>内容编码方式，通常是gzip</td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>内容的长度，有利于浏览器判断内容是否结束</td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>内容类型，MIME。</td>
+<td></td>
+</tr>
+<tr>
+<td>Expires</td>
+<td>过期时间，</td>
+<td></td>
+</tr>
+<tr>
+<td>Last-Modified</td>
+<td>页面最后修改时间</td>
+<td></td>
+</tr>
+<tr>
+<td>Content-language</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Location</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Content-Range</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Etag</td>
+<td>页面的信息摘要，用于判断是否需要重新到服务端取回页面</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>使用html的form标签提交产生的html请求，默认会产生	application/x-www-form-urlencoded	的数据 格式，当有文件上传时，则会使用multipart/form-data</p>
+<h3 id="http%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%AD%E4%BA%8E%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84header">HTTP请求头中于缓存相关的Header<a class="anchor" href="#http%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%AD%E4%BA%8E%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84header">§</a></h3>
+<div class="table_wrapper"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>取值</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cache-Control</td>
+<td>max-age=0，以秒为单位；</td>
+<td></td>
+</tr>
+<tr>
+<td>If-Modefied-Since</td>
+<td>时间</td>
+<td>从缓存文件获取的最后修改时间</td>
+</tr>
+<tr>
+<td>if-Unmodified-Since</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>If-None-Match</td>
+<td>字符哈希</td>
+<td>缓存文件的Etag</td>
+</tr>
+<tr>
+<td>If-Match</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="http%E5%93%8D%E5%BA%94%E5%A4%B4%E4%B8%AD%E4%B8%8E%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84header">HTTP响应头中与缓存相关的Header<a class="anchor" href="#http%E5%93%8D%E5%BA%94%E5%A4%B4%E4%B8%AD%E4%B8%8E%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84header">§</a></h3>
+<div class="table_wrapper"><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>取值</th>
+<th>释义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cache-Control(HTTP1.1，优先于Expires)</td>
+<td>max-age=6000</td>
+<td>no-cache需要使用协商缓存来验证数据；   public客户端和代理服务器都能缓存，响应被缓存，并且在多用户间共享；private,客户端可以缓存，响应自能作为私有缓存，不能再用户之间共享；no-store，绝对禁止缓存；max-age=60，60s之后缓存过期。如果同时存在Cache-Control和Expires，优先使用前者 200(from memory cache)</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>当前响应发送的时间</td>
+<td></td>
+</tr>
+<tr>
+<td>Expires(HTTP1.0)</td>
+<td>Expires:Mon, 29 Jun 2020 11:10:23 GMT</td>
+<td>强缓存，缓存过期的时间，绝对时间。<em>服务器的时间和浏览器的时间可能并不一致</em></td>
+</tr>
+<tr>
+<td>Last-modified（性能更好）</td>
+<td>绝对时间</td>
+<td>协商缓存，服务器中该资源的最后修改时间，服务器拿到请求头中的<code>If-Modified-Since</code>的字段后，其实会和这个时间做对比。单位时间是秒。未修改304</td>
+</tr>
+<tr>
+<td>ETag（优先级高，精度更准）</td>
+<td>hash值</td>
+<td>协商缓存，Etag用于某些服务器不能精确得到文件的最后修改时间，某些文件的修改非常频繁，文件修改时间变量但内容未变</td>
+</tr>
+<tr>
+<td>pragma</td>
+<td>HTTP1.0中的</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="%E7%BC%93%E5%AD%98%E4%BD%8D%E7%BD%AE">缓存位置<a class="anchor" href="#%E7%BC%93%E5%AD%98%E4%BD%8D%E7%BD%AE">§</a></h4>
+<p>Service Worker Cache PWA使用的 ，内存缓存Memory Cache，渲染进程结束后消失；Disk Cache 磁盘缓存</p>
+<p>图片文件是磁盘缓存。</p>
+<h3 id="http%E5%8D%8F%E8%AE%AE%E5%8E%8B%E7%BC%A9">HTTP协议压缩<a class="anchor" href="#http%E5%8D%8F%E8%AE%AE%E5%8E%8B%E7%BC%A9">§</a></h3>
+<p>Content-Encoding:gzip</p>
+<p>gzip compress deflate都是无损压缩算法，图片不适合使用gzip压缩。</p>
+<h3 id="url-encode">URL Encode<a class="anchor" href="#url-encode">§</a></h3>
+<p>URL Uniform Resource locator 统一资源定位符</p>
+<p>FTP File Transfer Protocol 文件传送协议</p>
+<p>访问方法（包含协议）：服务器域名 计算机名localhost ：端口号 文件的路径</p>
+<p>URL Encode就是把所有非英文字母，数字字符都替换成百分号（%）后加两位十六进制数，比如空格的编码为“%20”</p>
+<p>协议栈：操作系统中的网络控制软件，将消息打包加上目的地等控制信息，错误时重新发包，调节数据发送速率。</p>
+<p>网卡会将包转换为电信号，</p>
+<h3 id="https">HTTPS<a class="anchor" href="#https">§</a></h3>
+<h3 id="http-2">HTTP 2<a class="anchor" href="#http-2">§</a></h3></article><div class="prev_next"><a class="prev button" href="/HTTP/browser.html">«  <!-- -->浏览器</a><a class="next button" href="/HTTP/internet-hardware.html">网络硬件<!-- -->  »</a></div></div><aside class="main_toc_container nav_link_container"><div class="main_toc"><nav class="toc"><ol><li><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84http%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95">常见的HTTP请求方法</a></li><li><a href="#http11%E6%94%AF%E6%8C%81%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">HTTP1.1支持的状态码</a></li><li><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">常见的状态码</a></li><li><a href="#http%E8%AF%B7%E6%B1%82header">HTTP请求Header</a><ol><li><a href="#http%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%AD%E4%BA%8E%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84header">HTTP请求头中于缓存相关的Header</a></li><li><a href="#http%E5%93%8D%E5%BA%94%E5%A4%B4%E4%B8%AD%E4%B8%8E%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84header">HTTP响应头中与缓存相关的Header</a><ol></ol></li><li><a href="#http%E5%8D%8F%E8%AE%AE%E5%8E%8B%E7%BC%A9">HTTP协议压缩</a></li><li><a href="#url-encode">URL Encode</a></li><li><a href="#https">HTTPS</a></li><li><a href="#http-2">HTTP 2</a></li></ol></li></ol></nav></div></aside></section><footer>Powered by <a href="https://github.com/xcatliu/pagic" target="_blank">Pagic</a></footer><div class="tools flex_center hide_on_mobile"><a class="czs-angle-up-l button" href="#" style="background-image:url(&quot;/assets/czs-angle-up-l.svg&quot;)"></a></div><script src="https://cdn.pagic.org/react@16.13.1/umd/react.production.min.js"></script><script src="https://cdn.pagic.org/react-dom@16.13.1/umd/react-dom.production.min.js"></script><script type="module" src="/index.js"></script></body></html>
