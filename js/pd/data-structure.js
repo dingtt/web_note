@@ -132,3 +132,10 @@ ht.put("name", "custom hashTable");
 console.log(ht.get("name"));
 ht.delete("name");
 console.log(ht.get("name"));
+
+function shuffleArray(arr) {
+  for (let index = 0; index < arr.length; index++) {
+    const j = Math.floor(Math.random() * arr.length);
+    [arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+}
