@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lazy load</title>
+  </head>
+  <body>
+    <div class="img-container">
+      <img
+        class="lazy"
+        data-src="https://via.placeholder.com/600x400"
+        alt="Placeholder Image 1"
+      />
+      <img
+        class="lazy"
+        data-src="https://via.placeholder.com/600x400"
+        alt="Placeholder Image 1"
+      />
+      <img
+        class="lazy"
+        data-src="https://via.placeholder.com/600x400"
+        alt="Placeholder Image 1"
+      />
+      <img
+        class="lazy"
+        data-src="https://via.placeholder.com/600x400"
+        alt="Placeholder Image 1"
+      />
+    </div>
+    <script type="module">
+      const images = document.querySelectorAll("lazy");
+
+      const intersectionObserver = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const image = entry.target;
+              imgage.src = document.getAttrubite("data-src");
+              image.classList.remove("lazy");
+              observer.unobserve(image);
+            }
+          });
+        }
+      );
+
+      imgages.forEach((image) => {
+        intersectionObserver.observe(image);
+      });
+    </script>
+  </body>
+</html>
