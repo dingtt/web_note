@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>debounce input</title>
+  </head>
+  <body>
+    <input type="text" id="input" />
+    <script type="module">
+      const input = document.querySelector("#input");
+
+      let timer;
+
+      input.addEventListener("input", (e) => {
+        const val = e.target.value;
+        const debouncedSearch = debounce(search, 300);
+        debouncedSearch(val);
+      });
+
+      function debounce(fn, delay) {
+        return function(...args) {
+          if (timer) clearTimeout(timer);
+          timer = setTimeout(() => fn(...args), delay);
+        };
+      }
+
+      function search(val) {
+        console.log("Searching for:", val);
+        // Implement search logic here
+      }
+    </script>
+  </body>
+</html>
