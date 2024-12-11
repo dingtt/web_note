@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>watermark</title>
+  </head>
+  <body>
+    <canvas
+      id="watermark"
+      style="
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        pointer-events: none;
+      "
+    >
+    </canvas>
+    <script type="module">
+      const createMark = () => {
+        const canvas = document.querySelector("#watermark");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const ctx = canvas.getContext("2d");
+        ctx.font = '20px "Arial"';
+        ctx.fillStyle = "rgba(0,0,0,0.3)";
+        ctx.textAlign = "center";
+        for (let i = 0; i < window.innerWidth; i += 200) {
+          for (let j = 0; j < window.innerHeight; j += 50) {
+            ctx.fillText("water mark", i, j);
+          }
+        }
+      };
+
+      const mutationObserver = new MutationObserver(function (
+        mutations,
+        observer
+      ) {
+        mutations.forEach((mutation) => {
+          if (!document.querySelector("#watermark")) {
+            const canvas = document.createElement("canvas");
+            canvas.id = "watermark";
+            document.body.appendChild(canvas);
+            createMark();
+          }
+        });
+      });
+      mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+      });
+    </script>
+  </body>
+</html>
